@@ -42,9 +42,9 @@ public class MarketplaceViewController implements Initializable{
     Marketplace marketplace;
 	ModelFactoryController modelFactoryController;
 	CrudVendedorViewController crudVendedorViewController;
-	Vendedor vendedorSeleccionado;
 	
 	ObservableList<Vendedor> listaVendedoresData = FXCollections.observableArrayList();
+	Vendedor vendedorSeleccionado;
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -52,6 +52,7 @@ public class MarketplaceViewController implements Initializable{
 		modelFactoryController = new ModelFactoryController().getInstance();
 		crudVendedorViewController = new CrudVendedorViewController(modelFactoryController);
 		
+		// Inicializo los datos de cada controlador CRUD (Como tablas...)
 		inicializarVendedorView();
 	}
 	
@@ -62,9 +63,11 @@ public class MarketplaceViewController implements Initializable{
 		columnaCedulaVendedor.setCellValueFactory(new PropertyValueFactory<>("cedula"));
 		columnaDireccionVendedor.setCellValueFactory(new PropertyValueFactory<>("direccion"));
 		
+//	Añade los datos de la lista observable a la tabla
+// 	Esa lista se obtiene del modelFactoryController, que se obtiene desde un CRUD
+		tablaVendedores.setItems(getVendedoresData());
 		
-		
-		// Acción para mostrar informacion de un empleado
+		// Acción de la tabla para mostrar informacion de un empleado
 		tablaVendedores.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) ->{
 			vendedorSeleccionado = newSelection;
 			mostrarInformacionVendedor(vendedorSeleccionado);
@@ -76,9 +79,16 @@ public class MarketplaceViewController implements Initializable{
 
     }
     
+    
+    /*
+     * Este metodo asigna los valores del vendedor seleccionado de la tabla, en los textField
+     * */
     private void mostrarInformacionVendedor(Vendedor vendedorSeleccionado) {
 		if(vendedorSeleccionado != null){
-//			txtnom // 1:24:30 Clase 04-10-2021
+			txtNombreVendedor.setText(vendedorSeleccionado.getNombre());;
+		    txtApellidoVendedor.setText(vendedorSeleccionado.getApellido());
+		    txtCedulaVendedor.setText(vendedorSeleccionado.getCedula());
+		    txtDireccionVendedor.setText(vendedorSeleccionado.getDireccion());
 		}
 		
 	}
@@ -88,8 +98,20 @@ public class MarketplaceViewController implements Initializable{
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 		
-		// Add observable list data to the table
-		tablaVendedores.setItems(modelFactoryController.getClienteData());
+		// Añade los datos de la lista observable a la tabla
+		// Esa lista se obtiene del modelFactoryController, que se obtiene desde un CRUD
+	//	tablaVendedores.setItems(modelFactoryController.getVendedoresData());
+	}
+	
+	
+	/*
+	 * Esta lista se puede obtener directamente del ModelFactoryController, pero segun nuestra
+	 * estructura de trabajo, el ModelFactoryController se comunica con los CRUD y estos se
+	 * comunican con este controlador principal, por lo que debemos pedirle la lista al CRUD 
+	 * */
+	public ObservableList<Vendedor> getVendedoresData(){
+		listaVendedoresData.addAll(crudVendedorViewController.getListaVendedores()) ;
+		return listaVendedoresData;
 	}
 	
 	public Marketplace getMarketplace(){

@@ -30,7 +30,10 @@ public class ModelFactoryController{
 		return SingletonHolder.eINSTANCE;
 	}
 	
-	private ObservableList<Vendedor> listVendedorData = FXCollections.observableArrayList();
+// 	Esta lista observable, solo le crea en el controlador principal, para mostrar los datos
+//  al usuario. Tambien se puede crear una lista observable desde acá. Pero segun nuestra 
+//  estructura no es así.
+//	private ObservableList<Vendedor> listaVendedoresData = FXCollections.observableArrayList();
 
 
 	public ModelFactoryController(){
@@ -104,11 +107,15 @@ public class ModelFactoryController{
 		empresa.getListaObjetos().add(objeto);
 
 */
-		listVendedorData.addAll(getMarketplace().getListaVendedores());
+//		listaVendedoresData.addAll(getMarketplace().getListaVendedores());
 	}
 
-	public ObservableList<Vendedor> getClienteData() {
-		return listVendedorData;
+//	public ObservableList<Vendedor> getListaVendedoresData() {
+//		return listaVendedoresData;
+//	}
+	
+	public ArrayList<Vendedor> getListaVendedores(){
+		return marketplace.getListaVendedores();
 	}
 
 	public Marketplace getMarketplace() {
