@@ -2,9 +2,10 @@ package co.edu.uniquindio.Marketplace;
 
 import java.io.IOException;
 
-import co.edu.uniquindio.Marketplace.controller.CrudClienteViewController;
-import co.edu.uniquindio.Marketplace.controller.GestionPrestamoControl;
-import co.edu.uniquindio.Marketplace.model.Empresa;
+import co.edu.uniquindio.Marketplace.controller.CrudVendedorViewController;
+import co.edu.uniquindio.Marketplace.controller.MarketplaceViewController;
+import co.edu.uniquindio.Marketplace.controller.ModelFactoryController;
+import co.edu.uniquindio.Marketplace.model.Marketplace;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -17,20 +18,20 @@ public class MainApp extends Application {
 	private Stage primaryStage;
 	private BorderPane rootLayout;
 
-	GestionPrestamoControl gestionPrestamoControl ;
-	Empresa empresa;
+	ModelFactoryController modelFactoryController;
+	Marketplace marketplace;
 
 
 	public MainApp() {
-		gestionPrestamoControl = new GestionPrestamoControl();
-		empresa = gestionPrestamoControl.getEmpresa();
+		modelFactoryController = new ModelFactoryController();
+		marketplace = modelFactoryController.getMarketplace();
 	}
 
 
 	@Override
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
-		this.primaryStage.setTitle("Prestamo de Objetos");
+		this.primaryStage.setTitle("MarketPlace");
 		initRootLayout();
 		showPersonOverview();
 	}
@@ -52,6 +53,7 @@ public class MainApp extends Application {
 			e.printStackTrace();
 		}
 	}
+	
 	/**
 	 * Shows the person overview inside the root layout.
 	 */
@@ -59,14 +61,14 @@ public class MainApp extends Application {
 		try {
 			// Load person overview.
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class.getResource("view/PrestamoObjetosView.fxml"));
-			AnchorPane prestamoObjetoOverview = (AnchorPane) loader.load();
+			loader.setLocation(MainApp.class.getResource("view/MarketplaceView.fxml"));
+			AnchorPane marketplaceOverview = (AnchorPane) loader.load();
 			// Set person overview into the center of root layout.
-			rootLayout.setCenter(prestamoObjetoOverview);
+			rootLayout.setCenter(marketplaceOverview);
 
 
 			// Give the controller access to the main app.
-			CrudClienteViewController controller = loader.getController();
+			MarketplaceViewController controller = loader.getController();
 			controller.setMainApp(this);
 
 
@@ -81,10 +83,9 @@ public class MainApp extends Application {
 	public Stage getPrimaryStage() {
 		return primaryStage;
 	}
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
-
-
 
 }

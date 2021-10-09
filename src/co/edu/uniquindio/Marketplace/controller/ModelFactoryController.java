@@ -9,79 +9,76 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import co.edu.uniquindio.Marketplace.model.Cliente;
-import co.edu.uniquindio.Marketplace.model.Empleado;
-import co.edu.uniquindio.Marketplace.model.Empresa;
-import co.edu.uniquindio.Marketplace.model.Objeto;
-import co.edu.uniquindio.Marketplace.model.Persona;
+import co.edu.uniquindio.Marketplace.model.Vendedor;
+import co.edu.uniquindio.Marketplace.model.Marketplace;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class GestionPrestamoControl
-{
-	Empresa empresa;
+public class ModelFactoryController{
+	Marketplace marketplace;
 
 
 	//------------------------------  Singleton ------------------------------------------------
 	// Clase estatica oculta. Tan solo se instanciara el singleton una vez
 	private static class SingletonHolder {
 		// El constructor de Singleton puede ser llamado desde aquí al ser protected
-		private final static GestionPrestamoControl eINSTANCE = new GestionPrestamoControl();
+		private final static ModelFactoryController eINSTANCE = new ModelFactoryController();
 	}
 
 	// Método para obtener la instancia de nuestra clase
-	public static GestionPrestamoControl getInstance() {
+	public static ModelFactoryController getInstance() {
 		return SingletonHolder.eINSTANCE;
 	}
-	private ObservableList<Cliente> listClienteData = FXCollections.observableArrayList();
+	
+	private ObservableList<Vendedor> listVendedorData = FXCollections.observableArrayList();
 
 
-	public GestionPrestamoControl(){
+	public ModelFactoryController(){
 		inicializarDatos();
 	}
 
 	private void inicializarDatos() {
 
-//		Inicilaizar la clase principal
-		empresa = new Empresa();
+//		Inicializar la clase principal
+		marketplace = new Marketplace();
 
-//		Inicializar la lista de clientes
-		Cliente cliente = new Cliente();
-		cliente.setNombre("Juan");
-		cliente.setApellido("Arias");
-		cliente.setCedula("1094");
-		cliente.setDireccion("Armenia");
-		empresa.getListaClientes().add(cliente);
+//		Inicializar la lista de vendedors
+		Vendedor vendedor = new Vendedor();
+		vendedor.setNombre("Juan");
+		vendedor.setApellido("Arias");
+		vendedor.setCedula("1094");
+		vendedor.setDireccion("Armenia");
+		marketplace.getListaVendedores().add(vendedor);
 
-		cliente = new Cliente();
-		cliente.setNombre("Pedro");
-		cliente.setApellido("Perez");
-		cliente.setCedula("1095");
-		cliente.setDireccion("Quimbaya");
-		empresa.getListaClientes().add(cliente);
+		vendedor = new Vendedor();
+		vendedor.setNombre("Pedro");
+		vendedor.setApellido("Perez");
+		vendedor.setCedula("1095");
+		vendedor.setDireccion("Quimbaya");
+		marketplace.getListaVendedores().add(vendedor);
 
-		cliente = new Cliente();
-		cliente.setNombre("Jose");
-		cliente.setApellido("Restrepo");
-		cliente.setCedula("1096");
-		cliente.setDireccion("Salento");
-		empresa.getListaClientes().add(cliente);
+		vendedor = new Vendedor();
+		vendedor.setNombre("Jose");
+		vendedor.setApellido("Restrepo");
+		vendedor.setCedula("1096");
+		vendedor.setDireccion("Salento");
+		marketplace.getListaVendedores().add(vendedor);
 
 
-
+/*
 //		Inicializar la lista de Empleados
-		Empleado vendedor = new Empleado();
-		vendedor.setNombre("Jorge");
-		vendedor.setApellido("Arias");
-		vendedor.setCedula("8913");
-		empresa.getListaEmpleados().add(vendedor);
+		Empleado empleado = new Empleado();
+		empleado.setNombre("Jorge");
+		empleado.setApellido("Arias");
+		empleado.setCedula("8913");
+		empresa.getListaEmpleados().add(empleado);
 
 
-		vendedor = new Empleado();
-		vendedor.setNombre("Jorge");
-		vendedor.setApellido("Arias");
-		vendedor.setCedula("8913");
-		empresa.getListaEmpleados().add(vendedor);
+		empleado = new Empleado();
+		empleado.setNombre("Jorge");
+		empleado.setApellido("Arias");
+		empleado.setCedula("8913");
+		empresa.getListaEmpleados().add(empleado);
 
 
 //		Inicializar la lista de Objetos
@@ -106,24 +103,24 @@ public class GestionPrestamoControl
 		objeto.setEstado("Disponible");
 		empresa.getListaObjetos().add(objeto);
 
-
-		listClienteData.addAll(getEmpresa().getListaClientes());
+*/
+		listVendedorData.addAll(getMarketplace().getListaVendedores());
 	}
 
-	public ObservableList<Cliente> getClienteData() {
-		return listClienteData;
+	public ObservableList<Vendedor> getClienteData() {
+		return listVendedorData;
 	}
 
-	public Empresa getEmpresa() {
-		return empresa;
+	public Marketplace getMarketplace() {
+		return marketplace;
 	}
 
-	public void setEmpresa(Empresa empresa) {
-		this.empresa = empresa;
+	public void setMarketplace(Marketplace empresa) {
+		this.marketplace = empresa;
 	}
 
-	public void eliminarCliente(Cliente clienteSeleccionado) {
-		getEmpresa().eliminarcliente(clienteSeleccionado.getCedula());
+	public void eliminarVendedor(Vendedor vendedorSeleccionado) {
+		getMarketplace().eliminarVendedor(vendedorSeleccionado.getCedula());
 	}
 
 
