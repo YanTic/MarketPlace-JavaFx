@@ -10,11 +10,13 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import co.edu.uniquindio.Marketplace.model.Vendedor;
+import co.edu.uniquindio.Marketplace.model.services.IModelFactoryService;
+import co.edu.uniquindio.Marketplace.exceptions.VendedorException;
 import co.edu.uniquindio.Marketplace.model.Marketplace;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class ModelFactoryController{
+public class ModelFactoryController implements IModelFactoryService{
 	Marketplace marketplace;
 
 
@@ -114,9 +116,9 @@ public class ModelFactoryController{
 //		return listaVendedoresData;
 //	}
 	
-	public ArrayList<Vendedor> getListaVendedores(){
-		return marketplace.getListaVendedores();
-	}
+//	public ArrayList<Vendedor> getListaVendedores(){
+//		return marketplace.getListaVendedores();
+//	}
 
 	public Marketplace getMarketplace() {
 		return marketplace;
@@ -126,9 +128,62 @@ public class ModelFactoryController{
 		this.marketplace = empresa;
 	}
 
-	public void eliminarVendedor(Vendedor vendedorSeleccionado) {
-		getMarketplace().eliminarVendedor(vendedorSeleccionado.getCedula());
+	// Aquí aprovechamos para usar excepciones, El ModelFactoryController captura
+	// esas excepciones, de resto el banco propaga las excepciones y sus clases enlazadas
+	@Override
+	public Vendedor crearVendedor(String nombre, String apellido, String cedula, String direccion) {
+		Vendedor vendedor = null;	
+		
+		// 26:02 min
+		try {
+			vendedor = marketplace.crearVendedor(nombre, apellido, cedula, direccion);
+		} catch (VendedorException e) {
+//			e.printStackTrace();
+			e.getMessage();
+		}
+		
+		return vendedor;
 	}
+
+	@Override
+	public boolean actualizarVendedor(String cedulaActual, String nombre, String apellido, String cedula, String direccion) {
+		boolean flagVendedorActualizado = false;
+		
+		try{
+			flagVendedorActualizado = marketplace.actualizarVendedor(cedulaActual, nombre, apellido, cedula, direccion);
+		}
+		catch(VendedorException e){
+			e.getMessage();
+		}
+		
+		return flagVendedorActualizado;
+	}
+
+	@Override
+	public Vendedor getVendedor(String cedula) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean eliminarVendedor(String cedula) {
+		boolean flagVendedorEliminado = false;
+		
+		try{
+			flagVendedorEliminado = marketplace.eliminarVendedor(cedula);			
+		}
+		catch(VendedorException e){
+			e.getMessage();
+		}
+		
+		return flagVendedorEliminado;
+		
+	}
+
+	@Override
+	public ArrayList<Vendedor> getListaVendedores() {
+		return marketplace.getListaVendedores();
+	}	
 
 
 

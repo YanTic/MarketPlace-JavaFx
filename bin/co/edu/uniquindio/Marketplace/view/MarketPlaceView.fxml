@@ -19,7 +19,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <SplitPane dividerPositions="0.5158562367864693" layoutX="7.0" layoutY="9.0" orientation="VERTICAL" prefHeight="475.0" prefWidth="639.0">
+                        <SplitPane dividerPositions="0.46614950634696756" layoutX="7.0" layoutY="9.0" orientation="VERTICAL" prefHeight="475.0" prefWidth="639.0">
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="216.0" prefWidth="637.0" SplitPane.resizableWithParent="false">
                                  <children>
@@ -30,19 +30,19 @@
                                     <Label layoutX="14.0" layoutY="100.0" text="Cédula:" />
                                     <Label layoutX="14.0" layoutY="138.0" text="Dirección:" />
                                     <TextField fx:id="txtNombreVendedor" layoutX="99.0" layoutY="28.0" prefHeight="25.0" prefWidth="524.0" />
-                                    <TextField fx:id="txtApellidoVendedor" layoutX="99.0" layoutY="59.0" prefHeight="25.0" prefWidth="524.0" />
-                                    <TextField fx:id="txtCedulaVendedor" layoutX="99.0" layoutY="96.0" prefHeight="25.0" prefWidth="524.0" />
+                                    <TextField fx:id="txtApellidoVendedor" layoutX="99.0" layoutY="61.0" prefHeight="25.0" prefWidth="524.0" />
+                                    <TextField fx:id="txtCedulaVendedor" layoutX="99.0" layoutY="97.0" prefHeight="25.0" prefWidth="524.0" />
                                     <TextField fx:id="txtDireccionVendedor" layoutX="99.0" layoutY="134.0" prefHeight="25.0" prefWidth="524.0" />
                                     <Separator layoutX="14.0" layoutY="175.0" prefHeight="4.0" prefWidth="605.0" />
-                                    <Button fx:id="btnActualizarVendedor" layoutX="262.0" layoutY="199.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="88.0" text="Actualizar" />
-                                    <Button fx:id="btnNuevoVendedor" layoutX="389.0" layoutY="199.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="88.0" text="Nuevo" />
-                                    <Button fx:id="btnAgregarVendedor" layoutX="525.0" layoutY="199.0" mnemonicParsing="false" onAction="#accionBtnAgregarVendedor" prefHeight="25.0" prefWidth="88.0" text="Agregar" />
+                                    <Button fx:id="btnActualizarVendedor" layoutX="309.0" layoutY="184.0" mnemonicParsing="false" onAction="#accionBtnActualizarVendedor" prefHeight="25.0" prefWidth="88.0" text="Actualizar" />
+                                    <Button fx:id="btnNuevoVendedor" layoutX="416.0" layoutY="184.0" mnemonicParsing="false" onAction="#accionBtnNuevoVendedor" prefHeight="25.0" prefWidth="88.0" text="Nuevo" />
+                                    <Button fx:id="btnAgregarVendedor" layoutX="525.0" layoutY="184.0" mnemonicParsing="false" onAction="#accionBtnAgregarVendedor" prefHeight="25.0" prefWidth="88.0" text="Agregar" />
                                  </children>
                               </AnchorPane>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="283.0" prefWidth="637.0">
                                  <children>
                                     <Label layoutX="8.0" layoutY="6.0" text="Lista de Vendedores" />
-                                    <TableView fx:id="tablaVendedores" layoutX="8.0" layoutY="30.0" prefHeight="182.0" prefWidth="624.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0">
+                                    <TableView fx:id="tablaVendedores" layoutX="8.0" layoutY="27.0" prefHeight="192.0" prefWidth="624.0" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="27.0">
                                       <columns>
                                         <TableColumn fx:id="columnaNombreVendedor" prefWidth="141.0" text="Nombre(s)" />
                                         <TableColumn fx:id="columnaApellidoVendedor" prefWidth="157.0" text="Apellido(s)" />
@@ -57,6 +57,7 @@
                               </AnchorPane>
                           </items>
                         </SplitPane>
+                        <Button fx:id="btnEliminarVendedor" layoutX="526.0" layoutY="453.0" mnemonicParsing="false" onAction="#accionBtnEliminarVendedor" prefHeight="25.0" prefWidth="88.0" text="Eliminar" />
                      </children>
                   </AnchorPane>
             </content>

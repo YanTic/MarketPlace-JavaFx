@@ -28,5 +28,18 @@ public class CrudVendedorViewController {
 	public ArrayList<Vendedor> getListaVendedores(){
 		return modelFactoryController.getListaVendedores();
 	}
+
+	// CRUD comunica con ModelFactoryController
+	public Vendedor crearVendedor(String nombre, String apellido, String cedula, String direccion) {		
+		return modelFactoryController.crearVendedor(nombre, apellido, cedula, direccion);
+	}
+
+	public boolean eliminarVendedor(String cedula) {		
+		return modelFactoryController.eliminarVendedor(cedula);
+	}
+
+	public boolean actualizarVendedor(String cedulaActual, String nombre, String apellido, String cedula, String direccion) {		
+		return modelFactoryController.actualizarVendedor(cedulaActual, nombre, apellido, cedula, direccion);
+	}
 	
 }
