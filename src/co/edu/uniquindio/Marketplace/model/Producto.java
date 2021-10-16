@@ -5,13 +5,13 @@ public class Producto {
 	private String categoria;
 	private String usuario;
 	private String contrasena;
-	private double precio;
+	private String precio;
 	private EstadoProducto estado;
 
 	public Producto() { }
 	
 	public Producto(String nombre, String categoria, String usuario, String contrasena,
-					double precio, EstadoProducto estado) {
+					String precio, EstadoProducto estado) {
 		this.nombre = nombre;
 		this.categoria = categoria;
 		this.usuario = usuario;
@@ -19,6 +19,13 @@ public class Producto {
 		this.precio = precio;
 		this.estado = estado;
 	}
+	
+	public Producto(String nombre, String precio, String categoria, EstadoProducto estado) {
+		this.nombre = nombre;
+		this.precio = precio;
+		this.categoria = categoria;
+		this.estado = estado;
+}
 	
 	
 	
@@ -55,11 +62,11 @@ public class Producto {
 		this.contrasena = contrasena;
 	}
 
-	public double getPrecio() {
+	public String getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(double precio) {
+	public void setPrecio(String precio) {
 		this.precio = precio;
 	}
 

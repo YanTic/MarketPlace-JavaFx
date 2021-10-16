@@ -12,9 +12,20 @@ import java.util.TreeSet;
 import co.edu.uniquindio.Marketplace.model.Vendedor;
 import co.edu.uniquindio.Marketplace.model.services.IModelFactoryService;
 import co.edu.uniquindio.Marketplace.exceptions.VendedorException;
+import co.edu.uniquindio.Marketplace.model.EstadoProducto;
 import co.edu.uniquindio.Marketplace.model.Marketplace;
+import co.edu.uniquindio.Marketplace.model.Producto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
+/*
+ * - ModelFactoryController. La clase singleton del archivo -
+ * 		Aquí conectamos con los CRUD para obtener o mandar datos de
+ * 		la clase principal Marketplace.
+ * 
+ * 		Además, aquí se capturan las excepciones que son propagadas
+ * 		por la clase Marketplace (usando throws)
+ * */
 
 public class ModelFactoryController implements IModelFactoryService{
 	Marketplace marketplace;
@@ -70,6 +81,28 @@ public class ModelFactoryController implements IModelFactoryService{
 		marketplace.getListaVendedores().add(vendedor);
 
 
+//		Inicilizar la lista de productos
+		Producto producto = new Producto();
+		producto.setNombre("Helado Pelapop");
+		producto.setPrecio("5000");
+		producto.setCategoria("Postre");
+		producto.setEstado(EstadoProducto.Publicado);
+		marketplace.getListaProductos().add(producto);
+		
+		producto = new Producto();
+		producto.setNombre("Galleta");
+		producto.setPrecio("2000");
+		producto.setCategoria("Pasaboca");
+		producto.setEstado(EstadoProducto.Vendido);
+		marketplace.getListaProductos().add(producto);
+		
+		producto = new Producto();
+		producto.setNombre("Servilletas");
+		producto.setPrecio("3500");
+		producto.setCategoria("Utiles de Cocina");
+		producto.setEstado(EstadoProducto.Cancelado);
+		marketplace.getListaProductos().add(producto);
+		
 /*
 //		Inicializar la lista de Empleados
 		Empleado empleado = new Empleado();
@@ -112,14 +145,6 @@ public class ModelFactoryController implements IModelFactoryService{
 //		listaVendedoresData.addAll(getMarketplace().getListaVendedores());
 	}
 
-//	public ObservableList<Vendedor> getListaVendedoresData() {
-//		return listaVendedoresData;
-//	}
-	
-//	public ArrayList<Vendedor> getListaVendedores(){
-//		return marketplace.getListaVendedores();
-//	}
-
 	public Marketplace getMarketplace() {
 		return marketplace;
 	}
@@ -127,6 +152,10 @@ public class ModelFactoryController implements IModelFactoryService{
 	public void setMarketplace(Marketplace empresa) {
 		this.marketplace = empresa;
 	}
+	
+	
+	// -------------- METODOS PARA CRUD VENDEDOR VIEW CONTROLLER --------------
+	
 
 	// Aquí aprovechamos para usar excepciones, El ModelFactoryController captura
 	// esas excepciones, de resto el banco propaga las excepciones y sus clases enlazadas
@@ -179,121 +208,66 @@ public class ModelFactoryController implements IModelFactoryService{
 		return flagVendedorEliminado;
 		
 	}
+	
+	
+	// -------------- METODOS PARA CRUD PRODUCTO VIEW CONTROLLER --------------
+	
+	@Override
+	public Producto crearProducto(String nombre, String precio, String categoria, EstadoProducto estado) {
+		Producto producto = null;
+		
+//		producto = marketplace.crearProducto(nombre, precio, categoria, estado);
+		
+		return producto;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	@Override
 	public ArrayList<Vendedor> getListaVendedores() {
 		return marketplace.getListaVendedores();
 	}	
 
+	@Override
+	public ArrayList<Producto> getListaProductos() {
+		return marketplace.getListaProductos();
+	}
 
 
 
 
 
-
-
-//------------------------------------------------------CLIENTE-------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------------------------------------
-//
-//
-//	public void agregarCliente(String nombres, String apellidos, String cedula, String descripcion) {
-//
-////		Cliente cliente = new Cliente();
-////		cliente.setNombres(nombres);
-////		cliente.setApellidos(apellidos);
-////		cliente.setCedula(cedula);
-////		cliente.setDescripcion(descripcion);
-////		listaClientes.add(cliente);
-//	}
-//
-//
-//	public boolean eliminarCliente(String cedulaCliente) {
-//
-//		//Metodo Iterator, util para recorrer un arrayList
-//		Cliente cliente = null;
-//		cliente = obtenerCliente(cedulaCliente);
-//
-//		if(cliente != null)
-//		{
-//			getListaClientes().remove(cliente);
-//		return true;
-//		}
-//		else
-//		{
-//			return false;
-//		}
-//
-//	}
-//
-//	public Cliente obtenerCliente(String cedulaCliente) {
-//
-//		Cliente cliente = null;
-////		iteratorCliente = getListaClientes().iterator();
-////
-////		while (iteratorCliente.hasNext()){
-////			cliente = iteratorCliente.next();
-////
-////			if(cliente.getCedula().equalsIgnoreCase(cedulaCliente))
-////			{
-////				return cliente;
-////			}
-////		}
-//		return cliente;
-//	}
-//
-////------------------------------------------------------VENDEDOR-------------------------------------------------------------------------
-////-------------------------------------------------------------------------------------------------------------------------------
-////-------------------------------------------------------------------------------------------------------------------------------
-//
-//	public void agregarVendedor(String nombres, String apellidos, String cedula, String descripcion) {
-//
-////		Vendedor vendedor = new Vendedor();
-////		vendedor.setNombres(nombres);
-////		vendedor.setApellidos(apellidos);
-////		vendedor.setCedula(cedula);
-////		vendedor.setDescripcion(descripcion);
-////
-////		listaVendores.add(vendedor);
-//
-//	}
-//
-//
-//	public boolean eliminarVendedor(String cedulaVendedor) {
-//
-//		//Metodo Iterator, util para recorrer un arrayList
-////		Vendedor vendedor = null;
-////
-////		vendedor = obtenerVendedor(cedulaVendedor);
-////
-////		if(vendedor != null)
-////		{
-////			getListaVendores().remove(vendedor);
-////		return true;
-////		}
-////		else
-////		{
-////			return false;
-////		}
-//		return false;
-//	}
-//
-//
-//	public Vendedor obtenerVendedor(String cedulaVendedor) {
-//
-//		Vendedor vendedor = null;
-////		iteratorVendedor = getListaVendores().iterator();
-////
-////		while (iteratorVendedor.hasNext()){
-////			vendedor = iteratorVendedor.next();
-////
-////			if(vendedor.getCedula().equalsIgnoreCase(cedulaVendedor))
-////			{
-////				return vendedor;
-////			}
-////		}
-//		return vendedor;
-//	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 //
 ////-----------------------------------------------------PRODUCTO--------------------------------------------------------------------------
 ////-------------------------------------------------------------------------------------------------------------------------------

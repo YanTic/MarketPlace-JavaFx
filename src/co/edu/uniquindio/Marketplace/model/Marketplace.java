@@ -8,9 +8,6 @@ import co.edu.uniquindio.Marketplace.model.services.IMarketplaceService;
 
 public class Marketplace implements Serializable, IMarketplaceService{
 
-	/**
-	 * 	ESTOY EN 29:00 MIN
-	 */
 	private static final long serialVersionUID = 1L;
 
 	ArrayList<Vendedor> listaVendedores = new ArrayList<>();
@@ -19,7 +16,14 @@ public class Marketplace implements Serializable, IMarketplaceService{
 	public Marketplace() {
 
 	}
+	
+	/*
+	 *  CONTINUAR CON LOS METODOS PARA MODEL FACTORY CONTROLLER DE PRODUCTO 
+	 * */
 
+	
+	// -------------- METODOS PARA MODEL FACTORY CONTROLLER DE VENDEDOR --------------
+	
 	
 	@Override
 	public Vendedor crearVendedor(String nombre, String apellido, String cedula, String direccion) throws VendedorException {
@@ -121,6 +125,62 @@ public class Marketplace implements Serializable, IMarketplaceService{
 	}
 	
 	
+	
+	// -------------- METODOS PARA MODEL FACTORY CONTROLLER DE PRODUCTO --------------
+	
+	@Override
+	public Producto crearProducto(String nombre, String precio, String categoria, EstadoProducto estado) {
+//		Vendedor nuevoProducto = null;
+//		boolean flagProductoExiste = false;
+//		
+//		flagProductoExiste = verificarProductoExistente(nombre);
+//		
+//		// Esto es para no crear un vendedor que ya existe
+//		if(flagProductoExiste != true){
+//			nuevoVendedor = new Vendedor();
+//			nuevoVendedor.setNombre(nombre);
+//			nuevoVendedor.setApellido(apellido);
+//			nuevoVendedor.setCedula(cedula);
+//			nuevoVendedor.setDireccion(direccion);
+//			getListaVendedores().add(nuevoVendedor);
+//		}
+//		else{
+//		// Aquí se propago una excepcion, para que el ModelFactoryController la capture
+//			throw new VendedorException("El empleado con cédula: "+cedula+ " NO se ha podido crear. Ya existe");			
+//		}
+//		
+//		// Recordar: Que esto se retorna al ModelFactoryController, luego al CRUD, luego al
+//		// MarketPlaceViewController en el metodo "crearVendedor" para mostra la alerta si
+//		// el vendedor ha sido creado o no, y por supuesto agregar a la ObservableList (Para 
+//		// agregarlo a la tabla)
+//		return nuevoVendedor;
+		return null;
+	}
+	
+	
+	
+	@Override
+	public boolean verificarProductoExistente(String nombre) {
+		Boolean flagProductoExistente = false;
+		
+		// Esto compara el nombre de cada producto para verificar si se encuentra en la lista
+		for(Producto producto: listaProductos){
+			if(producto.getNombre().equalsIgnoreCase(nombre)){
+				flagProductoExistente = true;
+				break;
+			}
+		}
+		
+		return flagProductoExistente;
+	}
+	
+	
+	
+	
+	
+	
+
+
 	// --- Setters & Getters ---
 	public ArrayList<Producto> getListaProductos() {
 		return listaProductos;
@@ -134,5 +194,6 @@ public class Marketplace implements Serializable, IMarketplaceService{
 	public void setListaVendedores(ArrayList<Vendedor> listaVendedores) {
 		this.listaVendedores = listaVendedores;
 	}
+
 
 }

@@ -5,7 +5,9 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.Marketplace.MainApp;
+import co.edu.uniquindio.Marketplace.model.EstadoProducto;
 import co.edu.uniquindio.Marketplace.model.Marketplace;
+import co.edu.uniquindio.Marketplace.model.Producto;
 import co.edu.uniquindio.Marketplace.model.Vendedor;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +18,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -26,6 +29,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * */
 
 public class MarketplaceViewController implements Initializable{
+	
+	// CRUD VENDEDORES
 	@FXML private TextField txtNombreVendedor;
     @FXML private TextField txtApellidoVendedor;
     @FXML private TextField txtCedulaVendedor;
@@ -40,28 +45,51 @@ public class MarketplaceViewController implements Initializable{
     @FXML private TableColumn<Vendedor, String> columnaCedulaVendedor;
     @FXML private TableColumn<Vendedor, String> columnaDireccionVendedor;
     
-	// Reference to the main application.
+    // CRUD PRODUCTOS
+    @FXML private TextField txtNombreProducto;
+    @FXML private TextField txtPrecioProducto;
+    @FXML private TextField txtCategoriaProducto;
+    @FXML private ComboBox<EstadoProducto> cbEstadoProducto;
+    @FXML private Button btnActualizarProducto;
+    @FXML private Button btnNuevoProducto;
+    @FXML private Button btnAgregarProducto;
+    @FXML private TableView<Producto> tablaProductos;
+    @FXML private TableColumn<Producto, String> columnaNombreProducto;
+    @FXML private TableColumn<Producto, String> columnaPrecioProducto;
+    @FXML private TableColumn<Producto, String> columnaCategoriaProducto;
+    @FXML private TableColumn<Producto, EstadoProducto> columnaEstadoProducto;
+    
+    
+    
+	// Referencia a la MainApp.
 	private MainApp mainApp;
 	
     Marketplace marketplace;
 	ModelFactoryController modelFactoryController;
 	CrudVendedorViewController crudVendedorViewController;
+	CrudProductoViewController crudProductoViewController;
 	
+	// Listas observable para mostrar en tablas, junto a su objeto seleccionado
 	ObservableList<Vendedor> listaVendedoresData = FXCollections.observableArrayList();
+	ObservableList<Producto> listaProductosData = FXCollections.observableArrayList();
 	Vendedor vendedorSeleccionado;
+	Producto productoSeleccionado;
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// Acá se inicializan todos los controladores CRUD
 		modelFactoryController = new ModelFactoryController().getInstance();
 		crudVendedorViewController = new CrudVendedorViewController(modelFactoryController);
+		crudProductoViewController = new CrudProductoViewController(modelFactoryController);
 		
 		// Inicializo los datos de cada controlador CRUD (Como tablas...)
 		inicializarVendedorView();
+		inicializarProductoView();
 	}
 	
+//	-------------- METODOS PARA VENDEDOR VIEW CONTROLLER --------------
 	public void inicializarVendedorView(){
-		// Initialize the person table with the two columns.
+		// Inicializa los vendederos en la tabla con sus columnas.
 		columnaNombreVendedor.setCellValueFactory(new PropertyValueFactory<>("nombre"));
 		columnaApellidoVendedor.setCellValueFactory(new PropertyValueFactory<>("apellido"));
 		columnaCedulaVendedor.setCellValueFactory(new PropertyValueFactory<>("cedula"));
@@ -80,6 +108,7 @@ public class MarketplaceViewController implements Initializable{
 			mostrarInformacionVendedor(vendedorSeleccionado);
 		});
 	}
+
 	
 	@FXML
 	void accionBtnNuevoVendedor(ActionEvent event) {
@@ -125,11 +154,11 @@ public class MarketplaceViewController implements Initializable{
 				accionBtnNuevoVendedor(new ActionEvent());
 			}
 			else{
-				mostrarMensaje("Notifacion", "Vendedor No Creado", "El vendedor no ha sido creado", AlertType.ERROR);
+				mostrarMensaje("Notifacion", "Vendedor NO Creado", "El vendedor NO ha sido creado", AlertType.ERROR);
 			}
 		}
 		else{
-			mostrarMensaje("Notifacion", "Vendedor No Creado", "Datos ingresados no validos", AlertType.ERROR);
+			mostrarMensaje("Notifacion", "Vendedor NO Creado", "Datos ingresados NO validos", AlertType.ERROR);
 		}
 	}
 
@@ -156,7 +185,7 @@ public class MarketplaceViewController implements Initializable{
     				mostrarMensaje("Notifacion", "Vendedor Eliminado", "El vendedor ha sido eliminado con exito!", AlertType.INFORMATION);
     			}
     			else{
-    				mostrarMensaje("Notifacion", "Vendedor No Eliminado", "El vendedor no ha sido eliminado", AlertType.ERROR);
+    				mostrarMensaje("Notifacion", "Vendedor NO Eliminado", "El vendedor NO ha sido eliminado", AlertType.ERROR);
     			}
     		}
     	}
@@ -200,7 +229,7 @@ public class MarketplaceViewController implements Initializable{
 				}
 			}
 			else{
-				mostrarMensaje("Notifacion", "Vendedor NO Actualizado", "Datos ingresados no validos", AlertType.ERROR);
+				mostrarMensaje("Notifacion", "Vendedor NO Actualizado", "Datos ingresados NO validos", AlertType.ERROR);
 			}		
 		}
 		
@@ -220,6 +249,114 @@ public class MarketplaceViewController implements Initializable{
 		}
 		
 	}
+    
+    
+    // -------------- METODOS PARA PRODUCTO VIEW CONTROLLER --------------
+    
+	
+	public void inicializarProductoView(){
+		// Asigno valores a la combo box
+		cbEstadoProducto.getItems().addAll(EstadoProducto.values());
+		
+			
+		// Inicializa los vendederos en la tabla con sus columnas.
+		columnaNombreProducto.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+		columnaPrecioProducto.setCellValueFactory(new PropertyValueFactory<>("precio"));
+		columnaCategoriaProducto.setCellValueFactory(new PropertyValueFactory<>("categoria"));
+		columnaEstadoProducto.setCellValueFactory(new PropertyValueFactory<>("estado"));
+		
+		// Limpio los textfield
+		accionBtnNuevoProducto(new ActionEvent());
+		
+		// Añade los datos de la lista observable a la tabla
+		// Esa lista se obtiene del modelFactoryController, que se obtiene desde un CRUD
+		tablaProductos.setItems(getProductosData());
+		
+		// Acción de la tabla para mostrar informacion de un empleado
+		tablaProductos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) ->{
+			productoSeleccionado = newSelection;
+			mostrarInformacionProducto(productoSeleccionado);
+		});
+
+	}
+    
+    @FXML
+    void accionBtnActualizarProducto(ActionEvent event) {
+
+    }
+
+    @FXML
+    void accionBtnAgregarProducto(ActionEvent event) {
+    	// Captura los datos
+		String nombre = txtNombreProducto.getText();
+		String precio = txtPrecioProducto.getText();
+		String categoria = txtCategoriaProducto.getText();
+		EstadoProducto estado = cbEstadoProducto.getValue(); 
+		
+		// Valida los datos
+		if(datosValidos(nombre, precio, categoria, estado)){
+			Producto producto = null;
+			
+			producto = crudProductoViewController.crearProducto(nombre, precio, categoria, estado);
+			
+			if(producto != null){
+				listaProductosData.add(producto);
+				mostrarMensaje("Notifacion", "Producto Creado", "El producto ha sido creado con exito!", AlertType.INFORMATION);
+				
+				// Limpio los textfield
+				accionBtnNuevoProducto(new ActionEvent());
+			}
+			else{
+				mostrarMensaje("Notifacion", "Producto NO Creado", "El producto NO ha sido creado", AlertType.ERROR);
+			}
+		}
+		else{
+			mostrarMensaje("Notifacion", "Producto NO Creado", "Datos ingresados NO validos", AlertType.ERROR);
+		}
+    }
+
+
+    @FXML
+    void accionBtnNuevoProducto(ActionEvent event) {
+		// Limpio los textfield y combobox
+		txtNombreProducto.clear();
+		txtPrecioProducto.clear();
+		txtCategoriaProducto.clear();
+		cbEstadoProducto.getSelectionModel().clearSelection();
+		
+		// setPromptText a diferencia de setText, es mejor, porque la letra es transparente
+		// y se elimina al tocar en el textfield, y no es como poner un texto plano y ya		
+		txtNombreProducto.setPromptText("Ingrese el Nombre");
+		txtPrecioProducto.setPromptText("Ingrese el Precio");
+		txtCategoriaProducto.setPromptText("Ingrese la Categoria");
+		cbEstadoProducto.setPromptText("Ingrese el Estado");
+		
+    }
+    
+    
+    
+    /*
+     * Este metodo asigna los valores del producto seleccionado de la tabla, en los textField
+     * */
+    private void mostrarInformacionProducto(Producto productoSeleccionado) {
+		if(productoSeleccionado != null){
+			txtNombreProducto.setText(productoSeleccionado.getNombre());
+		    txtPrecioProducto.setText(productoSeleccionado.getPrecio());
+		    txtCategoriaProducto.setText(productoSeleccionado.getCategoria());
+		    cbEstadoProducto.getSelectionModel().select(productoSeleccionado.getEstado());
+		}
+		
+	}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     public void mostrarMensaje(String titulo, String header, String contenido, AlertType alertType){
     	Alert alert = new Alert(alertType);
@@ -243,7 +380,9 @@ public class MarketplaceViewController implements Initializable{
     		return false;
     }
 
-    
+    /*
+     * Este metodo valida los datos de un --- Vendedor ---
+     * */
     private boolean datosValidos(String nombre, String apellido, String cedula, String direccion){
     	String mensaje = "";
     	
@@ -264,13 +403,41 @@ public class MarketplaceViewController implements Initializable{
     		return true;    		
     	}
     	else{
-    		mostrarMensaje("Notificacion", "Datos no valido", mensaje, AlertType.WARNING);
+    		mostrarMensaje("Notificacion", "Datos no validos", mensaje, AlertType.WARNING);
     		return false;    		
     	}
     	
     }
     
     
+    /*
+     * Este metodo valida los datos de un --- Producto ---
+     * */
+    private boolean datosValidos(String nombre, String precio, String categoria, EstadoProducto estado){
+    	String mensaje = "";
+    	
+    	if(nombre == null || nombre.equals(""))
+    		mensaje += "Nombre no valido\n";
+    	
+    	if(precio == null || precio.equals(""))
+    		mensaje += "Precio no valido\n";
+    	
+    	if(categoria == null || categoria.equals(""))
+    		mensaje += "Categoria no valida\n";
+    	
+    	if(estado == null || estado.equals(""))
+    		mensaje += "Estado no valida\n";
+    	
+    	
+    	if(mensaje.equals("")){
+    		return true;    		
+    	}
+    	else{
+    		mostrarMensaje("Notificacion", "Datos no validos", mensaje, AlertType.WARNING);
+    		return false;    		
+    	}
+    	
+    }    
     
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
@@ -289,6 +456,11 @@ public class MarketplaceViewController implements Initializable{
 	public ObservableList<Vendedor> getVendedoresData(){
 		listaVendedoresData.addAll(crudVendedorViewController.getListaVendedores()) ;
 		return listaVendedoresData;
+	}
+	
+	public ObservableList<Producto> getProductosData(){
+		listaProductosData.addAll(crudProductoViewController.getListaProductos()) ;
+		return listaProductosData;
 	}
 	
 	public Marketplace getMarketplace(){
