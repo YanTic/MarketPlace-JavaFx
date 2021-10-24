@@ -3,6 +3,7 @@ package co.edu.uniquindio.Marketplace;
 import java.io.IOException;
 
 import co.edu.uniquindio.Marketplace.controller.CrudVendedorViewController;
+import co.edu.uniquindio.Marketplace.controller.LoginViewController;
 import co.edu.uniquindio.Marketplace.controller.MarketplaceViewController;
 import co.edu.uniquindio.Marketplace.controller.ModelFactoryController;
 import co.edu.uniquindio.Marketplace.model.Marketplace;
@@ -33,11 +34,12 @@ public class MainApp extends Application {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("MarketPlace");
 		initRootLayout();
-		showPersonOverview();
+//		mostrarMarketplaceView();
+		mostrarLoginView();
 	}
 
 	/**
-	 * Initializes the root layout.
+	 * Initializes the Root Layout.
 	 */
 	public void initRootLayout() {
 		try {
@@ -55,9 +57,9 @@ public class MainApp extends Application {
 	}
 	
 	/**
-	 * Shows the person overview inside the root layout.
+	 * Shows the Markeplace overview inside the root layout.
 	 */
-	public void showPersonOverview() {
+	public void mostrarMarketplaceView() {
 		try {
 			// Load person overview.
 			FXMLLoader loader = new FXMLLoader();
@@ -71,11 +73,35 @@ public class MainApp extends Application {
 			MarketplaceViewController controller = loader.getController();
 			controller.setMainApp(this);
 
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Shows the Login overview inside the root layout.
+	 */
+	public void mostrarLoginView() {
+		try {
+			// Load person overview.
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("view/LoginView.fxml"));
+			AnchorPane loginOverview = (AnchorPane) loader.load();
+			// Set person overview into the center of root layout.
+			rootLayout.setCenter(loginOverview);
+
+
+			// Give the controller access to the main app.
+			// Le doy el acceso al controlodar de la main app
+			LoginViewController controller = loader.getController();
+			controller.setMainApp(this);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}	
+	
+	
 	/**
 	 * Returns the main stage.
 	 * @return
@@ -84,6 +110,10 @@ public class MainApp extends Application {
 		return primaryStage;
 	}
 	
+	public BorderPane getRootLayout() {
+		return rootLayout;
+	}
+
 	public static void main(String[] args) {
 		launch(args);
 	}

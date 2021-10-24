@@ -12,6 +12,7 @@ public class Vendedor implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	ArrayList<Producto> listaProductos = new ArrayList<>();
+	ArrayList<Vendedor> listaContactos = new ArrayList<>();
 
 
 	public Vendedor() {}
@@ -25,13 +26,20 @@ public class Vendedor implements Serializable {
 
 	
 	// --- Setters & Getters ---
-	public ArrayList<Producto> getListaPrestamosAsociados() {
+	public ArrayList<Producto> getListaProductos() {
 		return listaProductos;
 	}
 
-
-	public void setListaPrestamosAsociados(ArrayList<Producto> listaProductos) {
+	public void setListaProductos(ArrayList<Producto> listaProductos) {
 		this.listaProductos = listaProductos;
+	}
+
+	public ArrayList<Vendedor> getListaContactos() {
+		return listaContactos;
+	}
+
+	public void setListaContactos(ArrayList<Vendedor> listaContactos) {
+		this.listaContactos = listaContactos;
 	}
 
 	public String getNombre() {

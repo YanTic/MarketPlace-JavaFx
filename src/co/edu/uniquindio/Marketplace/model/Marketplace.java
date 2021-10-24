@@ -3,6 +3,8 @@ package co.edu.uniquindio.Marketplace.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import co.edu.uniquindio.Marketplace.exceptions.ProductoException;
+import co.edu.uniquindio.Marketplace.exceptions.UsuarioException;
 import co.edu.uniquindio.Marketplace.exceptions.VendedorException;
 import co.edu.uniquindio.Marketplace.model.services.IMarketplaceService;
 
@@ -12,6 +14,7 @@ public class Marketplace implements Serializable, IMarketplaceService{
 
 	ArrayList<Vendedor> listaVendedores = new ArrayList<>();
 	ArrayList<Producto> listaProductos = new ArrayList<>();
+	ArrayList<Usuario> listaUsuarios = new ArrayList<>();
 
 	public Marketplace() {
 
@@ -42,7 +45,7 @@ public class Marketplace implements Serializable, IMarketplaceService{
 			getListaVendedores().add(nuevoVendedor);
 		}
 		else{
-		// Aquí se propago una excepcion, para que el ModelFactoryController la capture
+		// Aquí se propaga una excepcion, para que el ModelFactoryController la capture
 			throw new VendedorException("El empleado con cédula: "+cedula+ " NO se ha podido crear. Ya existe");			
 		}
 		
@@ -129,31 +132,31 @@ public class Marketplace implements Serializable, IMarketplaceService{
 	// -------------- METODOS PARA MODEL FACTORY CONTROLLER DE PRODUCTO --------------
 	
 	@Override
-	public Producto crearProducto(String nombre, String precio, String categoria, EstadoProducto estado) {
-//		Vendedor nuevoProducto = null;
+	public Producto crearProducto(String nombre, String precio, String categoria, EstadoProducto estado) throws ProductoException{
+//		Producto nuevoProducto = null;
 //		boolean flagProductoExiste = false;
 //		
 //		flagProductoExiste = verificarProductoExistente(nombre);
 //		
 //		// Esto es para no crear un vendedor que ya existe
 //		if(flagProductoExiste != true){
-//			nuevoVendedor = new Vendedor();
-//			nuevoVendedor.setNombre(nombre);
-//			nuevoVendedor.setApellido(apellido);
-//			nuevoVendedor.setCedula(cedula);
-//			nuevoVendedor.setDireccion(direccion);
-//			getListaVendedores().add(nuevoVendedor);
+//			nuevoProducto = new Producto();
+//			nuevoProducto.setNombre(nombre);
+//			nuevoProducto.setPrecio(precio);
+//			nuevoProducto.setCategoria(categoria);;
+//			nuevoProducto.setEstado(estado);;
+//			getListaProductos().add(nuevoProducto);
 //		}
 //		else{
-//		// Aquí se propago una excepcion, para que el ModelFactoryController la capture
-//			throw new VendedorException("El empleado con cédula: "+cedula+ " NO se ha podido crear. Ya existe");			
+//		// Aquí se propaga una excepcion, para que el ModelFactoryController la capture
+//			throw new ProductoException("El producto \""+nombre+ "\" NO se ha podido crear. Ya existe");			
 //		}
 //		
 //		// Recordar: Que esto se retorna al ModelFactoryController, luego al CRUD, luego al
 //		// MarketPlaceViewController en el metodo "crearVendedor" para mostra la alerta si
 //		// el vendedor ha sido creado o no, y por supuesto agregar a la ObservableList (Para 
 //		// agregarlo a la tabla)
-//		return nuevoVendedor;
+//		return nuevoProducto;
 		return null;
 	}
 	
@@ -176,8 +179,84 @@ public class Marketplace implements Serializable, IMarketplaceService{
 	
 	
 	
+	// -------------- METODOS PARA MODEL FACTORY CONTROLLER DE USUARIO --------------
+	
+	@Override
+	public Usuario crearUsuario(String usuario, String contrasenia) throws UsuarioException {
+		Usuario nuevoUsuario = null;
+		boolean flagUsuarioExiste = false;
+		
+		flagUsuarioExiste = verificarUsuarioExistente(usuario);
+		
+		// Esto es para no crear un Usuario que ya existe
+		if(flagUsuarioExiste != true){
+			nuevoUsuario = new Usuario();
+			nuevoUsuario.setUsuario(usuario);
+			nuevoUsuario.setContrasenia(contrasenia);
+			getListaUsuarios().add(nuevoUsuario);
+		}
+		else{
+		// 	Aquí se propaga una excepcion, para que el ModelFactoryController la capture
+			throw new UsuarioException("El usuario: "+usuario+ " NO se ha podido crear. Ya existe");			
+		}
+		
+		return nuevoUsuario;
+	}
+
+	@Override
+	public Usuario getUsuario(String nombreUsuario, String contrasenia) {
+		Usuario usuarioEncontrado = null;
+
+		for (Usuario usuario : listaUsuarios) {
+			if(usuario.getUsuario().equals(nombreUsuario)) {
+				usuarioEncontrado = usuario;
+				break;
+			}
+		}
+
+		return usuarioEncontrado;
+	}
+	
+	@Override
+	public boolean verificarUsuarioExistente(String nombreUsuario) {
+		boolean flagUsuarioExistente = false;
+		
+		// Esto compara la cedula de cada vendedor para verificar si se encuentra en la lista
+		for(Usuario usuario: listaUsuarios){
+			if(usuario.getUsuario().equalsIgnoreCase(nombreUsuario)){
+				flagUsuarioExistente = true;
+				break;
+			}
+		}
+		
+		return flagUsuarioExistente;
+	}
 	
 	
+	/*
+	 * ESTE METODO ES DE SEGURIDAD. VERIFICA SI LA CONTRASEÑA Y EL USUARIO SON CORRECTOS
+	 * PARA PODER ENTRAR A LA APLICACION
+	 * */
+	@Override
+	public boolean verificarUsuario(String nombreUsuario, String contrasenia) throws UsuarioException {
+		boolean flagUsuarioExistente = false;
+		
+		// Esto compara el nombre de usuario y su contrasenia para verificar 
+		// si se encuentra en la lista
+		for(Usuario usuario: listaUsuarios){
+			if(usuario.getUsuario().equalsIgnoreCase(nombreUsuario) &&
+			   usuario.getContrasenia().equals(contrasenia)){
+				flagUsuarioExistente = true;
+				break;
+			}
+		}
+		
+		if(!flagUsuarioExistente){
+			throw new UsuarioException("Usuario o Contrasenia no coinciden");
+		}
+		
+		return flagUsuarioExistente;
+	}
 	
 
 
@@ -193,6 +272,12 @@ public class Marketplace implements Serializable, IMarketplaceService{
 	}
 	public void setListaVendedores(ArrayList<Vendedor> listaVendedores) {
 		this.listaVendedores = listaVendedores;
+	}
+	public ArrayList<Usuario> getListaUsuarios() {
+		return listaUsuarios;
+	}
+	public void setListaUsuarios(ArrayList<Usuario> listaUsuarios) {
+		this.listaUsuarios = listaUsuarios;
 	}
 
 

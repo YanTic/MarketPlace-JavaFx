@@ -1,0 +1,27 @@
+/* Split Pane */
+
+.shadow{
+    -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.2), 10.0, 0.0, 0.0, 10.0);
+}
+
+.split-pane:horizontal > .split-pane-divider{
+	-fx-background-color: #eef2f7;
+}
+
+/*
+.split-pane:vertical > .split-pane-divider{
+	-fx-background-color: transparent;
+}
+*/
+
+#btnRegistrarse {
+	-fx-background-color: transparent;
+}
+
+#btnRegistrarse:hover{
+/*	-fx-font-color: #2775FF;*/
+/*	-fx-font-color: red;*/
+/*	-fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.2), 10.0, 0.0, 0.0, 10.0);*/
+	-fx-text-fill: #2859A2;
+	-fx-font-weight: bold;
+}

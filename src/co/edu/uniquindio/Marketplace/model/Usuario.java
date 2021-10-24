@@ -2,11 +2,8 @@ package co.edu.uniquindio.Marketplace.model;
 
 public class Usuario {
 
-	//atributos
-
 	private String usuario;
 	private String contrasenia;
-
 
 	public Usuario(String usuario, String contrasenia) {
 		super();
@@ -14,10 +11,8 @@ public class Usuario {
 		this.contrasenia = contrasenia;
 	}
 
-	// contsructir sin parametros
 	public Usuario() {
 		super();
-
 	}
 
 

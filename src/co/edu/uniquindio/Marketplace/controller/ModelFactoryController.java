@@ -11,10 +11,13 @@ import java.util.TreeSet;
 
 import co.edu.uniquindio.Marketplace.model.Vendedor;
 import co.edu.uniquindio.Marketplace.model.services.IModelFactoryService;
+import co.edu.uniquindio.Marketplace.exceptions.ProductoException;
+import co.edu.uniquindio.Marketplace.exceptions.UsuarioException;
 import co.edu.uniquindio.Marketplace.exceptions.VendedorException;
 import co.edu.uniquindio.Marketplace.model.EstadoProducto;
 import co.edu.uniquindio.Marketplace.model.Marketplace;
 import co.edu.uniquindio.Marketplace.model.Producto;
+import co.edu.uniquindio.Marketplace.model.Usuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -103,55 +106,22 @@ public class ModelFactoryController implements IModelFactoryService{
 		producto.setEstado(EstadoProducto.Cancelado);
 		marketplace.getListaProductos().add(producto);
 		
-/*
-//		Inicializar la lista de Empleados
-		Empleado empleado = new Empleado();
-		empleado.setNombre("Jorge");
-		empleado.setApellido("Arias");
-		empleado.setCedula("8913");
-		empresa.getListaEmpleados().add(empleado);
+		
+//		Inicializar la lista de Usuarios
+		Usuario usuario = new Usuario();
+		usuario.setUsuario("admin");
+		usuario.setContrasenia("admin123");
+		marketplace.getListaUsuarios().add(usuario);
+		
+		usuario = new Usuario();
+		usuario.setUsuario("Juan Carlos");
+		usuario.setContrasenia("carlitos1234");
+		marketplace.getListaUsuarios().add(usuario);
 
 
-		empleado = new Empleado();
-		empleado.setNombre("Jorge");
-		empleado.setApellido("Arias");
-		empleado.setCedula("8913");
-		empresa.getListaEmpleados().add(empleado);
-
-
-//		Inicializar la lista de Objetos
-		Objeto objeto = new Objeto();
-		objeto.setCodigo(1);
-		objeto.setNombre("Pala");
-		objeto.setDescripcion("Pala de acero");
-		objeto.setEstado("Disponible");
-		empresa.getListaObjetos().add(objeto);
-
-		objeto = new Objeto();
-		objeto.setCodigo(2);
-		objeto.setNombre("Linterna");
-		objeto.setDescripcion("Sin pilas");
-		objeto.setEstado("Disponible");
-		empresa.getListaObjetos().add(objeto);
-
-		objeto = new Objeto();
-		objeto.setCodigo(3);
-		objeto.setNombre("Palin");
-		objeto.setDescripcion("en buen estado");
-		objeto.setEstado("Disponible");
-		empresa.getListaObjetos().add(objeto);
-
-*/
 //		listaVendedoresData.addAll(getMarketplace().getListaVendedores());
 	}
-
-	public Marketplace getMarketplace() {
-		return marketplace;
-	}
-
-	public void setMarketplace(Marketplace empresa) {
-		this.marketplace = empresa;
-	}
+	
 	
 	
 	// -------------- METODOS PARA CRUD VENDEDOR VIEW CONTROLLER --------------
@@ -189,12 +159,6 @@ public class ModelFactoryController implements IModelFactoryService{
 	}
 
 	@Override
-	public Vendedor getVendedor(String cedula) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public boolean eliminarVendedor(String cedula) {
 		boolean flagVendedorEliminado = false;
 		
@@ -216,10 +180,47 @@ public class ModelFactoryController implements IModelFactoryService{
 	public Producto crearProducto(String nombre, String precio, String categoria, EstadoProducto estado) {
 		Producto producto = null;
 		
-//		producto = marketplace.crearProducto(nombre, precio, categoria, estado);
+		try{
+			producto = marketplace.crearProducto(nombre, precio, categoria, estado);			
+		}
+		catch(ProductoException e){
+			e.getMessage();
+		}
 		
 		return producto;
 		
+	}
+	
+	
+	// -------------- METODOS PARA CRUD LOGIN VIEW CONTROLLER --------------
+	
+	@Override
+	public Usuario crearUsuario(String usuario, String contrasenia) {
+		Usuario nuevoUsuario = null;
+		
+		try{
+			nuevoUsuario = marketplace.crearUsuario(usuario, contrasenia);			
+		} 
+		catch(UsuarioException e){
+			e.getMessage();
+		}
+		
+		return nuevoUsuario;
+		
+	}
+	
+	public boolean verificarUsuario(String usuario, String contrasenia) {
+		boolean flagUsuarioExiste = false;
+		
+		try {
+			flagUsuarioExiste = marketplace.verificarUsuario(usuario, contrasenia);
+		} 
+		catch (UsuarioException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return flagUsuarioExiste;
 	}
 	
 	
@@ -232,6 +233,14 @@ public class ModelFactoryController implements IModelFactoryService{
 	
 	
 	
+	
+	public Marketplace getMarketplace() {
+		return marketplace;
+	}
+
+	public void setMarketplace(Marketplace empresa) {
+		this.marketplace = empresa;
+	}
 
 	@Override
 	public ArrayList<Vendedor> getListaVendedores() {
@@ -242,6 +251,14 @@ public class ModelFactoryController implements IModelFactoryService{
 	public ArrayList<Producto> getListaProductos() {
 		return marketplace.getListaProductos();
 	}
+
+	@Override
+	public ArrayList<Usuario> getListaUsuarios() {
+		return marketplace.getListaUsuarios();
+	}
+
+
+
 
 
 

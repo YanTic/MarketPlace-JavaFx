@@ -9,6 +9,7 @@ import co.edu.uniquindio.Marketplace.model.EstadoProducto;
 import co.edu.uniquindio.Marketplace.model.Marketplace;
 import co.edu.uniquindio.Marketplace.model.Producto;
 import co.edu.uniquindio.Marketplace.model.Vendedor;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -68,6 +69,7 @@ public class MarketplaceViewController implements Initializable{
 	ModelFactoryController modelFactoryController;
 	CrudVendedorViewController crudVendedorViewController;
 	CrudProductoViewController crudProductoViewController;
+	CrudLoginViewController	   crudLoginViewController;
 	
 	// Listas observable para mostrar en tablas, junto a su objeto seleccionado
 	ObservableList<Vendedor> listaVendedoresData = FXCollections.observableArrayList();
@@ -77,15 +79,53 @@ public class MarketplaceViewController implements Initializable{
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+// ------- Estos metodos ya están inicializados en el LoginViewController -------
+		
 		// Acá se inicializan todos los controladores CRUD
-		modelFactoryController = new ModelFactoryController().getInstance();
-		crudVendedorViewController = new CrudVendedorViewController(modelFactoryController);
-		crudProductoViewController = new CrudProductoViewController(modelFactoryController);
+//		modelFactoryController = new ModelFactoryController().getInstance();
+//		crudVendedorViewController = new CrudVendedorViewController(modelFactoryController);
+//		crudProductoViewController = new CrudProductoViewController(modelFactoryController);
+		
+		
 		
 		// Inicializo los datos de cada controlador CRUD (Como tablas...)
-		inicializarVendedorView();
-		inicializarProductoView();
+//		inicializarVendedorView();
+//		inicializarProductoView();
+		
+		
+		
+		
+		
+		// Uso Platform.runLater, porque los metodos se están llamando antes de inicializar
+		// los datos cuando se crea este controlador desde LoginViewController
+		Platform.runLater(()->{
+			// Inicializo los datos de cada controlador CRUD (Como tablas...)
+			inicializarVendedorView();
+			inicializarProductoView();
+		});
 	}
+	
+	/*
+	 * Este metodo es como Initialize de javafx, pero este metodo es llamado desde otro controlador
+	 * para que tenga los mismos valores creados del que llama a es este controlador (O sea el
+	 * LoginViewController) y tambien si el usuario desea cerrar sesion e iniciar otra, los datos
+	 * del marketplace no se pierdan, solo se cambie el acceso a estos.
+	 * */
+	public void establecerValores(Marketplace marketplace, 
+								  ModelFactoryController modelFactoryController,
+								  CrudLoginViewController crudLoginViewController,
+								  CrudVendedorViewController crudVendedorViewController,
+								  CrudProductoViewController crudProductoViewController){
+		
+	// Esto es llamado antes de llamar Initialize, es decir, durante la creacion de esta clase
+	// en el LoginViewController;
+		this.marketplace = marketplace;
+		this.modelFactoryController = modelFactoryController;
+		this.crudLoginViewController = crudLoginViewController;
+		this.crudVendedorViewController = crudVendedorViewController;
+		this.crudProductoViewController = crudProductoViewController;
+	}
+	
 	
 //	-------------- METODOS PARA VENDEDOR VIEW CONTROLLER --------------
 	public void inicializarVendedorView(){
@@ -439,6 +479,10 @@ public class MarketplaceViewController implements Initializable{
     	
     }    
     
+    /*
+     * Este metodo asigna la clase MainApp a este controlador, que junto esta contiene
+     * el ModelFactoryController y el objeto Marketplace
+     * */
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 		
