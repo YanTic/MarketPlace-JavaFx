@@ -5,30 +5,32 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.Marketplace.MainApp;
-import co.edu.uniquindio.Marketplace.model.EstadoProducto;
 import co.edu.uniquindio.Marketplace.model.Marketplace;
 import co.edu.uniquindio.Marketplace.model.Usuario;
-import co.edu.uniquindio.Marketplace.model.Vendedor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.AnchorPane;
 
 public class LoginViewController implements Initializable {
 	
+    @FXML private AnchorPane panelIniciarSesion;
+    @FXML private AnchorPane panelRegistrarUsuario;
     @FXML private TextField txtUsuario;
     @FXML private TextField txtContrasenia;
+    @FXML private TextField txtNuevoUsuario;
+    @FXML private TextField txtNuevaContrasenia;
+    @FXML private TextField txtConfirmarNuevaContrasenia;
     @FXML private Button btnIngresar;
     @FXML private Button btnRegistrarse;
-    
+    @FXML private Button btnRegresar;
+    @FXML private Button btnCrearCuenta;
     
     // Referencia a la MainApp.
     private MainApp mainApp;
@@ -48,17 +50,10 @@ public class LoginViewController implements Initializable {
 		crudLoginViewController = new CrudLoginViewController(modelFactoryController);
 		crudVendedorViewController = new CrudVendedorViewController(modelFactoryController);
 		crudProductoViewController = new CrudProductoViewController(modelFactoryController);
-		
-		// Inicializo los datos de cada controlador CRUD (Como tablas...)
-		inicializarLoginView();
     }
     	
     
 //    	-------------- METODOS PARA VENDEDOR VIEW CONTROLLER --------------
-    public void inicializarLoginView(){
-    	
-    	
-    }
     
     @FXML
     void accionBtnIngresar(ActionEvent event) {
@@ -77,10 +72,7 @@ public class LoginViewController implements Initializable {
 				mostrarMensaje("Notifacion", "Login Correcto", "Bienvenido "+usuario+ "!", AlertType.INFORMATION);
 				
 				// Llamo al MarketplaceViewController y cambio la view (el fxml)				
-				try {
-//					FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/MarketplaceView.fxml"));
-//					FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/co/edu/uniquindio/Marketplace/view/MarketplaceView.fxml"));
-//					FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/MarketPlaceView.fxml"));
+				try {			
 					FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("view/MarketplaceView.fxml"));
 					Parent root = (Parent) loader.load();
 
@@ -88,11 +80,13 @@ public class LoginViewController implements Initializable {
 					
 					// Creo el controlador
 					MarketplaceViewController marketplaceViewController = loader.getController();
+					marketplaceViewController.setMainApp(mainApp);
 					marketplaceViewController.establecerValores(marketplace, 
 																modelFactoryController, 
 																crudLoginViewController, 
 																crudVendedorViewController, 
 																crudProductoViewController);
+					
 					
 					
 					// Esta manera es para agregarle animacion de cambio de scene, pero tambien
@@ -110,7 +104,7 @@ public class LoginViewController implements Initializable {
 				
 			}
 			else{
-				mostrarMensaje("Notifacion", "Usuario NO Encontado ó Contrasenia es Incorrecta", "Datos ingresados NO validos", AlertType.ERROR);
+				mostrarMensaje("Notifacion", "Usuario NO Encontado o Contrasenia es Incorrecta", "Datos ingresados NO validos", AlertType.ERROR);
 			}
 		}
 		else{
@@ -118,40 +112,65 @@ public class LoginViewController implements Initializable {
 		}
     }
     
-
-
+    /*
+     * Muestra la ventana para que el usuario pueda Registrarse
+     * */
     @FXML
     void accionBtnRegistrarse(ActionEvent event) {
-//    	crearNuevoUsuario();
+    	panelRegistrarUsuario.setVisible(true);
+    	panelIniciarSesion.setVisible(false);
     }
     
-//  
-//  private void crearNuevoUsuario() {
-//  	// Captura los datos
-//		String usuario = txtUsuario.getText();
-//		String contrasenia = txtContrasenia.getText();
-//		
-//		// Valida los datos
-//		if(datosValidos(usuario, contrasenia)){
-//			Usuario usuario = null;
-//			
-//			usuario = crudUsuarioViewController.crearVendedor(nombre, apellido, cedula, direccion);
-//			
-//			if(vendedor != null){
-//				listaVendedoresData.add(vendedor);
-//				mostrarMensaje("Notifacion", "Vendedor Creado", "El vendedor ha sido creado con exito!", AlertType.INFORMATION);
-//				
-//				// Limpio los textfield
-//				accionBtnNuevoVendedor(new ActionEvent());
-//			}
-//			else{
-//				mostrarMensaje("Notifacion", "Vendedor NO Creado", "El vendedor NO ha sido creado", AlertType.ERROR);
-//			}
-//		}
-//		else{
-//			mostrarMensaje("Notifacion", "Vendedor NO Creado", "Datos ingresados NO validos", AlertType.ERROR);
-//		}
-//	}
+    /*
+     * Muestra la ventana para que el usuario pueda Iniciar Sesion
+     * */
+    @FXML
+    void accionBtnRegresar(ActionEvent event) {
+    	panelRegistrarUsuario.setVisible(false);
+    	panelIniciarSesion.setVisible(true);
+    }
+    
+    @FXML 
+    void accionBtnCrearCuenta(ActionEvent event) {
+    	crearNuevoUsuario();
+    }
+    
+    private void crearNuevoUsuario() {
+		// Captura los datos
+    	String nuevoUsuario = txtNuevoUsuario.getText();
+		String nuevaContrasenia = txtNuevaContrasenia.getText();
+		String confirmarNuevaContrasenia = txtConfirmarNuevaContrasenia.getText();
+		
+			
+		// Valida los datos
+		if(datosValidos(nuevoUsuario, nuevaContrasenia, confirmarNuevaContrasenia)){
+			Usuario usuario = null;
+			
+			usuario = crudLoginViewController.crearUsuario(nuevoUsuario, nuevaContrasenia);
+			
+			if(usuario != null){				
+				mostrarMensaje("Notifacion", "Usuario Creado", "Usuario creado con exito! Bienvenido "+ 
+								nuevoUsuario+ "!", AlertType.INFORMATION);
+				
+				// Limpio los textfield
+				txtNuevoUsuario.clear();
+			    txtNuevaContrasenia.clear();
+			    txtConfirmarNuevaContrasenia.clear();
+			}
+			else{
+				mostrarMensaje("Notifacion", "Usuario NO Creado", "El Usuario NO ha sido creado", AlertType.ERROR);
+			}
+		}
+		else{
+			mostrarMensaje("Notifacion", "Usuario NO Creado", "Datos ingresados NO validos", AlertType.ERROR);
+		}
+	}
+    
+    
+    
+    
+    
+    
     
     
     
@@ -165,7 +184,7 @@ public class LoginViewController implements Initializable {
     
     
     /*
-     * Este metodo valida los datos de un --- Usuario ---
+     * Este metodo valida los datos de --- Inicio de Sesion ---
      * */
     private boolean datosValidos(String usuario, String contrasenia){
     	String mensaje = "";
@@ -175,6 +194,36 @@ public class LoginViewController implements Initializable {
     	
     	if(contrasenia == null || contrasenia.equals(""))
     		mensaje += "Contrasenia no valida\n";
+    	
+    	if(mensaje.equals("")){
+    		return true;    		
+    	}
+    	else{
+    		mostrarMensaje("Notificacion", "Datos no validos", mensaje, AlertType.WARNING);
+    		return false;    		
+    	}
+    	
+    } 
+    
+    /*
+     * Este metodo valida los datos de un --- Registro de Usuario ---
+     * */
+    private boolean datosValidos(String nuevoUsuario, String nuevaContrasenia, String confirmarNuevaContrasenia){
+    	String mensaje = "";
+    	
+    	if(nuevoUsuario == null || nuevoUsuario.equals(""))
+    		mensaje += "Usuario no valido\n";
+    	
+    	if(nuevaContrasenia == null || nuevaContrasenia.equals(""))
+    		mensaje += "Contrasenia no valida\n";
+    	
+    	if(confirmarNuevaContrasenia == null || confirmarNuevaContrasenia.equals(""))
+    		mensaje += "Contrasenia no valida\n";
+    	
+    	// Verifico si las dos contraseñas No son iguales
+    	if(!nuevaContrasenia.equals(confirmarNuevaContrasenia)){
+    		mensaje += "Las contraseñas no son iguales\n"; 
+    	}
     	
     	if(mensaje.equals("")){
     		return true;    		

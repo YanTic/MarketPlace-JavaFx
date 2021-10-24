@@ -14,6 +14,15 @@
 }
 */
 
+#btnIngresar {
+	-fx-background-color: transparent;
+}
+
+#btnIngresar:hover{
+	-fx-background-color: #75a1ce;
+}
+
+
 #btnRegistrarse {
 	-fx-background-color: transparent;
 }
@@ -24,4 +33,22 @@
 /*	-fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.2), 10.0, 0.0, 0.0, 10.0);*/
 	-fx-text-fill: #2859A2;
 	-fx-font-weight: bold;
+}
+
+
+#btnCrearCuenta {
+	-fx-background-color: transparent;
+}
+
+#btnCrearCuenta:hover{
+	-fx-background-color: #75a1ce;
+}
+
+
+#btnRegresar {
+	-fx-background-color: transparent;
+}
+
+#btnRegresar:hover {
+	-fx-background-color: #75a1ce;
 }
