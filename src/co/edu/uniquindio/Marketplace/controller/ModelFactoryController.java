@@ -1,5 +1,6 @@
 package co.edu.uniquindio.Marketplace.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -11,6 +12,7 @@ import java.util.TreeSet;
 
 import co.edu.uniquindio.Marketplace.model.Vendedor;
 import co.edu.uniquindio.Marketplace.model.services.IModelFactoryService;
+import co.edu.uniquindio.Marketplace.persistencia.Persistencia;
 import co.edu.uniquindio.Marketplace.exceptions.ProductoException;
 import co.edu.uniquindio.Marketplace.exceptions.UsuarioException;
 import co.edu.uniquindio.Marketplace.exceptions.VendedorException;
@@ -54,6 +56,32 @@ public class ModelFactoryController implements IModelFactoryService{
 
 	public ModelFactoryController(){
 		inicializarDatos();
+		
+		// 1. Inicializar datos y luego guardarlo en archivos
+//		iniciarSalvarDatosPrueba();
+		
+		// 2. Cargar los datos de los archivos
+//		cargarDatosDesdeArchivos();
+		
+		// 3. Guardar y cargar el recurso serializable binario
+//		guardarResourceBinario();
+//		cargarResourceBinario();
+		
+		// 4. Guardar y cargar el recurso serializable XML
+//		guardarResourceXML();
+//		cargarResourceXML();
+		
+		// Siempre se verifica si la raiz del recurso es null
+		if(marketplace == null){
+			System.out.println("MARKETPLACE ES NULL");
+			inicializarDatos();
+//			guardarResourceSerializable();
+			guardarResourceXML();
+		}
+		
+		// Registrar la acción de inicio de sesion
+		Persistencia.guardaRegistroLog("Inicio de sesion del usuario: Admin", 1, "inicioSesion");
+		
 	}
 
 	private void inicializarDatos() {
@@ -123,6 +151,90 @@ public class ModelFactoryController implements IModelFactoryService{
 	}
 	
 	
+	private void iniciarSalvarDatosPrueba(){
+		inicializarDatos();
+		
+		try {
+			Persistencia.guardarVendedores(marketplace.getListaVendedores());
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+	}
+	
+	private void cargarDatosDesdeArchivos(){
+		marketplace = new Marketplace();
+		
+		try {
+			Persistencia.cargarDatosArchivos(marketplace);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	private void cargarResourceBinario(){
+		marketplace = Persistencia.cargarRecursoMarketplaceBinario();
+	}
+	
+	private void guardarResourceBinario(){
+		Persistencia.guardarRecursoMarketplaceBinario(marketplace);
+	}
+	
+	private void cargarResourceXML(){
+		marketplace = Persistencia.cargarRecursoMarketplaceXML();
+	}
+	
+	private void guardarResourceXML(){
+		Persistencia.guardarRecursoMarketplaceXML(marketplace);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// ------------------------------- CRUD -------------------------------
+	
+	
 	
 	// -------------- METODOS PARA CRUD VENDEDOR VIEW CONTROLLER --------------
 	
@@ -190,6 +302,9 @@ public class ModelFactoryController implements IModelFactoryService{
 		return producto;
 		
 	}
+	
+	
+	
 	
 	
 	// -------------- METODOS PARA CRUD LOGIN VIEW CONTROLLER --------------

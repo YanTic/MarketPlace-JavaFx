@@ -34,8 +34,8 @@ public class MainApp extends Application {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("MarketPlace");
 		initRootLayout();
-//		mostrarMarketplaceView();
 		mostrarLoginView();
+//		mostrarMarketplaceView();
 	}
 
 	/**
@@ -56,27 +56,28 @@ public class MainApp extends Application {
 		}
 	}
 	
-	/**
-	 * Shows the Markeplace overview inside the root layout.
-	 */
-	public void mostrarMarketplaceView() {
-		try {
-			// Load person overview.
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class.getResource("view/MarketplaceView.fxml"));
-			AnchorPane marketplaceOverview = (AnchorPane) loader.load();
-			// Set person overview into the center of root layout.
-			rootLayout.setCenter(marketplaceOverview);
-
-
-			// Give the controller access to the main app.
-			MarketplaceViewController controller = loader.getController();
-			controller.setMainApp(this);
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+// --- Ahora esto se llama desde el LoginViewController
+//	/**
+//	 * Shows the Markeplace overview inside the root layout.
+//	 */
+//	public void mostrarMarketplaceView() {
+//		try {
+//			// Load person overview.
+//			FXMLLoader loader = new FXMLLoader();
+//			loader.setLocation(MainApp.class.getResource("view/MarketplaceView.fxml"));
+//			AnchorPane marketplaceOverview = (AnchorPane) loader.load();
+//			// Set person overview into the center of root layout.
+//			rootLayout.setCenter(marketplaceOverview);
+//
+//
+//			// Give the controller access to the main app.
+//			MarketplaceViewController controller = loader.getController();
+//			controller.setMainApp(this);
+//
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
 	
 	/**
 	 * Shows the Login overview inside the root layout.
