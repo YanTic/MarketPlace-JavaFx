@@ -31,6 +31,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class MarketplaceViewController implements Initializable{
 	
+	// User
+    @FXML private Button btnUsuario;
+    @FXML private Button btnLogout;
+	
+	
 	// CRUD VENDEDORES
 	@FXML private TextField txtNombreVendedor;
     @FXML private TextField txtApellidoVendedor;
@@ -46,6 +51,9 @@ public class MarketplaceViewController implements Initializable{
     @FXML private TableColumn<Vendedor, String> columnaCedulaVendedor;
     @FXML private TableColumn<Vendedor, String> columnaDireccionVendedor;
     
+    @FXML private Button btnMostrarVendedor;
+    
+    
     // CRUD PRODUCTOS
     @FXML private TextField txtNombreProducto;
     @FXML private TextField txtPrecioProducto;
@@ -54,12 +62,12 @@ public class MarketplaceViewController implements Initializable{
     @FXML private Button btnActualizarProducto;
     @FXML private Button btnNuevoProducto;
     @FXML private Button btnAgregarProducto;
+    @FXML private Button btnEliminarProducto;
     @FXML private TableView<Producto> tablaProductos;
     @FXML private TableColumn<Producto, String> columnaNombreProducto;
     @FXML private TableColumn<Producto, String> columnaPrecioProducto;
     @FXML private TableColumn<Producto, String> columnaCategoriaProducto;
     @FXML private TableColumn<Producto, EstadoProducto> columnaEstadoProducto;
-    
     
     
 	// Referencia a la MainApp.
@@ -68,7 +76,6 @@ public class MarketplaceViewController implements Initializable{
     Marketplace marketplace;
 	ModelFactoryController modelFactoryController;
 	CrudVendedorViewController crudVendedorViewController;
-	CrudProductoViewController crudProductoViewController;
 	CrudLoginViewController	   crudLoginViewController;
 	
 	// Listas observable para mostrar en tablas, junto a su objeto seleccionado
@@ -114,19 +121,33 @@ public class MarketplaceViewController implements Initializable{
 	public void establecerValores(Marketplace marketplace, 
 								  ModelFactoryController modelFactoryController,
 								  CrudLoginViewController crudLoginViewController,
-								  CrudVendedorViewController crudVendedorViewController,
-								  CrudProductoViewController crudProductoViewController){
+								  CrudVendedorViewController crudVendedorViewController){
 		
 	// Esto es llamado antes de llamar Initialize, es decir, durante la creacion de esta clase
 	// en el LoginViewController;
 		this.marketplace = marketplace;
 		this.modelFactoryController = modelFactoryController;
 		this.crudLoginViewController = crudLoginViewController;
-		this.crudVendedorViewController = crudVendedorViewController;
-		this.crudProductoViewController = crudProductoViewController;
+		this.crudVendedorViewController = crudVendedorViewController;		
 	}
 	
 	
+	
+	
+//	-------------- METODOS PARA USER --------------	
+    @FXML
+    void accionBtnLogout(ActionEvent event) {
+
+    }
+	
+    @FXML
+    void accionBtnUsuario(ActionEvent event) {
+
+    }
+
+    
+    
+    
 //	-------------- METODOS PARA VENDEDOR VIEW CONTROLLER --------------
 	public void inicializarVendedorView(){
 		// Inicializa los vendederos en la tabla con sus columnas.
@@ -277,6 +298,25 @@ public class MarketplaceViewController implements Initializable{
 		
     }
     
+    
+    
+    
+    @FXML
+    void accionBtnMostrarVendedor(ActionEvent event) {
+    	mostrarTabVendedor();
+    }
+    
+    /*
+     * Este metodo crea un tabulador con la informacion (nombre, productos, contactos...)
+     * del vendedor seleccionado en la tabla
+     * */
+    public void mostrarTabVendedor(){
+    	
+    }
+    
+    
+    
+    
 	/*
      * Este metodo asigna los valores del vendedor seleccionado de la tabla, en los textField
      * */
@@ -289,6 +329,10 @@ public class MarketplaceViewController implements Initializable{
 		}
 		
 	}
+    
+    
+    
+    
     
     
     // -------------- METODOS PARA PRODUCTO VIEW CONTROLLER --------------
@@ -319,6 +363,11 @@ public class MarketplaceViewController implements Initializable{
 		});
 
 	}
+	
+    @FXML
+    void accionBtnEliminarProducto(ActionEvent event) {
+
+    }
     
     @FXML
     void accionBtnActualizarProducto(ActionEvent event) {
@@ -337,7 +386,7 @@ public class MarketplaceViewController implements Initializable{
 		if(datosValidos(nombre, precio, categoria, estado)){
 			Producto producto = null;
 			
-			producto = crudProductoViewController.crearProducto(nombre, precio, categoria, estado);
+			producto = crudVendedorViewController.crearProducto(nombre, precio, categoria, estado);
 			
 			if(producto != null){
 				listaProductosData.add(producto);
@@ -503,7 +552,7 @@ public class MarketplaceViewController implements Initializable{
 	}
 	
 	public ObservableList<Producto> getProductosData(){
-		listaProductosData.addAll(crudProductoViewController.getListaProductos()) ;
+		listaProductosData.addAll(crudVendedorViewController.getListaProductos()) ;
 		return listaProductosData;
 	}
 	

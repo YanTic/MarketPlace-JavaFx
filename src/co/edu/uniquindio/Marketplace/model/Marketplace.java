@@ -50,7 +50,7 @@ public class Marketplace implements Serializable, IMarketplaceService{
 		}
 		
 		// Recordar: Que esto se retorna al ModelFactoryController, luego al CRUD, luego al
-		// MarketPlaceViewController en el metodo "crearVendedor" para mostra la alerta si
+		// MarketPlaceViewController en el metodo "crearVendedor" para mostrar la alerta si
 		// el vendedor ha sido creado o no, y por supuesto agregar a la ObservableList (Para 
 		// agregarlo a la tabla)
 		return nuevoVendedor;
@@ -133,31 +133,31 @@ public class Marketplace implements Serializable, IMarketplaceService{
 	
 	@Override
 	public Producto crearProducto(String nombre, String precio, String categoria, EstadoProducto estado) throws ProductoException{
-//		Producto nuevoProducto = null;
-//		boolean flagProductoExiste = false;
-//		
-//		flagProductoExiste = verificarProductoExistente(nombre);
-//		
-//		// Esto es para no crear un vendedor que ya existe
-//		if(flagProductoExiste != true){
-//			nuevoProducto = new Producto();
-//			nuevoProducto.setNombre(nombre);
-//			nuevoProducto.setPrecio(precio);
-//			nuevoProducto.setCategoria(categoria);;
-//			nuevoProducto.setEstado(estado);;
-//			getListaProductos().add(nuevoProducto);
-//		}
-//		else{
-//		// Aquí se propaga una excepcion, para que el ModelFactoryController la capture
-//			throw new ProductoException("El producto \""+nombre+ "\" NO se ha podido crear. Ya existe");			
-//		}
-//		
-//		// Recordar: Que esto se retorna al ModelFactoryController, luego al CRUD, luego al
-//		// MarketPlaceViewController en el metodo "crearVendedor" para mostra la alerta si
-//		// el vendedor ha sido creado o no, y por supuesto agregar a la ObservableList (Para 
-//		// agregarlo a la tabla)
-//		return nuevoProducto;
-		return null;
+		Producto nuevoProducto = null;
+		boolean flagProductoExiste = false;
+		
+		flagProductoExiste = verificarProductoExistente(nombre);
+		
+		// Esto es para no crear un vendedor que ya existe
+		if(flagProductoExiste != true){
+			nuevoProducto = new Producto();
+			nuevoProducto.setNombre(nombre);
+			nuevoProducto.setPrecio(precio);
+			nuevoProducto.setCategoria(categoria);
+			nuevoProducto.setEstado(estado);
+			
+			getListaProductos().add(nuevoProducto);
+		}
+		else{
+		// Aquí se propaga una excepcion, para que el ModelFactoryController la capture
+			throw new ProductoException("El producto \""+nombre+ "\" NO se ha podido crear. Ya existe");			
+		}
+		
+		// Recordar: Que esto se retorna al ModelFactoryController, luego al CRUD, luego al
+		// MarketPlaceViewController en el metodo "crearProducto" para mostrar la alerta si
+		// el producto ha sido creado o no, y por supuesto agregar a la ObservableList (Para 
+		// agregarlo a la tabla)
+		return nuevoProducto;
 	}
 	
 	

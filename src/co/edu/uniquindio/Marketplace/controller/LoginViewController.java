@@ -12,11 +12,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 
 public class LoginViewController implements Initializable {
 	
@@ -32,6 +35,7 @@ public class LoginViewController implements Initializable {
     @FXML private Button btnRegresar;
     @FXML private Button btnCrearCuenta;
     
+    
     // Referencia a la MainApp.
     private MainApp mainApp;
 	
@@ -41,7 +45,6 @@ public class LoginViewController implements Initializable {
 	
 	// Aunque no trabaje con estos CRUD, los inicializa
 	CrudVendedorViewController crudVendedorViewController;
-	CrudProductoViewController crudProductoViewController;
     
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -49,7 +52,6 @@ public class LoginViewController implements Initializable {
 		modelFactoryController = new ModelFactoryController().getInstance();
 		crudLoginViewController = new CrudLoginViewController(modelFactoryController);
 		crudVendedorViewController = new CrudVendedorViewController(modelFactoryController);
-		crudProductoViewController = new CrudProductoViewController(modelFactoryController);
     }
     	
     
@@ -74,9 +76,9 @@ public class LoginViewController implements Initializable {
 				// Llamo al MarketplaceViewController y cambio la view (el fxml)				
 				try {			
 					FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("view/MarketplaceView.fxml"));
-					Parent root = (Parent) loader.load();
+					Parent root = loader.load();
 
-					mainApp.getRootLayout().setCenter(root);
+//					mainApp.getRootLayout().setCenter(root);
 					
 					// Creo el controlador
 					MarketplaceViewController marketplaceViewController = loader.getController();
@@ -84,18 +86,19 @@ public class LoginViewController implements Initializable {
 					marketplaceViewController.establecerValores(marketplace, 
 																modelFactoryController, 
 																crudLoginViewController, 
-																crudVendedorViewController, 
-																crudProductoViewController);
-					
-					
+																crudVendedorViewController);
+				
 					
 					// Esta manera es para agregarle animacion de cambio de scene, pero tambien
 					// Se puede usar el "mainApp.getRootLayout().setCenter(root);"
 //					Scene scene = btnIngresar.getScene();
-//					StackPane loginView = (StackPane) scene.getRoot();
+					Scene scene = new Scene(root);
+//					AnchorPane loginView = (AnchorPane) scene.getRoot();
 //					loginView.getChildren().add(root);
+					mainApp.getPrimaryStage().setScene(scene);
 					
 					// Animaciones ------ Efectos
+					
 				} 
 				catch (IOException e) {
 					e.printStackTrace();

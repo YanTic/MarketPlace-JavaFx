@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_111" class="java.beans.XMLDecoder">
+ <object class="co.edu.uniquindio.Marketplace.model.Marketplace" id="Marketplace0">
+  <void property="listaProductos">
+   <void method="add">
+    <object class="co.edu.uniquindio.Marketplace.model.Producto">
+     <void property="categoria">
+      <string>Postre</string>
+     </void>
+     <void property="estado">
+      <object class="java.lang.Enum" method="valueOf">
+       <class>co.edu.uniquindio.Marketplace.model.EstadoProducto</class>
+       <string>Publicado</string>
+      </object>
+     </void>
+     <void property="nombre">
+      <string>Helado Pelapop</string>
+     </void>
+     <void property="precio">
+      <string>5000</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.Marketplace.model.Producto">
+     <void property="categoria">
+      <string>Pasaboca</string>
+     </void>
+     <void property="estado">
+      <object class="java.lang.Enum" method="valueOf">
+       <class>co.edu.uniquindio.Marketplace.model.EstadoProducto</class>
+       <string>Vendido</string>
+      </object>
+     </void>
+     <void property="nombre">
+      <string>Galleta</string>
+     </void>
+     <void property="precio">
+      <string>2000</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.Marketplace.model.Producto">
+     <void property="categoria">
+      <string>Utiles de Cocina</string>
+     </void>
+     <void property="estado">
+      <object class="java.lang.Enum" method="valueOf">
+       <class>co.edu.uniquindio.Marketplace.model.EstadoProducto</class>
+       <string>Cancelado</string>
+      </object>
+     </void>
+     <void property="nombre">
+      <string>Servilletas</string>
+     </void>
+     <void property="precio">
+      <string>3500</string>
+     </void>
+    </object>
+   </void>
+  </void>
+  <void property="listaUsuarios">
+   <void method="add">
+    <object class="co.edu.uniquindio.Marketplace.model.Usuario">
+     <void property="contrasenia">
+      <string>admin123</string>
+     </void>
+     <void property="usuario">
+      <string>admin</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.Marketplace.model.Usuario">
+     <void property="contrasenia">
+      <string>carlitos1234</string>
+     </void>
+     <void property="usuario">
+      <string>Juan Carlos</string>
+     </void>
+    </object>
+   </void>
+  </void>
+  <void property="listaVendedores">
+   <void method="add">
+    <object class="co.edu.uniquindio.Marketplace.model.Vendedor">
+     <void property="apellido">
+      <string>Arias</string>
+     </void>
+     <void property="cedula">
+      <string>1094</string>
+     </void>
+     <void property="direccion">
+      <string>Armenia</string>
+     </void>
+     <void property="nombre">
+      <string>Juan</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.Marketplace.model.Vendedor">
+     <void property="apellido">
+      <string>Perez</string>
+     </void>
+     <void property="cedula">
+      <string>1095</string>
+     </void>
+     <void property="direccion">
+      <string>Quimbaya</string>
+     </void>
+     <void property="nombre">
+      <string>Pedro</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.Marketplace.model.Vendedor">
+     <void property="apellido">
+      <string>Restrepo</string>
+     </void>
+     <void property="cedula">
+      <string>1096</string>
+     </void>
+     <void property="direccion">
+      <string>Salento</string>
+     </void>
+     <void property="nombre">
+      <string>Jose</string>
+     </void>
+    </object>
+   </void>
+  </void>
+ </object>
+</java>

@@ -55,7 +55,7 @@ public class ModelFactoryController implements IModelFactoryService{
 
 
 	public ModelFactoryController(){
-		inicializarDatos();
+//		inicializarDatos();
 		
 		// 1. Inicializar datos y luego guardarlo en archivos
 //		iniciarSalvarDatosPrueba();
@@ -80,7 +80,7 @@ public class ModelFactoryController implements IModelFactoryService{
 		}
 		
 		// Registrar la acción de inicio de sesion
-		Persistencia.guardaRegistroLog("Inicio de sesion del usuario: Admin", 1, "inicioSesion");
+//		Persistencia.guardaRegistroLog("Inicio de sesion del usuario: Admin", 1, "inicioSesion");
 		
 	}
 

@@ -1,0 +1,25 @@
+/* Split Pane */
+
+.shadow{
+    -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.2), 10.0, 0.0, 0.0, 10.0);
+}
+
+/* 
+.split-pane:horizontal > .split-pane-divider{
+	-fx-background-color: #eef2f7;
+}
+*/
+
+/*
+.split-pane:vertical > .split-pane-divider{
+	-fx-background-color: transparent;
+}
+*/
+
+.btnTransparentes {
+	-fx-background-color: transparent;
+}
+
+.btnTransparentes:hover {
+	-fx-background-color: #88B0FF;
+}
