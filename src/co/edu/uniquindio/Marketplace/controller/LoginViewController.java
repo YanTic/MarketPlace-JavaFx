@@ -55,7 +55,7 @@ public class LoginViewController implements Initializable {
     }
     	
     
-//    	-------------- METODOS PARA VENDEDOR VIEW CONTROLLER --------------
+//    	-------------- METODOS PARA LOGIN VIEW CONTROLLER --------------
     
     @FXML
     void accionBtnIngresar(ActionEvent event) {

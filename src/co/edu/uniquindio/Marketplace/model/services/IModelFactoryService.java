@@ -14,11 +14,13 @@ public interface IModelFactoryService {
 	public boolean actualizarVendedor(String cedulaActual, String nombre, String apellido, String cedula, String direccion);
 	public boolean eliminarVendedor(String cedula);
 	public ArrayList<Vendedor> getListaVendedores();
-	public ArrayList<Producto> getListaProductos();
 	public ArrayList<Usuario>  getListaUsuarios();
+	public ArrayList<Producto> getListaProductos(Vendedor vendedorSeleccionado);
 	
 	// Producto
-	public Producto crearProducto(String nombre, String precio, String categoria, EstadoProducto estado);
+	public Producto crearProducto(Vendedor vendedor, String nombre, String precio, String categoria, EstadoProducto estado);
+	public boolean actualizarProducto(Vendedor vendedor, String nombreActual, String nombre, String precio, String categoria, EstadoProducto estado);
+	public boolean eliminarProducto(Vendedor vendedor, String nombre);
 	
 	// Usuario
 	public Usuario crearUsuario(String usuario, String contrasenia);

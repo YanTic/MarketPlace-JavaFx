@@ -7,6 +7,7 @@ import co.edu.uniquindio.Marketplace.controller.LoginViewController;
 import co.edu.uniquindio.Marketplace.controller.MarketplaceViewController;
 import co.edu.uniquindio.Marketplace.controller.ModelFactoryController;
 import co.edu.uniquindio.Marketplace.model.Marketplace;
+import co.edu.uniquindio.Marketplace.model.Vendedor;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -21,6 +22,7 @@ public class MainApp extends Application {
 
 	ModelFactoryController modelFactoryController;
 	Marketplace marketplace;
+	Vendedor vendedorSeleccionadoGeneral;
 
 
 	public MainApp() {
@@ -33,6 +35,7 @@ public class MainApp extends Application {
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("MarketPlace");
+		this.vendedorSeleccionadoGeneral = null;
 		initRootLayout();
 //		mostrarLoginView();
 //		mostrarMarketplaceView();
@@ -143,6 +146,16 @@ public class MainApp extends Application {
 	public BorderPane getRootLayout() {
 		return rootLayout;
 	}
+	
+
+	public Vendedor getVendedorSeleccionadoGeneral() {
+		return vendedorSeleccionadoGeneral;
+	}
+
+	public void setVendedorSeleccionadoGeneral(Vendedor vendedorSeleccionadoGeneral) {
+		this.vendedorSeleccionadoGeneral = vendedorSeleccionadoGeneral;
+	}
+	
 
 	public static void main(String[] args) {
 		launch(args);

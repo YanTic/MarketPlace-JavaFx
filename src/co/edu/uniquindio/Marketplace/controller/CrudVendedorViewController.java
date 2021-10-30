@@ -31,9 +31,11 @@ public class CrudVendedorViewController {
 		return modelFactoryController.getListaVendedores();
 	}
 	
-	public ArrayList<Producto> getListaProductos(){
-		return modelFactoryController.getListaProductos();
+	public ArrayList<Producto> getListaProductos(Vendedor vendedorSeleccionado) {
+		return modelFactoryController.getListaProductos(vendedorSeleccionado); 
 	}
+	
+	
 
 	
 	// CRUD comunica con ModelFactoryController  ( Vendedor )
@@ -51,10 +53,17 @@ public class CrudVendedorViewController {
 	
 	
 	// CRUD comunica con ModelFactoryController  ( Producto )
-	public Producto crearProducto(String nombre, String precio, String categoria, EstadoProducto estado) {		
-		return modelFactoryController.crearProducto(nombre, precio, categoria, estado);
+	public Producto crearProducto(Vendedor vendedor, String nombre, String precio, String categoria, EstadoProducto estado) {		
+		return modelFactoryController.crearProducto(vendedor, nombre, precio, categoria, estado);
 	}
 	
-	
-	
+	public boolean eliminarProducto(Vendedor vendedor, String nombre) {		
+		return modelFactoryController.eliminarProducto(vendedor, nombre);
+	}
+
+	public boolean actualizarProducto(Vendedor vendedor, String nombreActual, String nombre, String precio, String categoria, EstadoProducto estado) {		
+		return modelFactoryController.actualizarProducto(vendedor, nombreActual, nombre, precio, categoria, estado);
+	}
+
+
 }

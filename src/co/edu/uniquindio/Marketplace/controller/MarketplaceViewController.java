@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.Marketplace.MainApp;
+import co.edu.uniquindio.Marketplace.exceptions.VendedorException;
 import co.edu.uniquindio.Marketplace.model.EstadoProducto;
 import co.edu.uniquindio.Marketplace.model.Marketplace;
 import co.edu.uniquindio.Marketplace.model.Producto;
@@ -20,6 +21,9 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -31,9 +35,16 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class MarketplaceViewController implements Initializable{
 	
-	// User
-    @FXML private Button btnUsuario;
-    @FXML private Button btnLogout;
+	// User    
+	@FXML private Button btnUsuario;
+	@FXML private Button btnLogout;
+	
+	@FXML private TabPane mainTabPane;
+	@FXML private Tab tabAdministracion;
+	@FXML private Tab tabVendedor;
+	@FXML private Tab tabCRUDProductos;
+
+    @FXML private Label labelVendedorNombre;
 	
 	
 	// CRUD VENDEDORES
@@ -69,6 +80,9 @@ public class MarketplaceViewController implements Initializable{
     @FXML private TableColumn<Producto, String> columnaCategoriaProducto;
     @FXML private TableColumn<Producto, EstadoProducto> columnaEstadoProducto;
     
+    // Tab Vendedores
+    @FXML private Button btnMostrarProductos;
+    
     
 	// Referencia a la MainApp.
 	private MainApp mainApp;
@@ -100,6 +114,10 @@ public class MarketplaceViewController implements Initializable{
 //		inicializarProductoView();
 		
 		
+		mainTabPane.getTabs().remove(tabVendedor);
+		mainTabPane.getTabs().remove(tabCRUDProductos);
+		
+		
 		
 		
 		
@@ -108,7 +126,7 @@ public class MarketplaceViewController implements Initializable{
 		Platform.runLater(()->{
 			// Inicializo los datos de cada controlador CRUD (Como tablas...)
 			inicializarVendedorView();
-			inicializarProductoView();
+//			inicializarProductoView();
 		});
 	}
 	
@@ -134,11 +152,21 @@ public class MarketplaceViewController implements Initializable{
 	
 	
 	
-//	-------------- METODOS PARA USER --------------	
+//	-------------- METODOS PARA USER --------------
+	
     @FXML
     void accionBtnLogout(ActionEvent event) {
-
+    	volverAInicioSesion();
     }
+
+    /*
+     * Este metodo cambia la scene, oculta MarketplaceView y muestra
+     * el LoginView.
+     * */
+    public void volverAInicioSesion(){
+    	
+    }
+    
 	
     @FXML
     void accionBtnUsuario(ActionEvent event) {
@@ -166,6 +194,8 @@ public class MarketplaceViewController implements Initializable{
 		// Acción de la tabla para mostrar informacion de un empleado
 		tablaVendedores.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) ->{
 			vendedorSeleccionado = newSelection;
+			mainApp.setVendedorSeleccionadoGeneral(vendedorSeleccionado);
+			
 			mostrarInformacionVendedor(vendedorSeleccionado);
 		});
 	}
@@ -311,9 +341,28 @@ public class MarketplaceViewController implements Initializable{
      * del vendedor seleccionado en la tabla
      * */
     public void mostrarTabVendedor(){
-    	
+    	if(mainApp.getVendedorSeleccionadoGeneral() != null){
+    		mainTabPane.getTabs().add(tabVendedor);
+    		labelVendedorNombre.setText(mainApp.getVendedorSeleccionadoGeneral().getNombre());    		
+    	}
+    	else{
+    		mostrarMensaje("Notifacion", "Tab No abierta", "La tab no puede ser abierta si no selecciona un vendedor", AlertType.ERROR);
+    	}
     }
     
+
+    @FXML
+    void accionBtnMostrarProductos(ActionEvent event) {
+    	mostrarTabCRUDProductos();
+    }
+    
+    /*
+     * Este metodo muestra el tab de 'CRUD Productos', para el vendedor seleccionado
+     * */
+    public void mostrarTabCRUDProductos(){
+    	mainTabPane.getTabs().add(tabCRUDProductos);
+    	inicializarProductoView();
+    }
     
     
     
@@ -354,7 +403,7 @@ public class MarketplaceViewController implements Initializable{
 		
 		// Añade los datos de la lista observable a la tabla
 		// Esa lista se obtiene del modelFactoryController, que se obtiene desde un CRUD
-		tablaProductos.setItems(getProductosData());
+		tablaProductos.setItems(getProductosData(mainApp.getVendedorSeleccionadoGeneral()));
 		
 		// Acción de la tabla para mostrar informacion de un empleado
 		tablaProductos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) ->{
@@ -363,20 +412,17 @@ public class MarketplaceViewController implements Initializable{
 		});
 
 	}
-	
-    @FXML
-    void accionBtnEliminarProducto(ActionEvent event) {
 
-    }
-    
-    @FXML
-    void accionBtnActualizarProducto(ActionEvent event) {
-
-    }
 
     @FXML
     void accionBtnAgregarProducto(ActionEvent event) {
+    	crearProducto();
+    }
+
+    public void crearProducto(){
     	// Captura los datos
+    	Vendedor vendedor = vendedorSeleccionado;
+    	
 		String nombre = txtNombreProducto.getText();
 		String precio = txtPrecioProducto.getText();
 		String categoria = txtCategoriaProducto.getText();
@@ -386,7 +432,7 @@ public class MarketplaceViewController implements Initializable{
 		if(datosValidos(nombre, precio, categoria, estado)){
 			Producto producto = null;
 			
-			producto = crudVendedorViewController.crearProducto(nombre, precio, categoria, estado);
+			producto = crudVendedorViewController.crearProducto(vendedor, nombre, precio, categoria, estado);
 			
 			if(producto != null){
 				listaProductosData.add(producto);
@@ -402,8 +448,8 @@ public class MarketplaceViewController implements Initializable{
 		else{
 			mostrarMensaje("Notifacion", "Producto NO Creado", "Datos ingresados NO validos", AlertType.ERROR);
 		}
+		
     }
-
 
     @FXML
     void accionBtnNuevoProducto(ActionEvent event) {
@@ -422,6 +468,83 @@ public class MarketplaceViewController implements Initializable{
 		
     }
     
+    
+	
+    @FXML
+    void accionBtnEliminarProducto(ActionEvent event) {
+    	eliminarProducto();
+    }
+    
+    public void eliminarProducto(){
+    	boolean productoEliminado = false;
+    	
+    	if(productoSeleccionado != null){
+    		if(mostrarMensajeConfirmacion("¿Está seguro de eliminar el producto?")){
+//    			vendedorEliminado = crudVendedorViewController.eliminarVendedor(vendedorSeleccionado.getCedula());
+    			productoEliminado = crudVendedorViewController.eliminarProducto(vendedorSeleccionado, productoSeleccionado.getNombre());
+    			
+    			if(productoEliminado){
+    				listaProductosData.remove(productoSeleccionado);
+    				productoSeleccionado = null;
+    				
+    				// Se elimina el producto de la tabla y limpiamos los textfield
+    				tablaProductos.getSelectionModel().clearSelection();
+    				accionBtnNuevoProducto(new ActionEvent());
+    				mostrarMensaje("Notifacion", "Producto Eliminado", "El producto ha sido eliminado con exito!", AlertType.INFORMATION);
+    			}
+    			else{
+    				mostrarMensaje("Notifacion", "Producto NO Eliminado", "El producto NO ha sido eliminado", AlertType.ERROR);
+    			}
+    		}
+    	}
+    	else{
+    		mostrarMensaje("Notifacion", "Producto NO seleccionado", "Seleccionado un producto de la lista", AlertType.WARNING);
+    	}
+    }
+    
+    @FXML
+    void accionBtnActualizarProducto(ActionEvent event) {
+    	actualizarProducto();
+    }
+    
+    public void actualizarProducto(){
+    	// Capturo los datos
+		Vendedor vendedor = vendedorSeleccionado;
+    	
+		String nombre = txtNombreProducto.getText();
+		String precio = txtPrecioProducto.getText();
+		String categoria = txtCategoriaProducto.getText();
+		EstadoProducto estado = cbEstadoProducto.getValue(); 
+		
+		boolean productoActualizado = false;
+		
+		// Verifico los datos
+		if(productoSeleccionado != null){
+			// Valido los datos
+			if(datosValidos(nombre, precio, categoria, estado)){
+				
+//				vendedorActualizado = crudVendedorViewController.actualizarVendedor(vendedorSeleccionado.getCedula(), nombre, apellido, cedula, direccion);
+				productoActualizado = crudVendedorViewController.actualizarProducto(vendedorSeleccionado, productoSeleccionado.getNombre(),nombre, precio, categoria, estado);
+				
+				if(productoActualizado == true){
+					tablaVendedores.refresh();
+					mostrarMensaje("Notifacion", "Producto Actualizado", "El producto ha sido actualizado con exito!", AlertType.INFORMATION);
+					
+					// Limpio los textfield
+					accionBtnNuevoProducto(new ActionEvent());
+				}
+				else{
+					mostrarMensaje("Notifacion", "Producto NO Actualizado", "El producto NO ha sido actualizado", AlertType.ERROR);
+				}
+			}
+			else{
+				mostrarMensaje("Notifacion", "Producto NO Actualizado", "Datos ingresados NO validos", AlertType.ERROR);
+			}		
+		}
+		
+		
+	
+    }
     
     
     /*
@@ -528,6 +651,9 @@ public class MarketplaceViewController implements Initializable{
     	
     }    
     
+    
+    
+    
     /*
      * Este metodo asigna la clase MainApp a este controlador, que junto esta contiene
      * el ModelFactoryController y el objeto Marketplace
@@ -551,8 +677,8 @@ public class MarketplaceViewController implements Initializable{
 		return listaVendedoresData;
 	}
 	
-	public ObservableList<Producto> getProductosData(){
-		listaProductosData.addAll(crudVendedorViewController.getListaProductos()) ;
+	public ObservableList<Producto> getProductosData(Vendedor vendedorSeleccionado){
+		listaProductosData.addAll(crudVendedorViewController.getListaProductos(vendedorSeleccionado)) ;
 		return listaProductosData;
 	}
 	

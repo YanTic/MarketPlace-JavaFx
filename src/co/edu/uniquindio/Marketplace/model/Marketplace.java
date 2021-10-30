@@ -13,7 +13,6 @@ public class Marketplace implements Serializable, IMarketplaceService{
 	private static final long serialVersionUID = 1L;
 
 	ArrayList<Vendedor> listaVendedores = new ArrayList<>();
-	ArrayList<Producto> listaProductos = new ArrayList<>();
 	ArrayList<Usuario> listaUsuarios = new ArrayList<>();
 
 	public Marketplace() {
@@ -129,16 +128,18 @@ public class Marketplace implements Serializable, IMarketplaceService{
 	
 	
 	
+	
 	// -------------- METODOS PARA MODEL FACTORY CONTROLLER DE PRODUCTO --------------
 	
 	@Override
-	public Producto crearProducto(String nombre, String precio, String categoria, EstadoProducto estado) throws ProductoException{
+	public Producto crearProducto(Vendedor vendedor, String nombre, String precio, String categoria, 
+								  EstadoProducto estado) throws ProductoException{
 		Producto nuevoProducto = null;
 		boolean flagProductoExiste = false;
 		
-		flagProductoExiste = verificarProductoExistente(nombre);
+		flagProductoExiste = verificarProductoExistente(vendedor, nombre);
 		
-		// Esto es para no crear un vendedor que ya existe
+		// Esto es para no crear un producto que ya existe
 		if(flagProductoExiste != true){
 			nuevoProducto = new Producto();
 			nuevoProducto.setNombre(nombre);
@@ -146,7 +147,7 @@ public class Marketplace implements Serializable, IMarketplaceService{
 			nuevoProducto.setCategoria(categoria);
 			nuevoProducto.setEstado(estado);
 			
-			getListaProductos().add(nuevoProducto);
+			vendedor.getListaProductos().add(nuevoProducto);
 		}
 		else{
 		// Aquí se propaga una excepcion, para que el ModelFactoryController la capture
@@ -160,15 +161,71 @@ public class Marketplace implements Serializable, IMarketplaceService{
 		return nuevoProducto;
 	}
 	
+	@Override
+	public boolean actualizarProducto(Vendedor vendedor, String nombreActual, String nombre, 
+									  String precio, String categoria, EstadoProducto estado) 
+									  throws ProductoException {
+		Boolean flagActualizado = false;
+		Producto producto = getProducto(vendedor, nombreActual);
+		
+
+		if(producto != null){
+			producto.setNombre(nombre);
+			producto.setPrecio(precio);
+			producto.setCategoria(categoria);
+			producto.setEstado(estado);
+			
+			flagActualizado = true;
+		}
+		else{
+			throw new ProductoException("El producto: "+nombreActual+ " NO se ha podido actualizar. No encontrado");
+		}
+		
+		return flagActualizado;
+	}
+	
+	
+
+	@Override
+	public boolean eliminarProducto(Vendedor vendedor, String nombreProducto) throws ProductoException {
+		Boolean flagEliminado = false;
+		Producto producto = getProducto(vendedor, nombreProducto);
+
+		if(producto != null) {
+			vendedor.getListaProductos().remove(producto);
+			flagEliminado = true;
+		}
+		else{
+			throw new ProductoException("El producto: "+nombreProducto+ " NO se ha podido eliminar. Ya Eliminado");
+		}
+
+		return flagEliminado;
+	}
+
+	
+	@Override
+	public Producto getProducto(Vendedor vendedor, String nombreProducto) {
+		Producto productoEncontrado = null;
+
+		for (Producto producto : vendedor.getListaProductos()) {
+			if(producto.getNombre().equals(nombreProducto)) {
+				productoEncontrado = producto;
+				break;
+			}
+		}
+
+		return productoEncontrado;
+	}
 	
 	
 	@Override
-	public boolean verificarProductoExistente(String nombre) {
+	public boolean verificarProductoExistente(Vendedor vendedor, String nombreProducto) {
 		Boolean flagProductoExistente = false;
 		
 		// Esto compara el nombre de cada producto para verificar si se encuentra en la lista
-		for(Producto producto: listaProductos){
-			if(producto.getNombre().equalsIgnoreCase(nombre)){
+		// de productos del vendedor seleccionado
+		for(Producto producto: vendedor.getListaProductos()){
+			if(producto.getNombre().equalsIgnoreCase(nombreProducto)){
 				flagProductoExistente = true;
 				break;
 			}
@@ -176,6 +233,12 @@ public class Marketplace implements Serializable, IMarketplaceService{
 		
 		return flagProductoExistente;
 	}
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -258,15 +321,12 @@ public class Marketplace implements Serializable, IMarketplaceService{
 		return flagUsuarioExistente;
 	}
 	
+	
+	
+	
 
 
 	// --- Setters & Getters ---
-	public ArrayList<Producto> getListaProductos() {
-		return listaProductos;
-	}
-	public void setListaProductos(ArrayList<Producto> listaProductos) {
-		this.listaProductos = listaProductos;
-	}
 	public ArrayList<Vendedor> getListaVendedores() {
 		return listaVendedores;
 	}
@@ -278,6 +338,10 @@ public class Marketplace implements Serializable, IMarketplaceService{
 	}
 	public void setListaUsuarios(ArrayList<Usuario> listaUsuarios) {
 		this.listaUsuarios = listaUsuarios;
+	}
+
+	public ArrayList<Producto> getListaProductos(Vendedor vendedorSeleccionado) {
+		return vendedorSeleccionado.getListaProductos();
 	}
 
 

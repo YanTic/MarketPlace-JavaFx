@@ -10,17 +10,20 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="546.0" prefWidth="668.0" stylesheets="@MarketplaceView.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.Marketplace.controller.MarketplaceViewController">
    <children>
-      <TabPane layoutX="14.0" layoutY="29.0" prefHeight="507.0" prefWidth="646.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="mainTabPane" layoutX="14.0" layoutY="29.0" prefHeight="507.0" prefWidth="646.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-            <Tab text="Administracion">
+            <Tab fx:id="tabAdministracion" text="Administracion">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -101,7 +104,57 @@
                   </AnchorPane>
               </content>
             </Tab>
-            <Tab text="Crud Productos">
+            <Tab fx:id="tabVendedor" text="Vendedor">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="477.0" prefWidth="166.0" spacing="20.0" style="-fx-background-color: E0FFD1;">
+                           <children>
+                              <Pane prefHeight="105.0" prefWidth="166.0" style="-fx-background-color: BBFF98;">
+                                 <children>
+                                    <Label fx:id="labelVendedorNombre" layoutX="28.0" layoutY="35.0" text="Vendedor ">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="194.0" text="Publicaciones">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="194.0" text="Contactos">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="194.0" text="Informacion">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Button>
+                              <Pane prefHeight="159.0" prefWidth="166.0">
+                                 <children>
+                                    <Button layoutX="52.0" layoutY="118.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="63.0" text="Salir">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </VBox>
+                        <Pane layoutX="166.0" prefHeight="479.0" prefWidth="479.0">
+                           <children>
+                              <Button fx:id="btnMostrarProductos" layoutX="356.0" layoutY="14.0" mnemonicParsing="false" onAction="#accionBtnMostrarProductos" text="Ver Productos" />
+                              <TextArea layoutX="40.0" layoutY="52.0" prefHeight="407.0" prefWidth="407.0" promptText="Publicaciones" />
+                           </children>
+                        </Pane>
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+            <Tab fx:id="tabCRUDProductos" text="Crud Productos">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -167,11 +220,6 @@
                      </children>
                   </AnchorPane>
                </content>
-            </Tab>
-            <Tab text="Vendedor">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-              </content>
             </Tab>
         </tabs>
       </TabPane>

@@ -21,8 +21,11 @@ public interface IMarketplaceService {
 	public ArrayList<Vendedor> getListaVendedores();
 	
 	// Producto
-	public Producto crearProducto(String nombre, String precio, String categoria, EstadoProducto estado) throws ProductoException;
-	public boolean verificarProductoExistente(String nombre);
+	public Producto crearProducto(Vendedor vendedor, String nombre, String precio, String categoria, EstadoProducto estado) throws ProductoException;
+	public boolean actualizarProducto(Vendedor vendedor, String nombreActual, String nombre, String precio, String categoria, EstadoProducto estado) throws ProductoException;
+	public boolean eliminarProducto(Vendedor vendedor, String nombreProducto) throws ProductoException;
+	public Producto getProducto(Vendedor vendedor, String nombreProducto);
+	public boolean verificarProductoExistente(Vendedor vendedor, String nombreProducto);
 	
 	// Usuario
 	public Usuario crearUsuario(String usuario, String contrasenia) throws UsuarioException;

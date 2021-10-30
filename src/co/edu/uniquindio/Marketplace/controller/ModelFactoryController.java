@@ -118,21 +118,22 @@ public class ModelFactoryController implements IModelFactoryService{
 		producto.setPrecio("5000");
 		producto.setCategoria("Postre");
 		producto.setEstado(EstadoProducto.Publicado);
-		marketplace.getListaProductos().add(producto);
+		marketplace.getListaVendedores().get(0).getListaProductos().add(producto);
+//		marketplace.getListaProductos().add(producto);
 		
 		producto = new Producto();
 		producto.setNombre("Galleta");
 		producto.setPrecio("2000");
 		producto.setCategoria("Pasaboca");
 		producto.setEstado(EstadoProducto.Vendido);
-		marketplace.getListaProductos().add(producto);
+		marketplace.getListaVendedores().get(0).getListaProductos().add(producto);
 		
 		producto = new Producto();
 		producto.setNombre("Servilletas");
 		producto.setPrecio("3500");
 		producto.setCategoria("Utiles de Cocina");
 		producto.setEstado(EstadoProducto.Cancelado);
-		marketplace.getListaProductos().add(producto);
+		marketplace.getListaVendedores().get(0).getListaProductos().add(producto);
 		
 		
 //		Inicializar la lista de Usuarios
@@ -289,11 +290,11 @@ public class ModelFactoryController implements IModelFactoryService{
 	// -------------- METODOS PARA CRUD PRODUCTO VIEW CONTROLLER --------------
 	
 	@Override
-	public Producto crearProducto(String nombre, String precio, String categoria, EstadoProducto estado) {
+	public Producto crearProducto(Vendedor vendedor, String nombre, String precio, String categoria, EstadoProducto estado) {
 		Producto producto = null;
 		
 		try{
-			producto = marketplace.crearProducto(nombre, precio, categoria, estado);			
+			producto = marketplace.crearProducto(vendedor, nombre, precio, categoria, estado);			
 		}
 		catch(ProductoException e){
 			e.getMessage();
@@ -302,6 +303,34 @@ public class ModelFactoryController implements IModelFactoryService{
 		return producto;
 		
 	}
+	
+	@Override
+	public boolean eliminarProducto(Vendedor vendedor, String nombre) {
+		boolean flagProductoEliminado = false;
+		
+		try {
+			flagProductoEliminado = marketplace.eliminarProducto(vendedor, nombre);
+		} catch (ProductoException e) {
+			e.getMessage();
+		}
+		
+		return flagProductoEliminado;
+	}
+	
+	@Override
+	public boolean actualizarProducto(Vendedor vendedor, String nombreActual, String nombre, 
+								      String precio, String categoria, EstadoProducto estado) {
+		boolean flagVendedorActualizado = false;
+		
+		try {
+			flagVendedorActualizado = marketplace.actualizarProducto(vendedor, nombreActual, nombre, precio, categoria, estado);
+		} catch (ProductoException e) {
+			e.getMessage();
+		}
+		
+		return flagVendedorActualizado;
+	}
+
 	
 	
 	
@@ -331,7 +360,7 @@ public class ModelFactoryController implements IModelFactoryService{
 			flagUsuarioExiste = marketplace.verificarUsuario(usuario, contrasenia);
 		} 
 		catch (UsuarioException e) {
-			e.printStackTrace();
+			e.getMessage();
 		}
 		
 		
@@ -360,17 +389,21 @@ public class ModelFactoryController implements IModelFactoryService{
 	@Override
 	public ArrayList<Vendedor> getListaVendedores() {
 		return marketplace.getListaVendedores();
-	}	
-
-	@Override
-	public ArrayList<Producto> getListaProductos() {
-		return marketplace.getListaProductos();
 	}
 
 	@Override
 	public ArrayList<Usuario> getListaUsuarios() {
 		return marketplace.getListaUsuarios();
 	}
+
+	@Override
+	public ArrayList<Producto> getListaProductos(Vendedor vendedorSeleccionado) {
+		return marketplace.getListaProductos(vendedorSeleccionado);
+	}	
+
+
+	
+
 
 
 
