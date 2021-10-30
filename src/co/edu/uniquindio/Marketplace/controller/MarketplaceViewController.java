@@ -128,6 +128,9 @@ public class MarketplaceViewController implements Initializable{
 			// Inicializo los datos de cada controlador CRUD (Como tablas...)
 			inicializarVendedorView();
 //			inicializarProductoView();
+			
+			// Establesco el Usuario que acaba de iniciara sesion
+			usuarioLogeado();
 		});
 	}
 	
@@ -171,7 +174,11 @@ public class MarketplaceViewController implements Initializable{
 	
     @FXML
     void accionBtnUsuario(ActionEvent event) {
-
+    	
+    }
+    
+    public void usuarioLogeado(){
+    	btnUsuario.setText(mainApp.getUsuarioLogeado().getUsuario());
     }
 
     
@@ -240,6 +247,17 @@ public class MarketplaceViewController implements Initializable{
 			
 			if(vendedor != null){
 				listaVendedoresData.add(vendedor);
+				
+				// Siempre tengo que guardar y registar
+				
+				// Me guarda el vendedor en el archivo (.dat o .xml)
+				crudVendedorViewController.guardarDatos();
+				// Me registrar la accion en el log (String mensajeLog, int nivel, String accion)
+				crudVendedorViewController.registrarAccion("El vendedor ha sido creado con exito!. Realizado por el Usuario : "+ 
+															mainApp.getUsuarioLogeado().getUsuario(), 1, "Agregar Vendedor");
+
+				
+				
 				mostrarMensaje("Notifacion", "Vendedor Creado", "El vendedor ha sido creado con exito!", AlertType.INFORMATION);
 				
 				// Limpio los textfield
@@ -275,6 +293,11 @@ public class MarketplaceViewController implements Initializable{
     				tablaVendedores.getSelectionModel().clearSelection();
     				accionBtnNuevoVendedor(new ActionEvent());
     				mostrarMensaje("Notifacion", "Vendedor Eliminado", "El vendedor ha sido eliminado con exito!", AlertType.INFORMATION);
+    				
+    				// Registro la accion de eliminar Vendedor y guardo los datos
+    				crudVendedorViewController.guardarDatos();    	
+    				crudVendedorViewController.registrarAccion("El vendedor ha sido eliminado con exito!. Realizado por el Usuario : "+ 
+																mainApp.getUsuarioLogeado().getUsuario(), 1, "Eliminar Vendedor");
     			}
     			else{
     				mostrarMensaje("Notifacion", "Vendedor NO Eliminado", "El vendedor NO ha sido eliminado", AlertType.ERROR);
@@ -312,6 +335,12 @@ public class MarketplaceViewController implements Initializable{
 //					listaVendedoresData.add(vendedor); No lo agrego de nuevo, crearía otro vendedor
 					tablaVendedores.refresh();
 					mostrarMensaje("Notifacion", "Vendedor Actualizado", "El vendedor ha sido actualizado con exito!", AlertType.INFORMATION);
+					
+					// Registro la accion de actualizar Vendedor y guardo los datos
+    				crudVendedorViewController.guardarDatos();    	
+    				crudVendedorViewController.registrarAccion("El vendedor ha sido actualizado con exito!. Realizado por el Usuario : "+ 
+																mainApp.getUsuarioLogeado().getUsuario(), 1, "Actualizar Vendedor");
+					
 					
 					// Limpio los textfield
 					accionBtnNuevoVendedor(new ActionEvent());
@@ -439,6 +468,12 @@ public class MarketplaceViewController implements Initializable{
 				listaProductosData.add(producto);
 				mostrarMensaje("Notifacion", "Producto Creado", "El producto ha sido creado con exito!", AlertType.INFORMATION);
 				
+				// Registro la accion de agregar Producto y guardo los datos
+				crudVendedorViewController.guardarDatos();    	
+				crudVendedorViewController.registrarAccion("El producto ha sido creado con exito!. Realizado por el Usuario : "+ 
+															mainApp.getUsuarioLogeado().getUsuario(), 1, "Agregar Producto");
+				
+				
 				// Limpio los textfield
 				accionBtnNuevoProducto(new ActionEvent());
 			}
@@ -492,6 +527,11 @@ public class MarketplaceViewController implements Initializable{
     				tablaProductos.getSelectionModel().clearSelection();
     				accionBtnNuevoProducto(new ActionEvent());
     				mostrarMensaje("Notifacion", "Producto Eliminado", "El producto ha sido eliminado con exito!", AlertType.INFORMATION);
+    				
+    				// Registro la accion de eliminar Producto y guardo los datos
+    				crudVendedorViewController.guardarDatos();    	
+    				crudVendedorViewController.registrarAccion("El producto ha sido eliminado con exito!. Realizado por el Usuario : "+ 
+															mainApp.getUsuarioLogeado().getUsuario(), 1, "Eliminar Producto");
     			}
     			else{
     				mostrarMensaje("Notifacion", "Producto NO Eliminado", "El producto NO ha sido eliminado", AlertType.ERROR);
@@ -530,6 +570,12 @@ public class MarketplaceViewController implements Initializable{
 				if(productoActualizado == true){
 					tablaProductos.refresh();
 					mostrarMensaje("Notifacion", "Producto Actualizado", "El producto ha sido actualizado con exito!", AlertType.INFORMATION);
+					
+					// Registro la accion de actualizar Producto y guardo los datos
+    				crudVendedorViewController.guardarDatos();    	
+    				crudVendedorViewController.registrarAccion("El producto ha sido actualizado con exito!. Realizado por el Usuario : "+ 
+															mainApp.getUsuarioLogeado().getUsuario(), 1, "Actualizar Producto");
+					
 					
 					// Limpio los textfield
 					accionBtnNuevoProducto(new ActionEvent());

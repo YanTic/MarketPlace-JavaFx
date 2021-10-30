@@ -39,5 +39,15 @@ public class CrudLoginViewController {
 		return modelFactoryController.verificarUsuario(usuario, contrasenia);
 	}
 
+	
+	// Persistencia Metodos
+	public void guardarDatos() {
+		modelFactoryController.guardarResourceXML();
+	}
+
+	public void registrarAccion(String mensajeLog, int nivel, String accion) {
+		modelFactoryController.registrarAccionesSistema(mensajeLog, nivel, accion);;
+	}
+
 }
 

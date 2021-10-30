@@ -102,22 +102,6 @@
    <void method="add">
     <object class="co.edu.uniquindio.Marketplace.model.Vendedor">
      <void property="apellido">
-      <string>Perez</string>
-     </void>
-     <void property="cedula">
-      <string>1095</string>
-     </void>
-     <void property="direccion">
-      <string>Quimbaya</string>
-     </void>
-     <void property="nombre">
-      <string>Pedro</string>
-     </void>
-    </object>
-   </void>
-   <void method="add">
-    <object class="co.edu.uniquindio.Marketplace.model.Vendedor">
-     <void property="apellido">
       <string>Restrepo</string>
      </void>
      <void property="cedula">

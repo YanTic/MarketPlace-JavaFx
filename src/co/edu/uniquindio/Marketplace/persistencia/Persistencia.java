@@ -126,6 +126,7 @@ public class Persistencia {
 			vendedor.setApellido(linea.split(",")[1]);
 			vendedor.setCedula(linea.split(",")[2]);
 			vendedor.setDireccion(linea.split(",")[3]);
+			
 //			cliente.setCorreo(linea.split(",")[4]);
 //			cliente.setFechaNacimiento(linea.split(",")[5]);
 //			cliente.setTelefono(linea.split(",")[6]);
@@ -161,8 +162,7 @@ public class Persistencia {
 
 
 	public static void guardaRegistroLog(String mensajeLog, int nivel, String accion)
-	{
-		
+	{		
 		ArchivoUtil.guardarRegistroLog(mensajeLog, nivel, accion, RUTA_ARCHIVO_LOG);
 	}
 

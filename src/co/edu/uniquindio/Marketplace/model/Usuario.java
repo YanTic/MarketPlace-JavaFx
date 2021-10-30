@@ -6,14 +6,11 @@ public class Usuario {
 	private String contrasenia;
 
 	public Usuario(String usuario, String contrasenia) {
-		super();
 		this.usuario = usuario;
 		this.contrasenia = contrasenia;
 	}
 
-	public Usuario() {
-		super();
-	}
+	public Usuario() { }
 
 
 	public String getUsuario() {

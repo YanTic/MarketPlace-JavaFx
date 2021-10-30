@@ -15,9 +15,7 @@ public class Marketplace implements Serializable, IMarketplaceService{
 	ArrayList<Vendedor> listaVendedores = new ArrayList<>();
 	ArrayList<Usuario> listaUsuarios = new ArrayList<>();
 
-	public Marketplace() {
-
-	}
+	public Marketplace() { }
 	
 	/*
 	 *  CONTINUAR CON LOS METODOS PARA MODEL FACTORY CONTROLLER DE PRODUCTO 

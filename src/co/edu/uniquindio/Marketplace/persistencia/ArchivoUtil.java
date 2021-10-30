@@ -21,7 +21,7 @@ import java.util.logging.SimpleFormatter;
 
 
 /**
- * Esta clase teine metodo estaticos que permite usarlos sin crear instancias de la clase 
+ * Esta clase tiene metodo estaticos que permite usarlos sin crear instancias de la clase 
  * Lo que se hizo fue crear esta libreria para el manejo de los archivos
  * @author Admin
  *

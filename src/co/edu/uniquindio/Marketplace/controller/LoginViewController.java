@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import co.edu.uniquindio.Marketplace.MainApp;
 import co.edu.uniquindio.Marketplace.model.Marketplace;
 import co.edu.uniquindio.Marketplace.model.Usuario;
+import co.edu.uniquindio.Marketplace.persistencia.Persistencia;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -72,6 +73,20 @@ public class LoginViewController implements Initializable {
 			// Comparo los datos del usuario 
 			if(crudLoginViewController.verificarUsuario(usuario, contrasenia)){
 				mostrarMensaje("Notifacion", "Login Correcto", "Bienvenido "+usuario+ "!", AlertType.INFORMATION);
+				
+				Usuario usuarioLogeado = new Usuario();
+				usuarioLogeado.setUsuario(usuario);
+				usuarioLogeado.setContrasenia(contrasenia);
+				
+				mainApp.setUsuarioLogeado(usuarioLogeado);
+				
+				// ESTO NO SE PUEDE, LA PERSISTENCIA SOLO SE LLAMA DESDE EL MODELFACTORY
+				// Registrar la acción de inicio de sesion
+				// Persistencia.guardaRegistroLog("Inicio de sesion del usuario: "+usuario, 1, "inicioSesion");
+				
+				// Registro la accion de inicio de sesion
+				crudLoginViewController.registrarAccion("Inicio de sesion del usuario: "+usuario, 1, "inicioSesion");
+				
 				
 				// Llamo al MarketplaceViewController y cambio la view (el fxml)				
 				try {			
@@ -154,6 +169,11 @@ public class LoginViewController implements Initializable {
 			if(usuario != null){				
 				mostrarMensaje("Notifacion", "Usuario Creado", "Usuario creado con exito! Bienvenido "+ 
 								nuevoUsuario+ "!", AlertType.INFORMATION);
+				
+				// Guardo y registro la accion de crear usuario
+				crudLoginViewController.guardarDatos();
+				crudLoginViewController.registrarAccion("El usuario ha sido creado con exito!", 1, "Crear Nuevo Usuario");
+				
 				
 				// Limpio los textfield
 				txtNuevoUsuario.clear();

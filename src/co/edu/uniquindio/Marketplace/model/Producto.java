@@ -1,24 +1,16 @@
 package co.edu.uniquindio.Marketplace.model;
 
-public class Producto {
+import java.io.Serializable;
+
+public class Producto implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	private String nombre;
-	private String categoria;
-	private String usuario;
-	private String contrasena;
 	private String precio;
+	private String categoria;
 	private EstadoProducto estado;
 
 	public Producto() { }
-	
-	public Producto(String nombre, String categoria, String usuario, String contrasena,
-					String precio, EstadoProducto estado) {
-		this.nombre = nombre;
-		this.categoria = categoria;
-		this.usuario = usuario;
-		this.contrasena = contrasena;
-		this.precio = precio;
-		this.estado = estado;
-	}
 	
 	public Producto(String nombre, String precio, String categoria, EstadoProducto estado) {
 		this.nombre = nombre;
@@ -44,22 +36,6 @@ public class Producto {
 
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
-	}
-
-	public String getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
-
-	public String getContrasena() {
-		return contrasena;
-	}
-
-	public void setContrasena(String contrasena) {
-		this.contrasena = contrasena;
 	}
 
 	public String getPrecio() {

@@ -76,8 +76,10 @@ public class ModelFactoryController implements IModelFactoryService{
 			System.out.println("MARKETPLACE ES NULL");
 			inicializarDatos();
 //			guardarResourceSerializable();
-			guardarResourceXML();
+//			guardarResourceXML();
 		}
+		
+		
 		
 		// Registrar la acción de inicio de sesion
 //		Persistencia.guardaRegistroLog("Inicio de sesion del usuario: Admin", 1, "inicioSesion");
@@ -178,22 +180,27 @@ public class ModelFactoryController implements IModelFactoryService{
 	
 	
 	
-	private void cargarResourceBinario(){
+	public void cargarResourceBinario(){
 		marketplace = Persistencia.cargarRecursoMarketplaceBinario();
 	}
 	
-	private void guardarResourceBinario(){
+	public void guardarResourceBinario(){
 		Persistencia.guardarRecursoMarketplaceBinario(marketplace);
 	}
 	
-	private void cargarResourceXML(){
+	public void cargarResourceXML(){
 		marketplace = Persistencia.cargarRecursoMarketplaceXML();
 	}
 	
-	private void guardarResourceXML(){
+	public void guardarResourceXML(){
 		Persistencia.guardarRecursoMarketplaceXML(marketplace);
 	}
 	
+	
+	// Registrar las acciones que provengan de los CRUD en un archivo Log
+	public void registrarAccionesSistema(String mensajeLog, int nivel, String accion){
+		Persistencia.guardaRegistroLog(mensajeLog, nivel, accion);
+	}
 	
 	
 	
@@ -343,7 +350,7 @@ public class ModelFactoryController implements IModelFactoryService{
 		Usuario nuevoUsuario = null;
 		
 		try{
-			nuevoUsuario = marketplace.crearUsuario(usuario, contrasenia);			
+			nuevoUsuario = marketplace.crearUsuario(usuario, contrasenia);
 		} 
 		catch(UsuarioException e){
 			e.getMessage();
