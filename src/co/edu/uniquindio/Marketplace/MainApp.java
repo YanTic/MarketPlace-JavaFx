@@ -25,10 +25,10 @@ public class MainApp extends Application {
 	Vendedor vendedorSeleccionadoGeneral;
 
 
-	public MainApp() {
-		modelFactoryController = new ModelFactoryController();
-		marketplace = modelFactoryController.getMarketplace();
-	}
+//	public MainApp() {
+//		modelFactoryController = new ModelFactoryController();
+//		marketplace = modelFactoryController.getMarketplace();
+//	}
 
 
 	@Override
@@ -36,6 +36,10 @@ public class MainApp extends Application {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("MarketPlace");
 		this.vendedorSeleccionadoGeneral = null;
+		
+//		this.modelFactoryController = new ModelFactoryController();
+//		this.marketplace = modelFactoryController.getMarketplace();
+		
 		initRootLayout();
 //		mostrarLoginView();
 //		mostrarMarketplaceView();

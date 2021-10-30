@@ -114,6 +114,7 @@ public class MarketplaceViewController implements Initializable{
 //		inicializarProductoView();
 		
 		
+		// Oculto los tabs
 		mainTabPane.getTabs().remove(tabVendedor);
 		mainTabPane.getTabs().remove(tabCRUDProductos);
 		
@@ -527,7 +528,7 @@ public class MarketplaceViewController implements Initializable{
 				productoActualizado = crudVendedorViewController.actualizarProducto(vendedorSeleccionado, productoSeleccionado.getNombre(),nombre, precio, categoria, estado);
 				
 				if(productoActualizado == true){
-					tablaVendedores.refresh();
+					tablaProductos.refresh();
 					mostrarMensaje("Notifacion", "Producto Actualizado", "El producto ha sido actualizado con exito!", AlertType.INFORMATION);
 					
 					// Limpio los textfield

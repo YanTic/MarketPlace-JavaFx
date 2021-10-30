@@ -49,7 +49,7 @@ public class LoginViewController implements Initializable {
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// Acá se inicializan todos los controladores CRUD
-		modelFactoryController = new ModelFactoryController().getInstance();
+		modelFactoryController = ModelFactoryController.getInstance();
 		crudLoginViewController = new CrudLoginViewController(modelFactoryController);
 		crudVendedorViewController = new CrudVendedorViewController(modelFactoryController);
     }
