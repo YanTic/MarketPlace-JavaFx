@@ -33,9 +33,15 @@ public class Persistencia {
 	public static final String RUTA_ARCHIVO_MODELO_MARKETPLACE_BINARIO = "src/resources/model.dat";
 	public static final String RUTA_ARCHIVO_MODELO_MARKETPLACE_XML = "src/resources/model.xml";
 
+	// RUTAS DE SEGURIDAD	(Con Rutas Absolutas)
 	public static final String RUTA_ARCHIVO_SEGURIDAD_MODELO_MARKETPLACE_XML = "C:/td/persistencia/model.xml";
 	public static final String RUTA_ARCHIVO_SEGURIDAD_MODELO_MARKETPLACE_BINARIO = "C:/td/persistencia/model.dat";
 	public static final String RUTA_ARCHIVO_SEGURIDAD_LOG = "C:/td/persistencia/log/MarketplaceLog.txt";
+	public static final String RUTA_ARCHIVO_SEGURIDAD_VENDEDORES = "C:/td/persistencia/archivos/archivoVendedores.txt";
+	public static final String RUTA_ARCHIVO_SEGURIDAD_USUARIOS = "C:/td/persistencia/archivos/archivoUsuarios.txt";
+	public static final String RUTA_ARCHIVO_SEGURIDAD_PRODUCTOS = "C:/td/persistencia/archivos/archivoProductos.txt";
+	
+	public static final String RUTA_ARCHIVO_SEGURIDAD_RESPALDO = "C:/td/persistencia/respaldo/Marketplace_";
 	
 	
 	public static void cargarDatosArchivos(Marketplace marketplace) throws FileNotFoundException, IOException {
@@ -439,34 +445,60 @@ public class Persistencia {
 	//------------------------------------ COPIA DE SEGURIDAD ------------------------------------
 	
 	public static void guardarCopiaSeguridadXML(Marketplace marketplace){
-//		try {
-//			ArchivoUtil.salvarRecursoSerializadoXML(RUTA_ARCHIVO_SEGURIDAD_MODELO_MARKETPLACE_XML, marketplace);
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		
+		try {
+			ArchivoUtil.copiarArchivo(RUTA_ARCHIVO_MODELO_MARKETPLACE_XML, RUTA_ARCHIVO_SEGURIDAD_MODELO_MARKETPLACE_XML);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public static void guardarCopiaSeguridadBinario(Marketplace marketplace) {
 		
-//		try {
-//			ArchivoUtil.salvarRecursoSerializado(RUTA_ARCHIVO_SEGURIDAD_MODELO_MARKETPLACE_BINARIO, marketplace);
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		try {
+			ArchivoUtil.copiarArchivo(RUTA_ARCHIVO_MODELO_MARKETPLACE_BINARIO, RUTA_ARCHIVO_SEGURIDAD_MODELO_MARKETPLACE_BINARIO);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 	
 	public static void guardarCopiaSeguridadLog(){
 		
+		try {
+			ArchivoUtil.copiarArchivo(RUTA_ARCHIVO_LOG, RUTA_ARCHIVO_SEGURIDAD_LOG);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		
-//		ArrayList<String> mensajeLog = new ArrayList<String>;
-//		
-//		mensajeLog = ArchivoUtil.leerArchivo(RUTA_ARCHIVO_LOG);
-//		
-//		ArchivoUtil.guardarRegistroLog(mensajeLog, 1, "Copia de Seguridad", RUTA_ARCHIVO_SEGURIDAD_LOG);
 	}
-
+	
+	public static void guardarCopiaSeguridadRespaldo(){
+		String rutaDestino = RUTA_ARCHIVO_SEGURIDAD_RESPALDO+ "" +ArchivoUtil.fechaSistema()+ ".xml";
+		
+		try {
+			ArchivoUtil.copiarArchivo(RUTA_ARCHIVO_MODELO_MARKETPLACE_XML, rutaDestino);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public static void guardarCopiaSeguridadArchivos(){
+		
+		try {
+			ArchivoUtil.copiarArchivo(RUTA_ARCHIVO_VENDEDORES, RUTA_ARCHIVO_SEGURIDAD_VENDEDORES);
+			ArchivoUtil.copiarArchivo(RUTA_ARCHIVO_PRODUCTOS, RUTA_ARCHIVO_SEGURIDAD_PRODUCTOS);
+			ArchivoUtil.copiarArchivo(RUTA_ARCHIVO_USUARIOS, RUTA_ARCHIVO_SEGURIDAD_USUARIOS);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }

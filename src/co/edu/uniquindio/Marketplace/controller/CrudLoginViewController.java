@@ -57,7 +57,7 @@ public class CrudLoginViewController {
 
 	// Creo la copia de seguridad al instante de abrir la aplicacion 
 	public void crearCopiaSeguridad() {
-		modelFactoryController.crearCopiaSeguridad()
+		modelFactoryController.crearCopiaSeguridad();
 	}
 
 }

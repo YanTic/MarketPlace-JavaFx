@@ -216,12 +216,12 @@ public class ModelFactoryController implements IModelFactoryService{
 	
 	
 	// Creo una copia de mi archivo xml en la carpeta c:/td/persistencia
-	public void crearCopiaSeguridad() {
-		
-		
-		
+	public void crearCopiaSeguridad() {	
 		Persistencia.guardarCopiaSeguridadBinario(marketplace);
 		Persistencia.guardarCopiaSeguridadXML(marketplace);
+		Persistencia.guardarCopiaSeguridadLog();
+		Persistencia.guardarCopiaSeguridadRespaldo();
+		Persistencia.guardarCopiaSeguridadArchivos();
 	}
 	
 	
