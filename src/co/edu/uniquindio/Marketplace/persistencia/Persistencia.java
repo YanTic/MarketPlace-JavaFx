@@ -160,7 +160,7 @@ public class Persistencia {
 	 */
 	public static ArrayList<Vendedor> cargarVendedores() throws FileNotFoundException, IOException 
 	{
-		ArrayList<Vendedor> vendedores =new ArrayList<Vendedor>();
+		ArrayList<Vendedor> vendedores = new ArrayList<Vendedor>();
 		
 		ArrayList<String> contenido = ArchivoUtil.leerArchivo(RUTA_ARCHIVO_VENDEDORES);
 		String linea="";
@@ -178,7 +178,8 @@ public class Persistencia {
 //			cliente.setFechaNacimiento(linea.split(",")[5]);
 //			cliente.setTelefono(linea.split(",")[6]);
 			
-			vendedor.setListaProductos(cargarProductos(vendedor));
+			vendedor.getListaProductos().addAll(cargarProductos(vendedor));
+//			vendedor.setListaProductos(cargarProductos(vendedor));
 			
 			vendedores.add(vendedor);
 		}
@@ -211,8 +212,7 @@ public class Persistencia {
 				producto.setCategoria(linea.split("@@")[3]);
 				producto.setEstado(EstadoProducto.valueOf(linea.split("@@")[4]));
 				
-				vendedor.getListaProductos().add(producto);
-				
+				vendedor.getListaProductos().add(producto);	
 			}
 			
 			
@@ -339,6 +339,40 @@ public class Persistencia {
 		ArchivoUtil.guardarArchivo(ruta, contenido, true);
 	}
 
+	
+//	public static void guardarAppendVendedores(ArrayList<Vendedor> listaVendedores) throws IOException {
+//		// TODO Auto-generated method stub
+//		String contenidoVendedores = "";
+//		String contenidoProductos = "";
+//		
+//		for(Vendedor vendedor :listaVendedores) 
+//		{
+//			contenidoVendedores += vendedor.getNombre()+ "@@"+ vendedor.getApellido()+ "@@"+ 
+//					     		   vendedor.getCedula()+ "@@"+ vendedor.getDireccion()+ "\n";
+//			contenidoProductos += guardarProductos(vendedor);			
+//		}
+//		
+//		// La diferencia con el otro metodo, es que este no lo sobreescribre, lo añade usando append
+//		ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_VENDEDORES, contenidoVendedores, true);
+//		ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_PRODUCTOS, contenidoProductos, true);
+//		
+//	}
+//	
+//	public static void guardarAppendUsuarios(ArrayList<Usuario> listaUsuarios) throws IOException {
+//		// TODO Auto-generated method stub
+//		String contenido = "";
+//		
+//		for(Usuario usuario : listaUsuarios) 
+//		{
+//			contenido += usuario.getUsuario()+ "@@"+ usuario.getContrasenia()+"\n";
+//		}
+//		
+//		// La diferencia con el otro metodo, es que este no lo sobreescribre, lo añade usando append
+//		ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_USUARIOS, contenido, true);
+//		
+//	}
+	
+	
 
 	
 	

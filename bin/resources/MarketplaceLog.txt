@@ -10,3 +10,37 @@ Oct 30, 2021 10:54:10 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil 
 INFO: Actualizar Producto,El producto ha sido actualizado con exito!. Realizado por el Usuario : mario,2021-10-30
 Oct 30, 2021 10:59:00 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
 INFO: Eliminar Producto,El producto ha sido eliminado con exito!. Realizado por el Usuario : mario,2021-10-30
+Oct 31, 2021 12:11:33 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-10-31
+Oct 31, 2021 12:12:39 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Actualizar Vendedor,El vendedor ha sido actualizado con exito!. Realizado por el Usuario : admin,2021-10-31
+Oct 31, 2021 12:22:13 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-10-31
+Oct 31, 2021 12:26:31 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Agregar Producto,El producto ha sido creado con exito!. Realizado por el Usuario : admin,2021-10-31
+Oct 31, 2021 12:27:13 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-10-31
+Oct 31, 2021 12:29:10 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Agregar Producto,El producto ha sido creado con exito!. Realizado por el Usuario : admin,2021-10-31
+Oct 31, 2021 12:47:54 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-10-31
+Oct 31, 2021 12:48:52 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Agregar Producto,El producto ha sido creado con exito!. Realizado por el Usuario : admin,2021-10-31
+Oct 31, 2021 12:57:49 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+WARNING: Producto Exception,El producto: Servilletas NO se ha podido eliminar. Ya Eliminado,2021-10-31
+Oct 31, 2021 12:57:56 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+WARNING: Producto Exception,El producto: Servilletas NO se ha podido eliminar. Ya Eliminado,2021-10-31
+Oct 31, 2021 1:00:17 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-10-31
+Oct 31, 2021 1:02:10 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-10-31
+Oct 31, 2021 1:02:52 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Agregar Producto,El producto ha sido creado con exito!. Realizado por el Usuario : admin,2021-10-31
+Oct 31, 2021 1:03:51 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-10-31
+Oct 31, 2021 1:06:05 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Agregar Producto,El producto ha sido creado con exito!. Realizado por el Usuario : admin,2021-10-31
+Oct 31, 2021 1:11:14 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-10-31
+Oct 31, 2021 1:19:21 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-10-31

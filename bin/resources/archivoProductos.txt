@@ -1,2 +1,4 @@
 Juan@@Helado Pelapop@@5000@@Postre@@Publicado
-Juan@@Galleta@@9999@@COMIDA@@Vendido
+Juan@@Galleta@@2000@@Pasaboca@@Vendido
+Juan@@Servilletas@@3500@@Utiles de Cocina@@Cancelado
+Pedro@@Cuaderno@@2000@@Papel@@Publicado

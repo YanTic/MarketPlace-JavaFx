@@ -364,6 +364,8 @@ public class MarketplaceViewController implements Initializable{
     
     
     
+    
+    
     @FXML
     void accionBtnMostrarVendedor(ActionEvent event) {
     	mostrarTabVendedor();
@@ -393,8 +395,9 @@ public class MarketplaceViewController implements Initializable{
      * Este metodo muestra el tab de 'CRUD Productos', para el vendedor seleccionado
      * */
     public void mostrarTabCRUDProductos(){
-    	mainTabPane.getTabs().add(tabCRUDProductos);    	
+    	mainTabPane.getTabs().add(tabCRUDProductos);
     	inicializarProductoView();
+    	tablaProductos.refresh();
     }
     
     
@@ -417,11 +420,13 @@ public class MarketplaceViewController implements Initializable{
     
     
     
+    
     // -------------- METODOS PARA PRODUCTO VIEW CONTROLLER --------------
     
 	
 	public void inicializarProductoView(){
 		// Asigno valores a la combo box
+		cbEstadoProducto.getItems().clear();// Limpio la comboBox en caso de que se repitan sus valores
 		cbEstadoProducto.getItems().addAll(EstadoProducto.values());
 		
 			
@@ -436,6 +441,7 @@ public class MarketplaceViewController implements Initializable{
 		
 		// Añade los datos de la lista observable a la tabla
 		// Esa lista se obtiene del modelFactoryController, que se obtiene desde un CRUD
+		tablaProductos.getItems().clear();	// Limpio la tabla porque se usan diferentes productos que pertenecen a otros vendedores
 		tablaProductos.setItems(getProductosData(mainApp.getVendedorSeleccionadoGeneral()));
 		
 		// Acción de la tabla para mostrar informacion de un empleado

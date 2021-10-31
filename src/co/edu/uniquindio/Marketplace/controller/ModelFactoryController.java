@@ -58,13 +58,13 @@ public class ModelFactoryController implements IModelFactoryService{
 //		inicializarDatos();
 		
 		// 1. Inicializar datos y luego guardarlo en archivos
-		iniciarSalvarDatosPrueba();
+//		iniciarSalvarDatosPrueba();
 		
 		// 2. Cargar los datos de los archivos
 //		cargarDatosDesdeArchivos();
 		
 		// 3. Guardar y cargar el recurso serializable binario
-//		guardarResourceBinario();
+		guardarResourceBinario();
 //		cargarResourceBinario();
 		
 		// 4. Guardar y cargar el recurso serializable XML
@@ -425,7 +425,8 @@ public class ModelFactoryController implements IModelFactoryService{
 
 	@Override
 	public ArrayList<Producto> getListaProductos(Vendedor vendedorSeleccionado) {
-		return marketplace.getListaProductos(vendedorSeleccionado);
+		return marketplace.getListaVendedores().get(marketplace.getListaVendedores().
+						   indexOf(vendedorSeleccionado)).getListaProductos();
 	}	
 
 

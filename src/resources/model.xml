@@ -22,16 +22,6 @@
      </void>
     </object>
    </void>
-   <void method="add">
-    <object class="co.edu.uniquindio.Marketplace.model.Usuario">
-     <void property="contrasenia">
-      <string>mario12</string>
-     </void>
-     <void property="usuario">
-      <string>mario</string>
-     </void>
-    </object>
-   </void>
   </void>
   <void property="listaVendedores">
    <void method="add">
@@ -49,26 +39,7 @@
       <void method="add">
        <object class="co.edu.uniquindio.Marketplace.model.Producto">
         <void property="categoria">
-         <string>Postre</string>
-        </void>
-        <void property="estado">
-         <object class="java.lang.Enum" method="valueOf">
-          <class>co.edu.uniquindio.Marketplace.model.EstadoProducto</class>
-          <string>Publicado</string>
-         </object>
-        </void>
-        <void property="nombre">
-         <string>Helado Pelapop</string>
-        </void>
-        <void property="precio">
-         <string>5000</string>
-        </void>
-       </object>
-      </void>
-      <void method="add">
-       <object class="co.edu.uniquindio.Marketplace.model.Producto">
-        <void property="categoria">
-         <string>COMIDA</string>
+         <string>Electrodomestico</string>
         </void>
         <void property="estado">
          <object class="java.lang.Enum" method="valueOf">
@@ -77,10 +48,10 @@
          </object>
         </void>
         <void property="nombre">
-         <string>Galleta</string>
+         <string>Computador</string>
         </void>
         <void property="precio">
-         <string>9999</string>
+         <string>2000</string>
         </void>
        </object>
       </void>
