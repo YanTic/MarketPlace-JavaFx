@@ -64,12 +64,12 @@ public class ModelFactoryController implements IModelFactoryService{
 //		cargarDatosDesdeArchivos();
 		
 		// 3. Guardar y cargar el recurso serializable binario
-		guardarResourceBinario();
+//		guardarResourceBinario();
 //		cargarResourceBinario();
 		
 		// 4. Guardar y cargar el recurso serializable XML
 //		guardarResourceXML();
-//		cargarResourceXML();
+		cargarResourceXML();
 		
 		// Siempre se verifica si la raiz del recurso es null
 		if(marketplace == null){
@@ -215,8 +215,14 @@ public class ModelFactoryController implements IModelFactoryService{
 	}
 	
 	
-	
-	
+	// Creo una copia de mi archivo xml en la carpeta c:/td/persistencia
+	public void crearCopiaSeguridad() {
+		
+		
+		
+		Persistencia.guardarCopiaSeguridadBinario(marketplace);
+		Persistencia.guardarCopiaSeguridadXML(marketplace);
+	}
 	
 	
 	
@@ -427,7 +433,9 @@ public class ModelFactoryController implements IModelFactoryService{
 	public ArrayList<Producto> getListaProductos(Vendedor vendedorSeleccionado) {
 		return marketplace.getListaVendedores().get(marketplace.getListaVendedores().
 						   indexOf(vendedorSeleccionado)).getListaProductos();
-	}	
+	}
+
+	
 
 
 	

@@ -22,6 +22,16 @@
      </void>
     </object>
    </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.Marketplace.model.Usuario">
+     <void property="contrasenia">
+      <string>julian23</string>
+     </void>
+     <void property="usuario">
+      <string>Julian</string>
+     </void>
+    </object>
+   </void>
   </void>
   <void property="listaVendedores">
    <void method="add">
@@ -39,7 +49,26 @@
       <void method="add">
        <object class="co.edu.uniquindio.Marketplace.model.Producto">
         <void property="categoria">
-         <string>Electrodomestico</string>
+         <string>Postre</string>
+        </void>
+        <void property="estado">
+         <object class="java.lang.Enum" id="EstadoProducto0" method="valueOf">
+          <class>co.edu.uniquindio.Marketplace.model.EstadoProducto</class>
+          <string>Publicado</string>
+         </object>
+        </void>
+        <void property="nombre">
+         <string>Helado Pelapop</string>
+        </void>
+        <void property="precio">
+         <string>5000</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Producto">
+        <void property="categoria">
+         <string>Pasaboca</string>
         </void>
         <void property="estado">
          <object class="java.lang.Enum" method="valueOf">
@@ -48,10 +77,29 @@
          </object>
         </void>
         <void property="nombre">
-         <string>Computador</string>
+         <string>Galleta</string>
         </void>
         <void property="precio">
          <string>2000</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Producto">
+        <void property="categoria">
+         <string>Utiles de Cocina</string>
+        </void>
+        <void property="estado">
+         <object class="java.lang.Enum" method="valueOf">
+          <class>co.edu.uniquindio.Marketplace.model.EstadoProducto</class>
+          <string>Cancelado</string>
+         </object>
+        </void>
+        <void property="nombre">
+         <string>Servilletas</string>
+        </void>
+        <void property="precio">
+         <string>3500</string>
         </void>
        </object>
       </void>
@@ -62,7 +110,7 @@
     </object>
    </void>
    <void method="add">
-    <object class="co.edu.uniquindio.Marketplace.model.Vendedor">
+    <object class="co.edu.uniquindio.Marketplace.model.Vendedor" id="Vendedor1">
      <void property="apellido">
       <string>Perez</string>
      </void>
@@ -71,6 +119,24 @@
      </void>
      <void property="direccion">
       <string>Quimbaya</string>
+     </void>
+     <void property="listaProductos">
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Producto">
+        <void property="categoria">
+         <string>Papel</string>
+        </void>
+        <void property="estado">
+         <object idref="EstadoProducto0"/>
+        </void>
+        <void property="nombre">
+         <string>Cuaderno</string>
+        </void>
+        <void property="precio">
+         <string>2000</string>
+        </void>
+       </object>
+      </void>
      </void>
      <void property="nombre">
       <string>Pedro</string>

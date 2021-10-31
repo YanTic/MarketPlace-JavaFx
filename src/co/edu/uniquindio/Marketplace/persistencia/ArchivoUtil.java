@@ -12,12 +12,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
+
 
 
 /**
@@ -62,6 +68,14 @@ public  class ArchivoUtil {
 		bfr.close();
 		fr.close();
 		return contenido;
+	}
+	
+	public static void copiarArchivo(String rutaFuente, String rutaDestino) throws IOException{
+		Path pathRutaFuente = Paths.get(rutaFuente);
+		Path pathRutaDestino = Paths.get(rutaDestino);
+		
+		Files.copy(pathRutaFuente, pathRutaDestino, StandardCopyOption.REPLACE_EXISTING);
+		
 	}
 	
 	

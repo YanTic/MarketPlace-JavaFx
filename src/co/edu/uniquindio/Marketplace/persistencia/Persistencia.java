@@ -33,7 +33,9 @@ public class Persistencia {
 	public static final String RUTA_ARCHIVO_MODELO_MARKETPLACE_BINARIO = "src/resources/model.dat";
 	public static final String RUTA_ARCHIVO_MODELO_MARKETPLACE_XML = "src/resources/model.xml";
 
-
+	public static final String RUTA_ARCHIVO_SEGURIDAD_MODELO_MARKETPLACE_XML = "C:/td/persistencia/model.xml";
+	public static final String RUTA_ARCHIVO_SEGURIDAD_MODELO_MARKETPLACE_BINARIO = "C:/td/persistencia/model.dat";
+	public static final String RUTA_ARCHIVO_SEGURIDAD_LOG = "C:/td/persistencia/log/MarketplaceLog.txt";
 	
 	
 	public static void cargarDatosArchivos(Marketplace marketplace) throws FileNotFoundException, IOException {
@@ -432,7 +434,39 @@ public class Persistencia {
 	}
 
 
-
+	
+	
+	//------------------------------------ COPIA DE SEGURIDAD ------------------------------------
+	
+	public static void guardarCopiaSeguridadXML(Marketplace marketplace){
+//		try {
+//			ArchivoUtil.salvarRecursoSerializadoXML(RUTA_ARCHIVO_SEGURIDAD_MODELO_MARKETPLACE_XML, marketplace);
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+	}
+	
+	public static void guardarCopiaSeguridadBinario(Marketplace marketplace) {
+		
+//		try {
+//			ArchivoUtil.salvarRecursoSerializado(RUTA_ARCHIVO_SEGURIDAD_MODELO_MARKETPLACE_BINARIO, marketplace);
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+	}
+	
+	public static void guardarCopiaSeguridadLog(){
+		
+		
+		
+//		ArrayList<String> mensajeLog = new ArrayList<String>;
+//		
+//		mensajeLog = ArchivoUtil.leerArchivo(RUTA_ARCHIVO_LOG);
+//		
+//		ArchivoUtil.guardarRegistroLog(mensajeLog, 1, "Copia de Seguridad", RUTA_ARCHIVO_SEGURIDAD_LOG);
+	}
 
 
 }
