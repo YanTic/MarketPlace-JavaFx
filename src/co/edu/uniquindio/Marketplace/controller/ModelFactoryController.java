@@ -58,7 +58,7 @@ public class ModelFactoryController implements IModelFactoryService{
 //		inicializarDatos();
 		
 		// 1. Inicializar datos y luego guardarlo en archivos
-//		iniciarSalvarDatosPrueba();
+		iniciarSalvarDatosPrueba();
 		
 		// 2. Cargar los datos de los archivos
 //		cargarDatosDesdeArchivos();
@@ -74,7 +74,7 @@ public class ModelFactoryController implements IModelFactoryService{
 		// Siempre se verifica si la raiz del recurso es null
 		if(marketplace == null){
 			System.out.println("MARKETPLACE ES NULL");
-			inicializarDatos();
+//			inicializarDatos();
 //			guardarResourceSerializable();
 //			guardarResourceXML();
 		}
@@ -158,6 +158,7 @@ public class ModelFactoryController implements IModelFactoryService{
 		inicializarDatos();
 		
 		try {
+			Persistencia.guardarUsuarios(marketplace.getListaUsuarios());
 			Persistencia.guardarVendedores(marketplace.getListaVendedores());
 			
 		} catch (IOException e) {
@@ -200,6 +201,17 @@ public class ModelFactoryController implements IModelFactoryService{
 	// Registrar las acciones que provengan de los CRUD en un archivo Log
 	public void registrarAccionesSistema(String mensajeLog, int nivel, String accion){
 		Persistencia.guardaRegistroLog(mensajeLog, nivel, accion);
+	}
+	
+	// Actualiza y guarda los datos en los txt "archivoUsuarios" "archivoVendedores" "archivoProductos"
+	public void guardarDatosTXT(){
+		try {	
+			Persistencia.guardarUsuarios(marketplace.getListaUsuarios());
+			Persistencia.guardarVendedores(marketplace.getListaVendedores());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	
@@ -258,6 +270,7 @@ public class ModelFactoryController implements IModelFactoryService{
 			vendedor = marketplace.crearVendedor(nombre, apellido, cedula, direccion);
 		} catch (VendedorException e) {
 //			e.printStackTrace();
+			Persistencia.guardaRegistroLog(e.getMessage(), 2, "Vendedor Exception");
 			e.getMessage();
 		}
 		
@@ -272,6 +285,7 @@ public class ModelFactoryController implements IModelFactoryService{
 			flagVendedorActualizado = marketplace.actualizarVendedor(cedulaActual, nombre, apellido, cedula, direccion);
 		}
 		catch(VendedorException e){
+			Persistencia.guardaRegistroLog(e.getMessage(), 2, "Vendedor Exception");
 			e.getMessage();
 		}
 		
@@ -286,6 +300,7 @@ public class ModelFactoryController implements IModelFactoryService{
 			flagVendedorEliminado = marketplace.eliminarVendedor(cedula);			
 		}
 		catch(VendedorException e){
+			Persistencia.guardaRegistroLog(e.getMessage(), 2, "Vendedor Exception");
 			e.getMessage();
 		}
 		
@@ -304,6 +319,7 @@ public class ModelFactoryController implements IModelFactoryService{
 			producto = marketplace.crearProducto(vendedor, nombre, precio, categoria, estado);			
 		}
 		catch(ProductoException e){
+			Persistencia.guardaRegistroLog(e.getMessage(), 2, "Producto Exception");
 			e.getMessage();
 		}
 		
@@ -318,6 +334,7 @@ public class ModelFactoryController implements IModelFactoryService{
 		try {
 			flagProductoEliminado = marketplace.eliminarProducto(vendedor, nombre);
 		} catch (ProductoException e) {
+			Persistencia.guardaRegistroLog(e.getMessage(), 2, "Producto Exception");
 			e.getMessage();
 		}
 		
@@ -332,6 +349,7 @@ public class ModelFactoryController implements IModelFactoryService{
 		try {
 			flagVendedorActualizado = marketplace.actualizarProducto(vendedor, nombreActual, nombre, precio, categoria, estado);
 		} catch (ProductoException e) {
+			Persistencia.guardaRegistroLog(e.getMessage(), 2, "Producto Exception");
 			e.getMessage();
 		}
 		
@@ -353,6 +371,7 @@ public class ModelFactoryController implements IModelFactoryService{
 			nuevoUsuario = marketplace.crearUsuario(usuario, contrasenia);
 		} 
 		catch(UsuarioException e){
+			Persistencia.guardaRegistroLog(e.getMessage(), 2, "Usuario Exception");
 			e.getMessage();
 		}
 		
@@ -367,6 +386,7 @@ public class ModelFactoryController implements IModelFactoryService{
 			flagUsuarioExiste = marketplace.verificarUsuario(usuario, contrasenia);
 		} 
 		catch (UsuarioException e) {
+			Persistencia.guardaRegistroLog(e.getMessage(), 2, "Usuario Exception");
 			e.getMessage();
 		}
 		

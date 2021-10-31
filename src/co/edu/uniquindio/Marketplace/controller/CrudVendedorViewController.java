@@ -75,5 +75,9 @@ public class CrudVendedorViewController {
 		modelFactoryController.registrarAccionesSistema(mensajeLog, nivel, accion);;
 	}
 
+	public void guardarDatosTXT() {
+		modelFactoryController.guardarDatosTXT();
+	}
+
 
 }

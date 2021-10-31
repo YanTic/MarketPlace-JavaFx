@@ -255,7 +255,9 @@ public class MarketplaceViewController implements Initializable{
 				// Me registrar la accion en el log (String mensajeLog, int nivel, String accion)
 				crudVendedorViewController.registrarAccion("El vendedor ha sido creado con exito!. Realizado por el Usuario : "+ 
 															mainApp.getUsuarioLogeado().getUsuario(), 1, "Agregar Vendedor");
-
+				
+				// Este metodo guarda y actualiza los txt archivoProductos y archivoVendedores
+				crudVendedorViewController.guardarDatosTXT();
 				
 				
 				mostrarMensaje("Notifacion", "Vendedor Creado", "El vendedor ha sido creado con exito!", AlertType.INFORMATION);
@@ -298,6 +300,7 @@ public class MarketplaceViewController implements Initializable{
     				crudVendedorViewController.guardarDatos();    	
     				crudVendedorViewController.registrarAccion("El vendedor ha sido eliminado con exito!. Realizado por el Usuario : "+ 
 																mainApp.getUsuarioLogeado().getUsuario(), 1, "Eliminar Vendedor");
+    				crudVendedorViewController.guardarDatosTXT();
     			}
     			else{
     				mostrarMensaje("Notifacion", "Vendedor NO Eliminado", "El vendedor NO ha sido eliminado", AlertType.ERROR);
@@ -340,7 +343,7 @@ public class MarketplaceViewController implements Initializable{
     				crudVendedorViewController.guardarDatos();    	
     				crudVendedorViewController.registrarAccion("El vendedor ha sido actualizado con exito!. Realizado por el Usuario : "+ 
 																mainApp.getUsuarioLogeado().getUsuario(), 1, "Actualizar Vendedor");
-					
+    				crudVendedorViewController.guardarDatosTXT();
 					
 					// Limpio los textfield
 					accionBtnNuevoVendedor(new ActionEvent());
@@ -390,7 +393,7 @@ public class MarketplaceViewController implements Initializable{
      * Este metodo muestra el tab de 'CRUD Productos', para el vendedor seleccionado
      * */
     public void mostrarTabCRUDProductos(){
-    	mainTabPane.getTabs().add(tabCRUDProductos);
+    	mainTabPane.getTabs().add(tabCRUDProductos);    	
     	inicializarProductoView();
     }
     
@@ -451,7 +454,7 @@ public class MarketplaceViewController implements Initializable{
 
     public void crearProducto(){
     	// Captura los datos
-    	Vendedor vendedor = vendedorSeleccionado;
+    	Vendedor vendedor = mainApp.getVendedorSeleccionadoGeneral();
     	
 		String nombre = txtNombreProducto.getText();
 		String precio = txtPrecioProducto.getText();
@@ -472,7 +475,7 @@ public class MarketplaceViewController implements Initializable{
 				crudVendedorViewController.guardarDatos();    	
 				crudVendedorViewController.registrarAccion("El producto ha sido creado con exito!. Realizado por el Usuario : "+ 
 															mainApp.getUsuarioLogeado().getUsuario(), 1, "Agregar Producto");
-				
+				crudVendedorViewController.guardarDatosTXT();
 				
 				// Limpio los textfield
 				accionBtnNuevoProducto(new ActionEvent());
@@ -512,12 +515,13 @@ public class MarketplaceViewController implements Initializable{
     }
     
     public void eliminarProducto(){
+    	Vendedor vendedor = mainApp.getVendedorSeleccionadoGeneral();
     	boolean productoEliminado = false;
     	
     	if(productoSeleccionado != null){
     		if(mostrarMensajeConfirmacion("¿Está seguro de eliminar el producto?")){
 //    			vendedorEliminado = crudVendedorViewController.eliminarVendedor(vendedorSeleccionado.getCedula());
-    			productoEliminado = crudVendedorViewController.eliminarProducto(vendedorSeleccionado, productoSeleccionado.getNombre());
+    			productoEliminado = crudVendedorViewController.eliminarProducto(vendedor, productoSeleccionado.getNombre());
     			
     			if(productoEliminado){
     				listaProductosData.remove(productoSeleccionado);
@@ -532,6 +536,8 @@ public class MarketplaceViewController implements Initializable{
     				crudVendedorViewController.guardarDatos();    	
     				crudVendedorViewController.registrarAccion("El producto ha sido eliminado con exito!. Realizado por el Usuario : "+ 
 															mainApp.getUsuarioLogeado().getUsuario(), 1, "Eliminar Producto");
+    				crudVendedorViewController.guardarDatosTXT();
+    				
     			}
     			else{
     				mostrarMensaje("Notifacion", "Producto NO Eliminado", "El producto NO ha sido eliminado", AlertType.ERROR);
@@ -550,7 +556,7 @@ public class MarketplaceViewController implements Initializable{
     
     public void actualizarProducto(){
     	// Capturo los datos
-		Vendedor vendedor = vendedorSeleccionado;
+		Vendedor vendedor = mainApp.getVendedorSeleccionadoGeneral();
     	
 		String nombre = txtNombreProducto.getText();
 		String precio = txtPrecioProducto.getText();
@@ -565,7 +571,7 @@ public class MarketplaceViewController implements Initializable{
 			if(datosValidos(nombre, precio, categoria, estado)){
 				
 //				vendedorActualizado = crudVendedorViewController.actualizarVendedor(vendedorSeleccionado.getCedula(), nombre, apellido, cedula, direccion);
-				productoActualizado = crudVendedorViewController.actualizarProducto(vendedorSeleccionado, productoSeleccionado.getNombre(),nombre, precio, categoria, estado);
+				productoActualizado = crudVendedorViewController.actualizarProducto(vendedor, productoSeleccionado.getNombre(),nombre, precio, categoria, estado);
 				
 				if(productoActualizado == true){
 					tablaProductos.refresh();
@@ -575,7 +581,7 @@ public class MarketplaceViewController implements Initializable{
     				crudVendedorViewController.guardarDatos();    	
     				crudVendedorViewController.registrarAccion("El producto ha sido actualizado con exito!. Realizado por el Usuario : "+ 
 															mainApp.getUsuarioLogeado().getUsuario(), 1, "Actualizar Producto");
-					
+    				crudVendedorViewController.guardarDatosTXT();
 					
 					// Limpio los textfield
 					accionBtnNuevoProducto(new ActionEvent());

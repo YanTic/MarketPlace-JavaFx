@@ -14,7 +14,9 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 import co.edu.uniquindio.Marketplace.exceptions.UsuarioException;
+import co.edu.uniquindio.Marketplace.model.EstadoProducto;
 import co.edu.uniquindio.Marketplace.model.Marketplace;
+import co.edu.uniquindio.Marketplace.model.Producto;
 import co.edu.uniquindio.Marketplace.model.Usuario;
 import co.edu.uniquindio.Marketplace.model.Vendedor;
 
@@ -26,6 +28,7 @@ public class Persistencia {
 
 	public static final String RUTA_ARCHIVO_VENDEDORES = "src/resources/archivoVendedores.txt";
 	public static final String RUTA_ARCHIVO_USUARIOS = "src/resources/archivoUsuarios.txt";
+	public static final String RUTA_ARCHIVO_PRODUCTOS = "src/resources/archivoProductos.txt";
 	public static final String RUTA_ARCHIVO_LOG = "src/resources/MarketplaceLog.txt";
 	public static final String RUTA_ARCHIVO_MODELO_MARKETPLACE_BINARIO = "src/resources/model.dat";
 	public static final String RUTA_ARCHIVO_MODELO_MARKETPLACE_XML = "src/resources/model.xml";
@@ -36,12 +39,25 @@ public class Persistencia {
 	public static void cargarDatosArchivos(Marketplace marketplace) throws FileNotFoundException, IOException {
 		
 		
-		//cargar archivo de vendedores
+		// Cargar archivo de vendedores (Recordar: Los vendedores contienen sus productos,
+		// por lo tanto, esto tambien carga los productos de cada vendedor)
 		ArrayList<Vendedor> vendedoresCargados = cargarVendedores();
 		
 		if(vendedoresCargados.size() > 0)
 			marketplace.getListaVendedores().addAll(vendedoresCargados);
 
+		
+		// Cargar usuarios
+		ArrayList<Usuario> usuariosCargados = cargarUsuarios();
+		
+		if(usuariosCargados.size() > 0)
+			marketplace.getListaUsuarios().addAll(usuariosCargados);
+		
+		
+		
+		
+		
+		
 		
 //		//cargar archivos empleados
 //		ArrayList<Empleado> empleadosCargados = cargarEmpleados();
@@ -74,15 +90,46 @@ public class Persistencia {
 	 */
 	public static void guardarVendedores(ArrayList<Vendedor> listaVendedores) throws IOException {
 		// TODO Auto-generated method stub
-		String contenido = "";
+		String contenidoVendedores = "";
+		String contenidoProductos = "";
 		
 		for(Vendedor vendedor :listaVendedores) 
 		{
-			contenido += vendedor.getNombre()+ ","+ vendedor.getApellido()+ ","+ 
-					     vendedor.getCedula()+ ","+ vendedor.getDireccion()+ "\n";
+			contenidoVendedores += vendedor.getNombre()+ "@@"+ vendedor.getApellido()+ "@@"+ 
+					     		   vendedor.getCedula()+ "@@"+ vendedor.getDireccion()+ "\n";
+			contenidoProductos += guardarProductos(vendedor);			
 		}
 		
-		ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_VENDEDORES, contenido, false);
+		ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_VENDEDORES, contenidoVendedores, false);
+		ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_PRODUCTOS, contenidoProductos, false);
+		
+	}
+	
+	public static String guardarProductos(Vendedor vendedor) throws IOException {
+		String contenido = "";
+		
+		System.out.println("GUARDANDO PRODUCTOS");
+		
+		for(Producto producto : vendedor.getListaProductos()) 
+		{
+			contenido += vendedor.getNombre()+ "@@"+ producto.getNombre()+ "@@"+ 
+					     producto.getPrecio()+ "@@"+ producto.getCategoria()+ "@@"+
+					     producto.getEstado()+ "\n";
+		}
+		
+		return contenido;
+	}
+	
+	public static void guardarUsuarios(ArrayList<Usuario> listaUsuarios) throws IOException {
+		// TODO Auto-generated method stub
+		String contenido = "";
+		
+		for(Usuario usuario : listaUsuarios) 
+		{
+			contenido += usuario.getUsuario()+ "@@"+ usuario.getContrasenia()+"\n";
+		}
+		
+		ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_USUARIOS, contenido, false);
 		
 	}
 	
@@ -120,19 +167,82 @@ public class Persistencia {
 		
 		for (int i = 0; i < contenido.size(); i++)
 		{
-			linea = contenido.get(i);//juan,arias,125454,Armenia,uni1@,12454,125444
+			linea = contenido.get(i); // Pedro@@Perez@@1095@@Quimbaya
 			Vendedor vendedor = new Vendedor();
-			vendedor.setNombre(linea.split(",")[0]);
-			vendedor.setApellido(linea.split(",")[1]);
-			vendedor.setCedula(linea.split(",")[2]);
-			vendedor.setDireccion(linea.split(",")[3]);
+			vendedor.setNombre(linea.split("@@")[0]);
+			vendedor.setApellido(linea.split("@@")[1]);
+			vendedor.setCedula(linea.split("@@")[2]);
+			vendedor.setDireccion(linea.split("@@")[3]);
 			
 //			cliente.setCorreo(linea.split(",")[4]);
 //			cliente.setFechaNacimiento(linea.split(",")[5]);
 //			cliente.setTelefono(linea.split(",")[6]);
+			
+			vendedor.setListaProductos(cargarProductos(vendedor));
+			
 			vendedores.add(vendedor);
 		}
 		return vendedores;
+	}
+	
+	
+	/*
+	 * Metodo que carga los producto de cada vendedor, este es llamando cuando se
+	 * cargan los vendedores
+	 * */
+	public static ArrayList<Producto> cargarProductos(Vendedor vendedor) throws FileNotFoundException, IOException 
+	{
+		ArrayList<Producto> productos = new ArrayList<Producto>();
+		
+		ArrayList<String> contenido = ArchivoUtil.leerArchivo(RUTA_ARCHIVO_PRODUCTOS);
+		String linea="";
+		
+		for (int i = 0; i < contenido.size(); i++)
+		{
+			linea = contenido.get(i);	// Juan@@Helado Pelapop@@5000@@Postre@@Publicado
+			
+			// Verifico si le estoy añadiendo los productos al vendedor correspondiente
+			if(linea.split("@@")[0].equals(vendedor.getNombre())){
+				Producto producto = new Producto();
+				
+				// No se carga el "linea.split("@@")[0]" porque es el nombre del vendedor
+				producto.setNombre(linea.split("@@")[1]);
+				producto.setPrecio(linea.split("@@")[2]);
+				producto.setCategoria(linea.split("@@")[3]);
+				producto.setEstado(EstadoProducto.valueOf(linea.split("@@")[4]));
+				
+				vendedor.getListaProductos().add(producto);
+				
+			}
+			
+			
+//			cliente.setCorreo(linea.split(",")[4]);
+//			cliente.setFechaNacimiento(linea.split(",")[5]);
+//			cliente.setTelefono(linea.split(",")[6]);
+			
+//			producto.add(vendedor);
+		}
+		return productos;
+	}
+	
+	
+	public static ArrayList<Usuario> cargarUsuarios() throws FileNotFoundException, IOException 
+	{
+		ArrayList<Usuario> usuarios =new ArrayList<Usuario>();
+		
+		ArrayList<String> contenido = ArchivoUtil.leerArchivo(RUTA_ARCHIVO_USUARIOS);
+		String linea="";
+		
+		for (int i = 0; i < contenido.size(); i++)
+		{
+			linea = contenido.get(i);// admin@@admin123
+			Usuario usuario = new Usuario();
+			usuario.setUsuario(linea.split("@@")[0]);
+			usuario.setContrasenia(linea.split("@@")[1]);
+
+			usuarios.add(usuario);
+		}
+		return usuarios;
 	}
 	
 	

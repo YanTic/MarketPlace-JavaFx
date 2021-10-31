@@ -49,5 +49,10 @@ public class CrudLoginViewController {
 		modelFactoryController.registrarAccionesSistema(mensajeLog, nivel, accion);;
 	}
 
+
+	public void guardarDatosTXT() {
+		modelFactoryController.guardarDatosTXT();
+	}
+
 }
 

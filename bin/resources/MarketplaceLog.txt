@@ -1,0 +1,12 @@
+Oct 30, 2021 10:52:11 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Crear Nuevo Usuario,El usuario ha sido creado con exito!,2021-10-30
+Oct 30, 2021 10:52:24 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+WARNING: Usuario Exception,Usuario o Contrasenia no coinciden,2021-10-30
+Oct 30, 2021 10:52:42 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: mario,2021-10-30
+Oct 30, 2021 10:53:44 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+WARNING: Producto Exception,El producto "Galleta" NO se ha podido crear. Ya existe,2021-10-30
+Oct 30, 2021 10:54:10 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Actualizar Producto,El producto ha sido actualizado con exito!. Realizado por el Usuario : mario,2021-10-30
+Oct 30, 2021 10:59:00 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Eliminar Producto,El producto ha sido eliminado con exito!. Realizado por el Usuario : mario,2021-10-30

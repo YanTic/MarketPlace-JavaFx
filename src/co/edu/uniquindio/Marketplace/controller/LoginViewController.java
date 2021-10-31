@@ -172,6 +172,7 @@ public class LoginViewController implements Initializable {
 				
 				// Guardo y registro la accion de crear usuario
 				crudLoginViewController.guardarDatos();
+				crudLoginViewController.guardarDatosTXT();
 				crudLoginViewController.registrarAccion("El usuario ha sido creado con exito!", 1, "Crear Nuevo Usuario");
 				
 				
