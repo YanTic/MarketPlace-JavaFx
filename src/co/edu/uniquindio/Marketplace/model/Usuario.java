@@ -16,6 +16,7 @@ public class Usuario implements Serializable {
 	public Usuario() { }
 
 
+	// --- Getters & Setters
 	public String getUsuario() {
 		return usuario;
 	}

@@ -1,58 +1,30 @@
-Oct 30, 2021 10:52:11 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
-INFO: Crear Nuevo Usuario,El usuario ha sido creado con exito!,2021-10-30
-Oct 30, 2021 10:52:24 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
-WARNING: Usuario Exception,Usuario o Contrasenia no coinciden,2021-10-30
-Oct 30, 2021 10:52:42 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
-INFO: inicioSesion,Inicio de sesion del usuario: mario,2021-10-30
-Oct 30, 2021 10:53:44 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
-WARNING: Producto Exception,El producto "Galleta" NO se ha podido crear. Ya existe,2021-10-30
-Oct 30, 2021 10:54:10 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
-INFO: Actualizar Producto,El producto ha sido actualizado con exito!. Realizado por el Usuario : mario,2021-10-30
-Oct 30, 2021 10:59:00 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
-INFO: Eliminar Producto,El producto ha sido eliminado con exito!. Realizado por el Usuario : mario,2021-10-30
-Oct 31, 2021 12:11:33 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
-INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-10-31
-Oct 31, 2021 12:12:39 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
-INFO: Actualizar Vendedor,El vendedor ha sido actualizado con exito!. Realizado por el Usuario : admin,2021-10-31
-Oct 31, 2021 12:22:13 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
-INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-10-31
-Oct 31, 2021 12:26:31 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
-INFO: Agregar Producto,El producto ha sido creado con exito!. Realizado por el Usuario : admin,2021-10-31
-Oct 31, 2021 12:27:13 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
-INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-10-31
-Oct 31, 2021 12:29:10 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
-INFO: Agregar Producto,El producto ha sido creado con exito!. Realizado por el Usuario : admin,2021-10-31
-Oct 31, 2021 12:47:54 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
-INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-10-31
-Oct 31, 2021 12:48:52 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
-INFO: Agregar Producto,El producto ha sido creado con exito!. Realizado por el Usuario : admin,2021-10-31
-Oct 31, 2021 12:57:49 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
-WARNING: Producto Exception,El producto: Servilletas NO se ha podido eliminar. Ya Eliminado,2021-10-31
-Oct 31, 2021 12:57:56 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
-WARNING: Producto Exception,El producto: Servilletas NO se ha podido eliminar. Ya Eliminado,2021-10-31
-Oct 31, 2021 1:00:17 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
-INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-10-31
-Oct 31, 2021 1:02:10 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
-INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-10-31
-Oct 31, 2021 1:02:52 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
-INFO: Agregar Producto,El producto ha sido creado con exito!. Realizado por el Usuario : admin,2021-10-31
-Oct 31, 2021 1:03:51 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
-INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-10-31
-Oct 31, 2021 1:06:05 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
-INFO: Agregar Producto,El producto ha sido creado con exito!. Realizado por el Usuario : admin,2021-10-31
-Oct 31, 2021 1:11:14 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
-INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-10-31
-Oct 31, 2021 1:19:21 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
-INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-10-31
-Oct 31, 2021 2:32:26 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
-INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-10-31
-Oct 31, 2021 2:33:47 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
-INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-10-31
-Oct 31, 2021 2:34:43 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
-INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-10-31
-Oct 31, 2021 2:37:27 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
-INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-10-31
-Oct 31, 2021 2:41:01 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
-INFO: Crear Nuevo Usuario,El usuario ha sido creado con exito!,2021-10-31
-Oct 31, 2021 3:58:57 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
-INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-10-31
+Nov 01, 2021 1:21:05 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Crear Nuevo Usuario,El usuario ha sido creado con exito!,2021-11-01
+Nov 01, 2021 1:23:10 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: Mario,2021-11-01
+Nov 01, 2021 1:27:17 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+WARNING: Producto Exception,El producto "Galleta" NO se ha podido crear. Ya existe,2021-11-01
+Nov 01, 2021 1:27:42 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Actualizar Producto,El producto ha sido actualizado con exito!. Realizado por el Usuario : Mario,2021-11-01
+Nov 01, 2021 1:28:29 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Agregar Producto,El producto ha sido creado con exito!. Realizado por el Usuario : Mario,2021-11-01
+Nov 01, 2021 1:30:19 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Agregar Vendedor,El vendedor ha sido creado con exito!. Realizado por el Usuario : Mario,2021-11-01
+Nov 01, 2021 1:31:01 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Agregar Producto,El producto ha sido creado con exito!. Realizado por el Usuario : Mario,2021-11-01
+Nov 01, 2021 1:37:21 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: Mario,2021-11-01
+Nov 01, 2021 1:39:57 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-11-01
+Nov 01, 2021 1:41:35 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: Mario,2021-11-01
+Nov 01, 2021 1:45:14 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: Mario,2021-11-01
+Nov 01, 2021 1:46:45 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: Mario,2021-11-01
+Nov 01, 2021 1:47:20 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Agregar Producto,El producto ha sido creado con exito!. Realizado por el Usuario : Mario,2021-11-01
+Nov 01, 2021 1:48:57 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-11-01
+Nov 01, 2021 1:58:04 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-11-01

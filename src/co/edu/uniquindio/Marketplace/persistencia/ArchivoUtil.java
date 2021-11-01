@@ -173,6 +173,7 @@ public  class ArchivoUtil {
 		int año = cal1.get(Calendar.YEAR);
 		int hora = cal1.get(Calendar.HOUR);
 		int minuto = cal1.get(Calendar.MINUTE);
+		int segundo = cal1.get(Calendar.SECOND);
 
 
 		if(dia < 10){
@@ -188,7 +189,7 @@ public  class ArchivoUtil {
 			mesN+=""+mes;
 		}
 		
-		return diaN+"_"+mesN+"_"+año+"_"+hora+"_"+minuto;
+		return diaN+"_"+mesN+"_"+año+"_"+hora+"_"+minuto+"_"+segundo;
 	}
 
 	

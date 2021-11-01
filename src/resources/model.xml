@@ -25,10 +25,10 @@
    <void method="add">
     <object class="co.edu.uniquindio.Marketplace.model.Usuario">
      <void property="contrasenia">
-      <string>julian23</string>
+      <string>mario123</string>
      </void>
      <void property="usuario">
-      <string>Julian</string>
+      <string>Mario</string>
      </void>
     </object>
    </void>
@@ -68,19 +68,19 @@
       <void method="add">
        <object class="co.edu.uniquindio.Marketplace.model.Producto">
         <void property="categoria">
-         <string>Pasaboca</string>
+         <string>COMIDA</string>
         </void>
         <void property="estado">
-         <object class="java.lang.Enum" method="valueOf">
+         <object class="java.lang.Enum" id="EstadoProducto1" method="valueOf">
           <class>co.edu.uniquindio.Marketplace.model.EstadoProducto</class>
-          <string>Vendido</string>
+          <string>Cancelado</string>
          </object>
         </void>
         <void property="nombre">
          <string>Galleta</string>
         </void>
         <void property="precio">
-         <string>2000</string>
+         <string>999999</string>
         </void>
        </object>
       </void>
@@ -90,10 +90,7 @@
          <string>Utiles de Cocina</string>
         </void>
         <void property="estado">
-         <object class="java.lang.Enum" method="valueOf">
-          <class>co.edu.uniquindio.Marketplace.model.EstadoProducto</class>
-          <string>Cancelado</string>
-         </object>
+         <object idref="EstadoProducto1"/>
         </void>
         <void property="nombre">
          <string>Servilletas</string>
@@ -124,16 +121,16 @@
       <void method="add">
        <object class="co.edu.uniquindio.Marketplace.model.Producto">
         <void property="categoria">
-         <string>Papel</string>
+         <string>Madera</string>
         </void>
         <void property="estado">
          <object idref="EstadoProducto0"/>
         </void>
         <void property="nombre">
-         <string>Cuaderno</string>
+         <string>Tabla</string>
         </void>
         <void property="precio">
-         <string>2000</string>
+         <string>1000</string>
         </void>
        </object>
       </void>
@@ -144,7 +141,7 @@
     </object>
    </void>
    <void method="add">
-    <object class="co.edu.uniquindio.Marketplace.model.Vendedor">
+    <object class="co.edu.uniquindio.Marketplace.model.Vendedor" id="Vendedor2">
      <void property="apellido">
       <string>Restrepo</string>
      </void>
@@ -154,8 +151,60 @@
      <void property="direccion">
       <string>Salento</string>
      </void>
+     <void property="listaProductos">
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Producto">
+        <void property="categoria">
+         <string>Electronica</string>
+        </void>
+        <void property="estado">
+         <object idref="EstadoProducto0"/>
+        </void>
+        <void property="nombre">
+         <string>Computador</string>
+        </void>
+        <void property="precio">
+         <string>20000</string>
+        </void>
+       </object>
+      </void>
+     </void>
      <void property="nombre">
       <string>Jose</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.Marketplace.model.Vendedor" id="Vendedor3">
+     <void property="apellido">
+      <string>Acosta</string>
+     </void>
+     <void property="cedula">
+      <string>34343</string>
+     </void>
+     <void property="direccion">
+      <string>Circasia</string>
+     </void>
+     <void property="listaProductos">
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Producto">
+        <void property="categoria">
+         <string>ELectronica</string>
+        </void>
+        <void property="estado">
+         <object idref="EstadoProducto1"/>
+        </void>
+        <void property="nombre">
+         <string>Celular</string>
+        </void>
+        <void property="precio">
+         <string>1000</string>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="nombre">
+      <string>Julian</string>
      </void>
     </object>
    </void>

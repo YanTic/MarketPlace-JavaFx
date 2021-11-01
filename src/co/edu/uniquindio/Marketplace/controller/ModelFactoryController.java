@@ -385,6 +385,7 @@ public class ModelFactoryController implements IModelFactoryService{
 		
 	}
 	
+	@Override
 	public boolean verificarUsuario(String usuario, String contrasenia) {
 		boolean flagUsuarioExiste = false;
 		

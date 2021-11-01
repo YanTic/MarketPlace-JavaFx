@@ -24,4 +24,5 @@ public interface IModelFactoryService {
 	
 	// Usuario
 	public Usuario crearUsuario(String usuario, String contrasenia);
+	public boolean verificarUsuario(String usuario, String contrasenia);
 }
