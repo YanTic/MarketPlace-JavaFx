@@ -4,3 +4,4 @@ Juan@@Servilletas@@3500@@Utiles de Cocina@@Cancelado
 Pedro@@Tabla@@1000@@Madera@@Publicado
 Jose@@Computador@@20000@@Electronica@@Publicado
 Julian@@Celular@@1000@@ELectronica@@Cancelado
+Roberto@@Cuaderno@@2000@@Utiles@@Publicado

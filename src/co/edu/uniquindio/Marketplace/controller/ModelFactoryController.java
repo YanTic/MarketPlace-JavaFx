@@ -80,9 +80,10 @@ public class ModelFactoryController implements IModelFactoryService{
 		}
 		
 		
-		
-		// Registrar la acción de inicio de sesion
-//		Persistencia.guardaRegistroLog("Inicio de sesion del usuario: Admin", 1, "inicioSesion");
+		// Creo una copia de respaldo
+		crearCopiaSeguridad(); 
+		// Ahora este metodo no se llama desde el LoginViewController -> CRUD -> ModelFactory
+		// sino que lo ejecuto al instante de cargar los datos en el singleton (ModelFactory)
 		
 	}
 

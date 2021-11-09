@@ -208,6 +208,40 @@
      </void>
     </object>
    </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.Marketplace.model.Vendedor" id="Vendedor4">
+     <void property="apellido">
+      <string>Alzate</string>
+     </void>
+     <void property="cedula">
+      <string>33003</string>
+     </void>
+     <void property="direccion">
+      <string>Calarcá</string>
+     </void>
+     <void property="listaProductos">
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Producto">
+        <void property="categoria">
+         <string>Utiles</string>
+        </void>
+        <void property="estado">
+         <object idref="EstadoProducto0"/>
+        </void>
+        <void property="nombre">
+         <string>Cuaderno</string>
+        </void>
+        <void property="precio">
+         <string>2000</string>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="nombre">
+      <string>Roberto</string>
+     </void>
+    </object>
+   </void>
   </void>
  </object>
 </java>

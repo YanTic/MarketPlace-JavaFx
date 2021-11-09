@@ -54,11 +54,5 @@ public class CrudLoginViewController {
 		modelFactoryController.guardarDatosTXT();
 	}
 
-
-	// Creo la copia de seguridad al instante de abrir la aplicacion 
-	public void crearCopiaSeguridad() {
-		modelFactoryController.crearCopiaSeguridad();
-	}
-
 }
 

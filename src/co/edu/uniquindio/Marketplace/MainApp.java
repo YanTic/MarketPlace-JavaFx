@@ -38,6 +38,13 @@ public class MainApp extends Application {
 		this.primaryStage.setTitle("MarketPlace");
 		this.vendedorSeleccionadoGeneral = null;
 		
+		// Put an icon
+		// Image icon = new Image("icon.png");
+		// primaryStage.getIcons().add(icon);
+		
+		
+		
+		
 //		this.modelFactoryController = new ModelFactoryController();
 //		this.marketplace = modelFactoryController.getMarketplace();
 		
@@ -45,24 +52,6 @@ public class MainApp extends Application {
 //		mostrarLoginView();
 //		mostrarMarketplaceView();
 	}
-
-//	/**
-//	 * Initializes the Root Layout.
-//	 */
-//	public void initRootLayout() {
-//		try {
-//			// Load root layout from fxml file.
-//			FXMLLoader loader = new FXMLLoader();
-//			loader.setLocation(MainApp.class.getResource("view/RootLayout.fxml"));
-//			rootLayout = (BorderPane) loader.load();
-//			// Show the scene containing the root layout.
-//			Scene scene = new Scene(rootLayout);
-//			primaryStage.setScene(scene);
-//			primaryStage.show();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
 	
 	/**
 	 * Initializes the Root Layout.

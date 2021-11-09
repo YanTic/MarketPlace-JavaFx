@@ -1,5 +1,6 @@
 package co.edu.uniquindio.Marketplace.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -15,7 +16,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -168,8 +172,45 @@ public class MarketplaceViewController implements Initializable{
      * el LoginView.
      * */
     public void volverAInicioSesion(){
-    	
-    }
+		
+		// Registro la accion de log out
+		crudVendedorViewController.registrarAccion("Cerrar sesion del usuario: "+mainApp.getUsuarioLogeado().getUsuario(), 1, "CerrarSesion");
+		
+		mostrarMensaje("Notifacion", "Cerrando Sesion", "Usuario: "+mainApp.getUsuarioLogeado().getUsuario()+ " ha cerrado sesion", AlertType.INFORMATION);
+
+		mainApp.setUsuarioLogeado(null);
+		
+		// Llamo al LoginViewController y cambio la view (el fxml)				
+		try {			
+			FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("view/LoginView.fxml"));
+			Parent root = loader.load();
+			
+			// Creo el controlador
+			LoginViewController loginViewController = loader.getController();
+			loginViewController.setMainApp(mainApp);
+			
+			// Yo no establezco valores porque ya allá se crean desde el initialize
+//			LoginViewController.establecerValores(marketplace, 
+//														modelFactoryController, 
+//														crudLoginViewController, 
+//														crudVendedorViewController);
+		
+			
+			// De esta manera es para agregarle animacion de cambio de scene
+			Scene scene = new Scene(root);
+			mainApp.getPrimaryStage().setScene(scene);
+			
+			
+			
+			// Animaciones ------ Efectos
+			
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
     
 	
     @FXML

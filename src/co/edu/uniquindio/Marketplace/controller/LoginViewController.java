@@ -53,10 +53,27 @@ public class LoginViewController implements Initializable {
 		modelFactoryController = ModelFactoryController.getInstance();
 		crudLoginViewController = new CrudLoginViewController(modelFactoryController);
 		crudVendedorViewController = new CrudVendedorViewController(modelFactoryController);
-		
-		// Creo una copia de respaldo
-		crudLoginViewController.crearCopiaSeguridad();
     }
+    
+    
+//    /*
+//	 * Este metodo es como Initialize de javafx, pero este metodo es llamado desde otro controlador
+//	 * para que tenga los mismos valores creados del que llama a es este controlador (O sea el
+//	 * LoginViewController) y tambien si el usuario desea cerrar sesion e iniciar otra, los datos
+//	 * del marketplace no se pierdan, solo se cambie el acceso a estos.
+//	 * */
+//	public void establecerValores(Marketplace marketplace, 
+//								  ModelFactoryController modelFactoryController,
+//								  CrudLoginViewController crudLoginViewController,
+//								  CrudVendedorViewController crudVendedorViewController){
+//		
+//	// Esto es llamado antes de llamar Initialize, es decir, durante la creacion de esta clase
+//	// en el LoginViewController;
+//		this.marketplace = marketplace;
+//		this.modelFactoryController = modelFactoryController;
+//		this.crudLoginViewController = crudLoginViewController;
+//		this.crudVendedorViewController = crudVendedorViewController;		
+//	}
     	
     
 //    	-------------- METODOS PARA LOGIN VIEW CONTROLLER --------------
