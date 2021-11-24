@@ -29,6 +29,7 @@ public class Persistencia {
 	public static final String RUTA_ARCHIVO_VENDEDORES = "src/resources/archivoVendedores.txt";
 	public static final String RUTA_ARCHIVO_USUARIOS = "src/resources/archivoUsuarios.txt";
 	public static final String RUTA_ARCHIVO_PRODUCTOS = "src/resources/archivoProductos.txt";
+	public static final String RUTA_ARCHIVO_CONTACTOS = "src/resources/archivoContactos.txt";
 	public static final String RUTA_ARCHIVO_LOG = "src/resources/MarketplaceLog.txt";
 	public static final String RUTA_ARCHIVO_MODELO_MARKETPLACE_BINARIO = "src/resources/model.dat";
 	public static final String RUTA_ARCHIVO_MODELO_MARKETPLACE_XML = "src/resources/model.xml";
@@ -40,6 +41,7 @@ public class Persistencia {
 	public static final String RUTA_ARCHIVO_SEGURIDAD_VENDEDORES = "C:/td/persistencia/archivos/archivoVendedores.txt";
 	public static final String RUTA_ARCHIVO_SEGURIDAD_USUARIOS = "C:/td/persistencia/archivos/archivoUsuarios.txt";
 	public static final String RUTA_ARCHIVO_SEGURIDAD_PRODUCTOS = "C:/td/persistencia/archivos/archivoProductos.txt";
+	public static final String RUTA_ARCHIVO_SEGURIDAD_CONTACTOS = "C:/td/persistencia/archivos/archivoContactos.txt";
 	
 	public static final String RUTA_ARCHIVO_SEGURIDAD_RESPALDO = "C:/td/persistencia/respaldo/Marketplace_";
 	
@@ -100,16 +102,20 @@ public class Persistencia {
 		// TODO Auto-generated method stub
 		String contenidoVendedores = "";
 		String contenidoProductos = "";
+		String contenidoContactos = "";
 		
 		for(Vendedor vendedor :listaVendedores) 
 		{
 			contenidoVendedores += vendedor.getNombre()+ "@@"+ vendedor.getApellido()+ "@@"+ 
 					     		   vendedor.getCedula()+ "@@"+ vendedor.getDireccion()+ "\n";
-			contenidoProductos += guardarProductos(vendedor);			
+			contenidoProductos += guardarProductos(vendedor);
+			contenidoContactos += guardarContactos(vendedor);
+			
 		}
 		
 		ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_VENDEDORES, contenidoVendedores, false);
 		ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_PRODUCTOS, contenidoProductos, false);
+		ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_CONTACTOS, contenidoContactos, false);
 		
 	}
 	
@@ -127,6 +133,21 @@ public class Persistencia {
 		
 		return contenido;
 	}
+	
+	public static String guardarContactos(Vendedor vendedor) throws IOException {
+		String contenido = "";
+		
+		System.out.println("GUARDANDO CONTACTOS");
+		
+		for(Vendedor contacto : vendedor.getListaContactos()) 
+		{
+			contenido += vendedor.getNombre()+ "@@"+ contacto.getNombre()+ "@@"+ 
+						 contacto.getCedula()+"\n";
+		}
+		
+		return contenido;
+	}
+	
 	
 	public static void guardarUsuarios(ArrayList<Usuario> listaUsuarios) throws IOException {
 		// TODO Auto-generated method stub
@@ -187,6 +208,7 @@ public class Persistencia {
 //			cliente.setTelefono(linea.split(",")[6]);
 			
 			vendedor.getListaProductos().addAll(cargarProductos(vendedor));
+			vendedor.getListaContactos().addAll(cargarContactos(vendedor));
 //			vendedor.setListaProductos(cargarProductos(vendedor));
 			
 			vendedores.add(vendedor);
@@ -231,6 +253,32 @@ public class Persistencia {
 //			producto.add(vendedor);
 		}
 		return productos;
+	}
+	
+	public static ArrayList<Vendedor> cargarContactos(Vendedor vendedor) throws FileNotFoundException, IOException 
+	{
+		ArrayList<Vendedor> contactos = new ArrayList<Vendedor>();
+		
+		ArrayList<String> contenido = ArchivoUtil.leerArchivo(RUTA_ARCHIVO_CONTACTOS);
+		String linea="";
+		
+		for (int i = 0; i < contenido.size(); i++)
+		{
+			linea = contenido.get(i);	// Juan@@Julian@@123123
+			
+			// Verifico si le estoy añadiendo los productos al vendedor correspondiente
+			if(linea.split("@@")[0].equals(vendedor.getNombre())){
+				Vendedor contacto = new Vendedor();
+				
+				// No se carga el "linea.split("@@")[0]" porque es el nombre del vendedor
+				contacto.setNombre(linea.split("@@")[1]);
+				contacto.setCedula(linea.split("@@")[2]);
+				
+				vendedor.getListaContactos().add(contacto);	
+			}
+		}
+		
+		return contactos;
 	}
 	
 	
@@ -494,6 +542,7 @@ public class Persistencia {
 		try {
 			ArchivoUtil.copiarArchivo(RUTA_ARCHIVO_VENDEDORES, RUTA_ARCHIVO_SEGURIDAD_VENDEDORES);
 			ArchivoUtil.copiarArchivo(RUTA_ARCHIVO_PRODUCTOS, RUTA_ARCHIVO_SEGURIDAD_PRODUCTOS);
+//			ArchivoUtil.copiarArchivo(RUTA_ARCHIVO_CONTACTOS, RUTA_ARCHIVO_SEGURIDAD_CONTACTOS);
 			ArchivoUtil.copiarArchivo(RUTA_ARCHIVO_USUARIOS, RUTA_ARCHIVO_SEGURIDAD_USUARIOS);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

@@ -35,6 +35,10 @@ public class CrudVendedorViewController {
 		return modelFactoryController.getListaProductos(vendedorSeleccionado); 
 	}
 	
+	public ArrayList<Vendedor> getListaContactos(Vendedor vendedorSeleccionado) {
+		return modelFactoryController.getListaContactos(vendedorSeleccionado); 
+	}
+	
 	
 
 	

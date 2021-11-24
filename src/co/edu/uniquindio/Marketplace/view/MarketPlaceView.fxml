@@ -10,7 +10,6 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -34,7 +33,7 @@
                               <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>
-                                          <SplitPane dividerPositions="0.41068702290076337" layoutX="7.0" layoutY="9.0" orientation="VERTICAL" prefHeight="439.0" prefWidth="639.0">
+                                          <SplitPane dividerPositions="0.42442748091603055" layoutX="7.0" layoutY="9.0" orientation="VERTICAL" prefHeight="439.0" prefWidth="639.0">
                                             <items>
                                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="216.0" prefWidth="637.0" SplitPane.resizableWithParent="false">
                                                    <children>
@@ -85,15 +84,15 @@
                                                             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                                          </columnResizePolicy>
                                                       </TableView>
-                                                      <Button fx:id="btnEliminarVendedor" layoutX="535.0" layoutY="224.0" mnemonicParsing="false" onAction="#accionBtnEliminarVendedor" prefHeight="25.0" prefWidth="88.0" text="Eliminar">
-                                                         <cursor>
-                                                            <Cursor fx:constant="HAND" />
-                                                         </cursor>
-                                                      </Button>
                                                    </children>
                                                 </AnchorPane>
                                             </items>
                                           </SplitPane>
+                                          <Button fx:id="btnEliminarVendedor" layoutX="544.0" layoutY="418.0" mnemonicParsing="false" onAction="#accionBtnEliminarVendedor" prefHeight="25.0" prefWidth="88.0" text="Eliminar">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Button>
                                        </children>
                                     </AnchorPane>
                               </content>
@@ -104,53 +103,35 @@
                   </AnchorPane>
               </content>
             </Tab>
-            <Tab fx:id="tabVendedor" text="Vendedor">
+            <Tab fx:id="tabVendedorPrincipal" text="Vendedor Principal">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <VBox prefHeight="477.0" prefWidth="166.0" spacing="20.0" style="-fx-background-color: E0FFD1;">
+                        <Pane layoutX="23.0" layoutY="14.0" prefHeight="105.0" prefWidth="166.0" style="-fx-background-color: BBFF98;">
                            <children>
-                              <Pane prefHeight="105.0" prefWidth="166.0" style="-fx-background-color: BBFF98;">
-                                 <children>
-                                    <Label fx:id="labelVendedorNombre" layoutX="28.0" layoutY="35.0" text="Vendedor ">
-                                       <font>
-                                          <Font size="24.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </Pane>
-                              <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="194.0" text="Publicaciones">
+                              <Label fx:id="labelVendedorNombre" layoutX="31.0" layoutY="35.0" text="Vendedor " textAlignment="CENTER">
                                  <font>
-                                    <Font name="System Bold" size="15.0" />
+                                    <Font size="24.0" />
                                  </font>
-                              </Button>
-                              <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="194.0" text="Contactos">
-                                 <font>
-                                    <Font name="System Bold" size="15.0" />
-                                 </font>
-                              </Button>
-                              <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="194.0" text="Informacion">
-                                 <font>
-                                    <Font name="System Bold" size="15.0" />
-                                 </font>
-                              </Button>
-                              <Pane prefHeight="159.0" prefWidth="166.0">
-                                 <children>
-                                    <Button layoutX="52.0" layoutY="118.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="63.0" text="Salir">
-                                       <font>
-                                          <Font name="System Bold" size="13.0" />
-                                       </font>
-                                    </Button>
-                                 </children>
-                              </Pane>
-                           </children>
-                        </VBox>
-                        <Pane layoutX="166.0" prefHeight="479.0" prefWidth="479.0">
-                           <children>
-                              <Button fx:id="btnMostrarProductos" layoutX="356.0" layoutY="14.0" mnemonicParsing="false" onAction="#accionBtnMostrarProductos" text="Ver Productos" />
-                              <TextArea layoutX="40.0" layoutY="52.0" prefHeight="407.0" prefWidth="407.0" promptText="Publicaciones" />
+                              </Label>
                            </children>
                         </Pane>
+                        <Button fx:id="btnMostrarProductos" layoutX="37.0" layoutY="130.0" mnemonicParsing="false" onAction="#accionBtnMostrarProductos" prefHeight="35.0" prefWidth="137.0" text="Editar Productos" />
+                        <Pane layoutX="223.0" layoutY="19.0" prefHeight="435.0" prefWidth="399.0" style="-fx-background-color: FFCE7E;">
+                           <children>
+                              <VBox fx:id="vBoxProductosVendedor" layoutY="24.0" prefHeight="414.0" prefWidth="402.0" spacing="10.0" />
+                              <Label layoutX="6.0" layoutY="2.0" text="Productos">
+                                 <font>
+                                    <Font name="System Italic" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <TableView fx:id="tablaContactos" layoutX="22.0" layoutY="182.0" prefHeight="266.0" prefWidth="169.0" style="-fx-background-color: #85FFD5;">
+                          <columns>
+                            <TableColumn fx:id="columnaNombreContacto" prefWidth="167.99998982747397" text="Contactos" />
+                          </columns>
+                        </TableView>
                      </children></AnchorPane>
               </content>
             </Tab>
@@ -220,6 +201,11 @@
                      </children>
                   </AnchorPane>
                </content>
+            </Tab>
+            <Tab fx:id="tabVendedorAsociado" text="Vendedor asociado">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
             </Tab>
         </tabs>
       </TabPane>

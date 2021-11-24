@@ -437,6 +437,12 @@ public class ModelFactoryController implements IModelFactoryService{
 						   indexOf(vendedorSeleccionado)).getListaProductos();
 	}
 
+	@Override
+	public ArrayList<Vendedor> getListaContactos(Vendedor vendedorSeleccionado) {
+		return marketplace.getListaVendedores().get(marketplace.getListaVendedores().
+						   indexOf(vendedorSeleccionado)).getListaContactos();
+	}
+	
 	
 
 

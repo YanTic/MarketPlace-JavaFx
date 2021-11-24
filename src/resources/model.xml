@@ -45,6 +45,28 @@
      <void property="direccion">
       <string>Armenia</string>
      </void>
+     <void property="listaContactos">
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Vendedor">
+        <void property="cedula">
+         <string>1095</string>
+        </void>
+        <void property="nombre">
+         <string>Pedro</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Vendedor">
+        <void property="cedula">
+         <string>33003</string>
+        </void>
+        <void property="nombre">
+         <string>Roberto</string>
+        </void>
+       </object>
+      </void>
+     </void>
      <void property="listaProductos">
       <void method="add">
        <object class="co.edu.uniquindio.Marketplace.model.Producto">
@@ -151,6 +173,18 @@
      <void property="direccion">
       <string>Salento</string>
      </void>
+     <void property="listaContactos">
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Vendedor">
+        <void property="cedula">
+         <string>34343</string>
+        </void>
+        <void property="nombre">
+         <string>Julian</string>
+        </void>
+       </object>
+      </void>
+     </void>
      <void property="listaProductos">
       <void method="add">
        <object class="co.edu.uniquindio.Marketplace.model.Producto">
@@ -165,6 +199,22 @@
         </void>
         <void property="precio">
          <string>20000</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Producto">
+        <void property="categoria">
+         <string>Carne</string>
+        </void>
+        <void property="estado">
+         <object idref="EstadoProducto1"/>
+        </void>
+        <void property="nombre">
+         <string>Salchicha</string>
+        </void>
+        <void property="precio">
+         <string>2500</string>
         </void>
        </object>
       </void>

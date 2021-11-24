@@ -16,6 +16,7 @@ public interface IModelFactoryService {
 	public ArrayList<Vendedor> getListaVendedores();
 	public ArrayList<Usuario>  getListaUsuarios();
 	public ArrayList<Producto> getListaProductos(Vendedor vendedorSeleccionado);
+	public ArrayList<Vendedor> getListaContactos(Vendedor vendedorSeleccionado);
 	
 	// Producto
 	public Producto crearProducto(Vendedor vendedor, String nombre, String precio, String categoria, EstadoProducto estado);

@@ -6,7 +6,6 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.Marketplace.MainApp;
-import co.edu.uniquindio.Marketplace.exceptions.VendedorException;
 import co.edu.uniquindio.Marketplace.model.EstadoProducto;
 import co.edu.uniquindio.Marketplace.model.Marketplace;
 import co.edu.uniquindio.Marketplace.model.Producto;
@@ -32,6 +31,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 /*
  * ---- CONTROLADOR PRINCIPAL ----
@@ -45,11 +47,18 @@ public class MarketplaceViewController implements Initializable{
 	
 	@FXML private TabPane mainTabPane;
 	@FXML private Tab tabAdministracion;
-	@FXML private Tab tabVendedor;
+    @FXML private Tab tabVendedorPrincipal;
+	@FXML private Tab tabVendedorAsociado;
 	@FXML private Tab tabCRUDProductos;
 
     @FXML private Label labelVendedorNombre;
 	
+    
+    // Tab Vendedores
+    @FXML private Tab tabNuevoVendedor;
+    @FXML private Label labelVendedorNombreTEST;
+    @FXML private Button btnMostrarProductosTEST;
+    @FXML private VBox vBoxProductosVendedorTEST;
 	
 	// CRUD VENDEDORES
 	@FXML private TextField txtNombreVendedor;
@@ -67,6 +76,7 @@ public class MarketplaceViewController implements Initializable{
     @FXML private TableColumn<Vendedor, String> columnaDireccionVendedor;
     
     @FXML private Button btnMostrarVendedor;
+    @FXML private VBox vBoxProductosVendedor;
     
     
     // CRUD PRODUCTOS
@@ -86,6 +96,9 @@ public class MarketplaceViewController implements Initializable{
     
     // Tab Vendedores
     @FXML private Button btnMostrarProductos;
+    @FXML private TableView<Vendedor> tablaContactos;
+    @FXML private TableColumn<Vendedor, String> columnaNombreContacto;
+
     
     
 	// Referencia a la MainApp.
@@ -98,8 +111,10 @@ public class MarketplaceViewController implements Initializable{
 	
 	// Listas observable para mostrar en tablas, junto a su objeto seleccionado
 	ObservableList<Vendedor> listaVendedoresData = FXCollections.observableArrayList();
+	ObservableList<Vendedor> listaContactosData = FXCollections.observableArrayList();
 	ObservableList<Producto> listaProductosData = FXCollections.observableArrayList();
 	Vendedor vendedorSeleccionado;
+	Vendedor contactoSeleccionado;
 	Producto productoSeleccionado;
     
 	@Override
@@ -119,9 +134,8 @@ public class MarketplaceViewController implements Initializable{
 		
 		
 		// Oculto los tabs
-		mainTabPane.getTabs().remove(tabVendedor);
+		mainTabPane.getTabs().remove(tabVendedorPrincipal);
 		mainTabPane.getTabs().remove(tabCRUDProductos);
-		
 		
 		
 		
@@ -157,6 +171,10 @@ public class MarketplaceViewController implements Initializable{
 		this.crudVendedorViewController = crudVendedorViewController;		
 	}
 	
+    @FXML
+    void accionBtnMostrarProductosTEST(ActionEvent event) {
+
+    }
 	
 	
 	
@@ -410,7 +428,29 @@ public class MarketplaceViewController implements Initializable{
     @FXML
     void accionBtnMostrarVendedor(ActionEvent event) {
     	mostrarTabVendedor();
+//    	TESTmostrarVendedorTab();
     }
+    
+    
+    public void TESTmostrarVendedorTab(){
+//    	mainTabPane
+    	Tab tab = null;
+    	
+    	try {
+			tab = FXMLLoader.load(MainApp.class.getResource("view/VendedorTab.fxml"));
+//    		tab = FXMLLoader.load(getClass().getResource("co/edu/uniquindio/Marketplace/view/VendedorTab.fxml"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	mainTabPane.getTabs().add(tab);
+    }
+    
+    
+    
+    
+    
     
     /*
      * Este metodo crea un tabulador con la informacion (nombre, productos, contactos...)
@@ -418,13 +458,69 @@ public class MarketplaceViewController implements Initializable{
      * */
     public void mostrarTabVendedor(){
     	if(mainApp.getVendedorSeleccionadoGeneral() != null){
-    		mainTabPane.getTabs().add(tabVendedor);
-    		labelVendedorNombre.setText(mainApp.getVendedorSeleccionadoGeneral().getNombre());    		
+    		mainTabPane.getTabs().add(tabVendedorPrincipal);
+    		labelVendedorNombre.setText(mainApp.getVendedorSeleccionadoGeneral().getNombre());
+    		cargarPublicacionesVendedor();
+    		
+    		
+    		// Inicializa los vendederos en la tabla con sus columnas.
+    		columnaNombreContacto.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+    		
+    		
+    		// Añade los datos de la lista observable a la tabla
+    		// Esa lista se obtiene del modelFactoryController, que se obtiene desde un CRUD
+    		tablaContactos.getItems().clear();	// Limpio la tabla porque se usan diferentes productos que pertenecen a otros vendedores
+    		tablaContactos.setItems(getContactosData(mainApp.getVendedorSeleccionadoGeneral()));
+    		
+    		// Acción de la tabla para mostrar informacion de un empleado
+    		tablaContactos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) ->{
+    			contactoSeleccionado = newSelection;
+    			
+    			// Usar doble click acá para mostrar el tab y talvez un mensjae de confirmacion
+//    			mostrarInformacionProducto(contactoSeleccionado); Esto sería como mostrar el tab del contacto
+    		});
+    		
+    		
     	}
     	else{
     		mostrarMensaje("Notifacion", "Tab No abierta", "La tab no puede ser abierta si no selecciona un vendedor", AlertType.ERROR);
     	}
     }
+    
+    
+    public void cargarPublicacionesVendedor(){
+    	vBoxProductosVendedor.getChildren().clear();
+    	
+    	for(Producto producto : crudVendedorViewController.getListaProductos(mainApp.getVendedorSeleccionadoGeneral())){
+    		HBox hbox = new HBox();
+    			hbox.setSpacing(10);
+    		
+        	Label labelNombre = new Label();
+        		labelNombre.setText(""+producto.getNombre());
+        	Label labelPrecio = new Label();
+        		labelPrecio.setText(""+producto.getPrecio());
+        	Label labelCategoria = new Label();
+        		labelCategoria.setText(""+producto.getCategoria());
+        	Label labelEstado = new Label();
+        		labelEstado.setText(""+producto.getEstado());
+        	
+        	hbox.getChildren().add(labelNombre);
+        	hbox.getChildren().add(labelPrecio);
+        	hbox.getChildren().add(labelCategoria);
+        	hbox.getChildren().add(labelEstado);
+        
+        	vBoxProductosVendedor.getChildren().add(hbox);
+    	}
+    	
+    			
+    	
+    	
+//    	vBoxProductosVendedor.getChildren().add();
+    	
+    }
+    
+    
+    
     
 
     @FXML
@@ -780,6 +876,11 @@ public class MarketplaceViewController implements Initializable{
 	public ObservableList<Producto> getProductosData(Vendedor vendedorSeleccionado){
 		listaProductosData.addAll(crudVendedorViewController.getListaProductos(vendedorSeleccionado)) ;
 		return listaProductosData;
+	}
+	
+	public ObservableList<Vendedor> getContactosData(Vendedor vendedorSeleccionado){
+		listaContactosData.addAll(crudVendedorViewController.getListaContactos(vendedorSeleccionado)) ;
+		return listaContactosData;
 	}
 	
 	public Marketplace getMarketplace(){

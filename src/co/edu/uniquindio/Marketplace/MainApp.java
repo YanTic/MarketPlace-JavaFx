@@ -27,11 +27,6 @@ public class MainApp extends Application {
 	Vendedor vendedorSeleccionadoGeneral;
 
 
-//	public MainApp() {
-//		modelFactoryController = new ModelFactoryController();
-//		marketplace = modelFactoryController.getMarketplace();
-//	}
-
 	@Override
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
@@ -42,15 +37,7 @@ public class MainApp extends Application {
 		// Image icon = new Image("icon.png");
 		// primaryStage.getIcons().add(icon);
 		
-		
-		
-		
-//		this.modelFactoryController = new ModelFactoryController();
-//		this.marketplace = modelFactoryController.getMarketplace();
-		
 		initRootLayout();
-//		mostrarLoginView();
-//		mostrarMarketplaceView();
 	}
 	
 	/**
@@ -77,56 +64,6 @@ public class MainApp extends Application {
 			e.printStackTrace();
 		}
 	}
-	
-// ----------- Ahora esto se llama desde el LoginViewController
-//	/**
-//	 * Shows the Markeplace overview inside the root layout.
-//	 */
-//	public void mostrarMarketplaceView() {
-//		try {
-//			// Load person overview.
-//			FXMLLoader loader = new FXMLLoader();
-//			loader.setLocation(MainApp.class.getResource("view/MarketplaceView.fxml"));
-//			AnchorPane marketplaceOverview = (AnchorPane) loader.load();
-//			// Set person overview into the center of root layout.
-//			rootLayout.setCenter(marketplaceOverview);
-//
-//
-//			// Give the controller access to the main app.
-//			MarketplaceViewController controller = loader.getController();
-//			controller.setMainApp(this);
-//
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
-	
-	
-	
-	
-	
-//	/**
-//	 * Shows the Login overview inside the root layout.
-//	 */
-//	public void mostrarLoginView() {
-//		try {
-//			// Load person overview.
-//			FXMLLoader loader = new FXMLLoader();
-//			loader.setLocation(MainApp.class.getResource("view/LoginView.fxml"));
-//			AnchorPane loginOverview = (AnchorPane) loader.load();
-//			// Set person overview into the center of root layout.
-//			rootLayout.setCenter(loginOverview);
-//
-//
-//			// Give the controller access to the main app.
-//			// Le doy el acceso al controlodar de la main app
-//			LoginViewController controller = loader.getController();
-//			controller.setMainApp(this);
-//
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}	
 	
 	
 	/**
