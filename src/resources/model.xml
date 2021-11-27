@@ -85,6 +85,9 @@
         <void property="precio">
          <string>5000</string>
         </void>
+        <void property="rutaImagen">
+         <string>src/resources/imagenesProducto/imagen_Helado Pelapop.png</string>
+        </void>
        </object>
       </void>
       <void method="add">
@@ -104,6 +107,9 @@
         <void property="precio">
          <string>999999</string>
         </void>
+        <void property="rutaImagen">
+         <string>a</string>
+        </void>
        </object>
       </void>
       <void method="add">
@@ -119,6 +125,9 @@
         </void>
         <void property="precio">
          <string>3500</string>
+        </void>
+        <void property="rutaImagen">
+         <string>a</string>
         </void>
        </object>
       </void>
@@ -153,6 +162,9 @@
         </void>
         <void property="precio">
          <string>1000</string>
+        </void>
+        <void property="rutaImagen">
+         <string>a</string>
         </void>
        </object>
       </void>
@@ -200,6 +212,9 @@
         <void property="precio">
          <string>20000</string>
         </void>
+        <void property="rutaImagen">
+         <string>a</string>
+        </void>
        </object>
       </void>
       <void method="add">
@@ -215,6 +230,9 @@
         </void>
         <void property="precio">
          <string>2500</string>
+        </void>
+        <void property="rutaImagen">
+         <string>a</string>
         </void>
        </object>
       </void>
@@ -250,6 +268,9 @@
         <void property="precio">
          <string>1000</string>
         </void>
+        <void property="rutaImagen">
+         <string>a</string>
+        </void>
        </object>
       </void>
      </void>
@@ -283,6 +304,9 @@
         </void>
         <void property="precio">
          <string>2000</string>
+        </void>
+        <void property="rutaImagen">
+         <string>a</string>
         </void>
        </object>
       </void>

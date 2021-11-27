@@ -33,6 +33,7 @@ public class Persistencia {
 	public static final String RUTA_ARCHIVO_LOG = "src/resources/MarketplaceLog.txt";
 	public static final String RUTA_ARCHIVO_MODELO_MARKETPLACE_BINARIO = "src/resources/model.dat";
 	public static final String RUTA_ARCHIVO_MODELO_MARKETPLACE_XML = "src/resources/model.xml";
+	public static final String RUTA_ARCHIVO_IMAGEN_PRODUCTOS = "src/resources/imagenesProducto/";
 
 	// RUTAS DE SEGURIDAD	(Con Rutas Absolutas)
 	public static final String RUTA_ARCHIVO_SEGURIDAD_MODELO_MARKETPLACE_XML = "C:/td/persistencia/model.xml";
@@ -128,7 +129,7 @@ public class Persistencia {
 		{
 			contenido += vendedor.getNombre()+ "@@"+ producto.getNombre()+ "@@"+ 
 					     producto.getPrecio()+ "@@"+ producto.getCategoria()+ "@@"+
-					     producto.getEstado()+ "\n";
+					     producto.getEstado()+ "@@"+ producto.getRutaImagen()+ "\n";
 		}
 		
 		return contenido;
@@ -142,7 +143,7 @@ public class Persistencia {
 		for(Vendedor contacto : vendedor.getListaContactos()) 
 		{
 			contenido += vendedor.getNombre()+ "@@"+ contacto.getNombre()+ "@@"+ 
-						 contacto.getCedula()+"\n";
+						 contacto.getCedula()+ "\n";
 		}
 		
 		return contenido;
@@ -241,6 +242,7 @@ public class Persistencia {
 				producto.setPrecio(linea.split("@@")[2]);
 				producto.setCategoria(linea.split("@@")[3]);
 				producto.setEstado(EstadoProducto.valueOf(linea.split("@@")[4]));
+				producto.setRutaImagen(linea.split("@@")[5]);
 				
 				vendedor.getListaProductos().add(producto);	
 			}
@@ -393,6 +395,31 @@ public class Persistencia {
 						 vendedorAux.getCedula()+ vendedorAux.getDireccion() +"\n";
 		}
 		ArchivoUtil.guardarArchivo(ruta, contenido, true);
+	}
+	
+	
+	public static String copiarImagen(String nombreProducto, String rutaAbsolutaArchivo){
+		String rutaDestino = "";  
+		
+		try {
+			
+			System.out.println("Ruta Absoluta Original: "+rutaAbsolutaArchivo);
+			
+			// Ejemplo: src/resources/imagenesProducto/imagen_nombreProducto.png
+			rutaDestino = RUTA_ARCHIVO_IMAGEN_PRODUCTOS + "imagen_" + nombreProducto + ".png";
+	
+			System.out.println("Ruta Destino: "+rutaDestino);
+			
+			ArchivoUtil.copiarArchivo(rutaAbsolutaArchivo, rutaDestino);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated method stub
+			rutaDestino = "";
+			e.printStackTrace();
+		} 
+		
+		return rutaDestino;
+		
 	}
 
 	

@@ -61,7 +61,7 @@ public class ModelFactoryController implements IModelFactoryService{
 //		iniciarSalvarDatosPrueba();
 		
 		// 2. Cargar los datos de los archivos
-//		cargarDatosDesdeArchivos();
+		cargarDatosDesdeArchivos();
 		
 		// 3. Guardar y cargar el recurso serializable binario
 //		guardarResourceBinario();
@@ -69,7 +69,7 @@ public class ModelFactoryController implements IModelFactoryService{
 		
 		// 4. Guardar y cargar el recurso serializable XML
 //		guardarResourceXML();
-		cargarResourceXML();
+//		cargarResourceXML();
 		
 		// Siempre se verifica si la raiz del recurso es null
 		if(marketplace == null){
@@ -215,6 +215,10 @@ public class ModelFactoryController implements IModelFactoryService{
 		}
 	}
 	
+	public String copiarImagen(String nombreProducto, String rutaImagen){
+		return Persistencia.copiarImagen(nombreProducto, rutaImagen);
+	}
+	
 	
 	// Creo una copia de mi archivo xml en la carpeta c:/td/persistencia
 	public void crearCopiaSeguridad() {	
@@ -319,11 +323,11 @@ public class ModelFactoryController implements IModelFactoryService{
 	// -------------- METODOS PARA CRUD PRODUCTO VIEW CONTROLLER --------------
 	
 	@Override
-	public Producto crearProducto(Vendedor vendedor, String nombre, String precio, String categoria, EstadoProducto estado) {
+	public Producto crearProducto(Vendedor vendedor, String nombre, String precio, String categoria, EstadoProducto estado, String rutaImagen) {
 		Producto producto = null;
 		
 		try{
-			producto = marketplace.crearProducto(vendedor, nombre, precio, categoria, estado);			
+			producto = marketplace.crearProducto(vendedor, nombre, precio, categoria, estado, rutaImagen);			
 		}
 		catch(ProductoException e){
 			Persistencia.guardaRegistroLog(e.getMessage(), 2, "Producto Exception");
@@ -350,11 +354,12 @@ public class ModelFactoryController implements IModelFactoryService{
 	
 	@Override
 	public boolean actualizarProducto(Vendedor vendedor, String nombreActual, String nombre, 
-								      String precio, String categoria, EstadoProducto estado) {
+								      String precio, String categoria, EstadoProducto estado,
+								      String rutaImagen) {
 		boolean flagVendedorActualizado = false;
 		
 		try {
-			flagVendedorActualizado = marketplace.actualizarProducto(vendedor, nombreActual, nombre, precio, categoria, estado);
+			flagVendedorActualizado = marketplace.actualizarProducto(vendedor, nombreActual, nombre, precio, categoria, estado, rutaImagen);
 		} catch (ProductoException e) {
 			Persistencia.guardaRegistroLog(e.getMessage(), 2, "Producto Exception");
 			e.getMessage();
@@ -364,7 +369,8 @@ public class ModelFactoryController implements IModelFactoryService{
 	}
 
 	
-	
+
+
 	
 	
 	

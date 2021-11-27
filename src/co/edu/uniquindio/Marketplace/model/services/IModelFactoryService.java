@@ -19,8 +19,8 @@ public interface IModelFactoryService {
 	public ArrayList<Vendedor> getListaContactos(Vendedor vendedorSeleccionado);
 	
 	// Producto
-	public Producto crearProducto(Vendedor vendedor, String nombre, String precio, String categoria, EstadoProducto estado);
-	public boolean actualizarProducto(Vendedor vendedor, String nombreActual, String nombre, String precio, String categoria, EstadoProducto estado);
+	public Producto crearProducto(Vendedor vendedor, String nombre, String precio, String categoria, EstadoProducto estado, String rutaImagen);
+	public boolean actualizarProducto(Vendedor vendedor, String nombreActual, String nombre, String precio, String categoria, EstadoProducto estado, String rutaImagen);
 	public boolean eliminarProducto(Vendedor vendedor, String nombre);
 	
 	// Usuario

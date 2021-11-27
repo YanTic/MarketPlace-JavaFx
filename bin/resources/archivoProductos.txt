@@ -1,8 +1,8 @@
-Juan@@Helado Pelapop@@5000@@Postre@@Publicado
-Juan@@Galleta@@999999@@COMIDA@@Cancelado
-Juan@@Servilletas@@3500@@Utiles de Cocina@@Cancelado
-Pedro@@Tabla@@1000@@Madera@@Publicado
-Jose@@Computador@@20000@@Electronica@@Publicado
-Jose@@Salchicha@@2500@@Carne@@Cancelado
-Julian@@Celular@@1000@@ELectronica@@Cancelado
-Roberto@@Cuaderno@@2000@@Utiles@@Publicado
+Juan@@Helado Pelapop@@5000@@Postre@@Publicado@@a
+Juan@@Galleta@@999999@@COMIDA@@Cancelado@@a
+Juan@@Servilletas@@3500@@Utiles de Cocina@@Cancelado@@a
+Pedro@@Tabla@@1000@@Madera@@Publicado@@a
+Jose@@Computador@@20000@@Electronica@@Publicado@@a
+Jose@@Salchicha@@2500@@Carne@@Cancelado@@a
+Julian@@Celular@@1000@@ELectronica@@Cancelado@@a
+Roberto@@Cuaderno@@2000@@Utiles@@Publicado@@a

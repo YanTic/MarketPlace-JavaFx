@@ -11,16 +11,16 @@ public class Producto implements Serializable {
 	private String precio;
 	private String categoria;
 	private EstadoProducto estado;
-	private ImageView imagen;
+	private String rutaImagen;
 
 	public Producto() { }
 	
-	public Producto(String nombre, String precio, String categoria, EstadoProducto estado, ImageView imagen) {
+	public Producto(String nombre, String precio, String categoria, EstadoProducto estado, String rutaImagen) {
 		this.nombre = nombre;
 		this.precio = precio;
 		this.categoria = categoria;
 		this.estado = estado;
-		this.imagen = imagen;
+		this.rutaImagen = rutaImagen;
 }
 	
 	
@@ -58,12 +58,12 @@ public class Producto implements Serializable {
 		this.estado = estado;
 	}
 
-	public ImageView getImagen() {
-		return imagen;
+	public String getRutaImagen() {
+		return rutaImagen;
 	}
 
-	public void setImagen(ImageView imagen) {
-		this.imagen = imagen;
+	public void setRutaImagen(String rutaImagen) {
+		this.rutaImagen = rutaImagen;
 	}
 	
 	

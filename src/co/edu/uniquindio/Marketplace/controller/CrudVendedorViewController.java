@@ -57,17 +57,18 @@ public class CrudVendedorViewController {
 	
 	
 	// CRUD comunica con ModelFactoryController  ( Producto )
-	public Producto crearProducto(Vendedor vendedor, String nombre, String precio, String categoria, EstadoProducto estado) {		
-		return modelFactoryController.crearProducto(vendedor, nombre, precio, categoria, estado);
+	public Producto crearProducto(Vendedor vendedor, String nombre, String precio, String categoria, EstadoProducto estado, String rutaImagen) {		
+		return modelFactoryController.crearProducto(vendedor, nombre, precio, categoria, estado, rutaImagen);
 	}
 	
 	public boolean eliminarProducto(Vendedor vendedor, String nombre) {		
 		return modelFactoryController.eliminarProducto(vendedor, nombre);
 	}
 
-	public boolean actualizarProducto(Vendedor vendedor, String nombreActual, String nombre, String precio, String categoria, EstadoProducto estado) {		
-		return modelFactoryController.actualizarProducto(vendedor, nombreActual, nombre, precio, categoria, estado);
+	public boolean actualizarProducto(Vendedor vendedor, String nombreActual, String nombre, String precio, String categoria, EstadoProducto estado, String rutaImagen) {		
+		return modelFactoryController.actualizarProducto(vendedor, nombreActual, nombre, precio, categoria, estado, rutaImagen);
 	}
+	
 	
 	
 	// Persistencia Metodos
@@ -81,6 +82,10 @@ public class CrudVendedorViewController {
 
 	public void guardarDatosTXT() {
 		modelFactoryController.guardarDatosTXT();
+	}
+	
+	public String copiarImagen(String nombreProducto, String rutaImagen){
+		return modelFactoryController.copiarImagen(nombreProducto, rutaImagen);
 	}
 
 

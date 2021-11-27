@@ -128,6 +128,7 @@ public class MarketplaceViewController implements Initializable{
 	Vendedor vendedorSeleccionado;
 	Vendedor contactoSeleccionado;
 	Producto productoSeleccionado;
+	String   rutaImagenProducto;
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -608,6 +609,18 @@ public class MarketplaceViewController implements Initializable{
 		tablaProductos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) ->{
 			productoSeleccionado = newSelection;
 			mostrarInformacionProducto(productoSeleccionado);
+			
+			
+			// Muestro la imagen en el ImageView
+			try{
+				Image imagen = new Image(MainApp.class.getResourceAsStream(productoSeleccionado.getRutaImagen()));
+				
+				imagenViewProducto.setImage(imagen);	
+			} catch(Exception e){ 
+				imagenViewProducto.setImage(null);
+				System.out.println("Imagen No encontrada");
+			}
+			
 		});
 
 	}
@@ -626,12 +639,13 @@ public class MarketplaceViewController implements Initializable{
 		String precio = txtPrecioProducto.getText();
 		String categoria = txtCategoriaProducto.getText();
 		EstadoProducto estado = cbEstadoProducto.getValue(); 
+		String rutaImagen = rutaImagenProducto;
 		
 		// Valida los datos
-		if(datosValidos(nombre, precio, categoria, estado)){
+		if(datosValidos(nombre, precio, categoria, estado, rutaImagen)){
 			Producto producto = null;
 			
-			producto = crudVendedorViewController.crearProducto(vendedor, nombre, precio, categoria, estado);
+			producto = crudVendedorViewController.crearProducto(vendedor, nombre, precio, categoria, estado, rutaImagen);
 			
 			if(producto != null){
 				listaProductosData.add(producto);
@@ -663,6 +677,7 @@ public class MarketplaceViewController implements Initializable{
 		txtPrecioProducto.clear();
 		txtCategoriaProducto.clear();
 		cbEstadoProducto.getSelectionModel().clearSelection();
+		imagenViewProducto.setImage(null);
 		
 		// setPromptText a diferencia de setText, es mejor, porque la letra es transparente
 		// y se elimina al tocar en el textfield, y no es como poner un texto plano y ya		
@@ -727,17 +742,18 @@ public class MarketplaceViewController implements Initializable{
 		String nombre = txtNombreProducto.getText();
 		String precio = txtPrecioProducto.getText();
 		String categoria = txtCategoriaProducto.getText();
-		EstadoProducto estado = cbEstadoProducto.getValue(); 
+		EstadoProducto estado = cbEstadoProducto.getValue();
+		String rutaImagen = rutaImagenProducto;
 		
 		boolean productoActualizado = false;
 		
 		// Verifico los datos
 		if(productoSeleccionado != null){
 			// Valido los datos
-			if(datosValidos(nombre, precio, categoria, estado)){
+			if(datosValidos(nombre, precio, categoria, estado, rutaImagen)){
 				
 //				vendedorActualizado = crudVendedorViewController.actualizarVendedor(vendedorSeleccionado.getCedula(), nombre, apellido, cedula, direccion);
-				productoActualizado = crudVendedorViewController.actualizarProducto(vendedor, productoSeleccionado.getNombre(),nombre, precio, categoria, estado);
+				productoActualizado = crudVendedorViewController.actualizarProducto(vendedor, productoSeleccionado.getNombre(),nombre, precio, categoria, estado, rutaImagen);
 				
 				if(productoActualizado == true){
 					tablaProductos.refresh();
@@ -771,24 +787,30 @@ public class MarketplaceViewController implements Initializable{
     	if(productoSeleccionado != null){
     		// Creo un fileChooser donde solo se pueda escoger imagenes .jpg o .png
     		FileChooser fileChooser = new FileChooser();
-        	FileChooser.ExtensionFilter ext1 = new FileChooser.ExtensionFilter("JPG files(*.jpg)","*.JPG");
+//        	FileChooser.ExtensionFilter ext1 = new FileChooser.ExtensionFilter("JPG files(*.jpg)","*.JPG");
         	FileChooser.ExtensionFilter ext2 = new FileChooser.ExtensionFilter("PNG files(*.png)","*.PNG");
-        	fileChooser.getExtensionFilters().addAll(ext1,ext2);
+        	fileChooser.getExtensionFilters().addAll(ext2);
         	
         	
         	File archivoSeleccionado = fileChooser.showOpenDialog(null);
         	
         	try {
-    	    	BufferedImage bf;
+        		        		
+    	    	BufferedImage bf;	
     	    	
     	    	if(archivoSeleccionado != null){
     	    		// Leo la imagen para luego mostrarla en el ImageView
     				bf = ImageIO.read(archivoSeleccionado);
     				
     	    		Image imagen = SwingFXUtils.toFXImage(bf, null);
-    	    		imagenViewProducto.setImage(imagen);
+    	    		imagenViewProducto.setImage(imagen);    	   
     	    		
+    	    		// Hacer una copia de la imagen porque la imagen le pertenece a la ruta especifica del usuario
+    	    		// Y guardo la nueva ruta para asignarsela al producto
+    	    		rutaImagenProducto = crudVendedorViewController.copiarImagen(productoSeleccionado.getNombre(),
+    	    																	 archivoSeleccionado.getAbsolutePath());    	    		
     	    		
+    	    	
     	    	}
     	    	else{
     	    		mostrarMensaje("Notifacion", "Archivo NO valido", "El archivo no ha sido encontrado", AlertType.ERROR);
@@ -885,7 +907,7 @@ public class MarketplaceViewController implements Initializable{
     /*
      * Este metodo valida los datos de un --- Producto ---
      * */
-    private boolean datosValidos(String nombre, String precio, String categoria, EstadoProducto estado){
+    private boolean datosValidos(String nombre, String precio, String categoria, EstadoProducto estado, String rutaImagen) {
     	String mensaje = "";
     	
     	if(nombre == null || nombre.equals(""))
@@ -899,6 +921,9 @@ public class MarketplaceViewController implements Initializable{
     	
     	if(estado == null || estado.equals(""))
     		mensaje += "Estado no valida\n";
+    	
+    	if(rutaImagen == null || rutaImagen.equals(""))
+    		mensaje += "Imagen no valida\n";
     	
     	
     	if(mensaje.equals("")){

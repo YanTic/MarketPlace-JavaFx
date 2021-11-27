@@ -131,7 +131,7 @@ public class Marketplace implements Serializable, IMarketplaceService{
 	
 	@Override
 	public Producto crearProducto(Vendedor vendedor, String nombre, String precio, String categoria, 
-								  EstadoProducto estado) throws ProductoException{
+								  EstadoProducto estado, String rutaImagen) throws ProductoException{
 		Producto nuevoProducto = null;
 		boolean flagProductoExiste = false;
 		
@@ -144,6 +144,7 @@ public class Marketplace implements Serializable, IMarketplaceService{
 			nuevoProducto.setPrecio(precio);
 			nuevoProducto.setCategoria(categoria);
 			nuevoProducto.setEstado(estado);
+			nuevoProducto.setRutaImagen(rutaImagen);
 			
 			vendedor.getListaProductos().add(nuevoProducto);
 		}
@@ -161,7 +162,8 @@ public class Marketplace implements Serializable, IMarketplaceService{
 	
 	@Override
 	public boolean actualizarProducto(Vendedor vendedor, String nombreActual, String nombre, 
-									  String precio, String categoria, EstadoProducto estado) 
+									  String precio, String categoria, EstadoProducto estado,
+									  String rutaImagen) 
 									  throws ProductoException {
 		Boolean flagActualizado = false;
 		Producto producto = getProducto(vendedor, nombreActual);
@@ -172,6 +174,7 @@ public class Marketplace implements Serializable, IMarketplaceService{
 			producto.setPrecio(precio);
 			producto.setCategoria(categoria);
 			producto.setEstado(estado);
+			producto.setRutaImagen(rutaImagen);
 			
 			flagActualizado = true;
 		}
@@ -181,7 +184,6 @@ public class Marketplace implements Serializable, IMarketplaceService{
 		
 		return flagActualizado;
 	}
-	
 	
 
 	@Override
