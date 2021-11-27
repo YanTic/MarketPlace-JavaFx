@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="507.0" prefWidth="646.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16">
+  <tabs>
+      <Tab fx:id="tabVendedorPrincipal" text="Vendedor Principal">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Pane layoutX="22.0" layoutY="26.0" prefHeight="83.0" prefWidth="128.0" style="-fx-background-color: BBFF98;">
+                     <children>
+                        <Label fx:id="labelVendedorNombre" layoutX="22.0" layoutY="27.0" text="Vendedor " textAlignment="CENTER">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Button fx:id="btnMostrarProductos" layoutX="27.0" layoutY="118.0" mnemonicParsing="false" onAction="#accionBtnMostrarProductos" prefHeight="35.0" prefWidth="117.0" text="Editar Productos">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <HBox alignment="CENTER" layoutX="197.0" layoutY="20.0" prefHeight="438.0" prefWidth="421.0" style="-fx-background-color: FFE7AA;">
+                     <children>
+                        <ScrollPane fx:id="scrollpaneProductos" prefHeight="438.0" prefWidth="437.0" style="-fx-background-color: FFE7AA;">
+                           <content>
+                              <GridPane fx:id="gridpaneProductos" prefHeight="0.0" prefWidth="0.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                              </GridPane>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </HBox>
+                  <TableView fx:id="tablaContactos" layoutX="22.0" layoutY="169.0" prefHeight="114.0" prefWidth="127.0" style="-fx-background-color: #85FFD5;">
+                     <columns>
+                        <TableColumn fx:id="columnaNombreContacto" prefWidth="125.99999936421712" text="Contactos" />
+                     </columns>
+                  </TableView>
+                  <TableView fx:id="tablaSugeridos" layoutX="22.0" layoutY="301.0" prefHeight="85.0" prefWidth="127.0" style="-fx-background-color: #85FFD5;">
+                     <columns>
+                        <TableColumn fx:id="columnaNombreSugeridos" prefWidth="125.99999936421712" text="Sugeridos" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+  </tabs>
+</TabPane>

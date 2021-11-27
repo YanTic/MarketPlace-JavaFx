@@ -1,11 +1,16 @@
 package co.edu.uniquindio.Marketplace.controller;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import javax.imageio.ImageIO;
+
 import co.edu.uniquindio.Marketplace.MainApp;
+import co.edu.uniquindio.Marketplace.controller.dinamico.TabContactoController;
 import co.edu.uniquindio.Marketplace.model.EstadoProducto;
 import co.edu.uniquindio.Marketplace.model.Marketplace;
 import co.edu.uniquindio.Marketplace.model.Producto;
@@ -13,6 +18,7 @@ import co.edu.uniquindio.Marketplace.model.Vendedor;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,9 +37,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 
 /*
  * ---- CONTROLADOR PRINCIPAL ----
@@ -88,6 +97,9 @@ public class MarketplaceViewController implements Initializable{
     @FXML private Button btnNuevoProducto;
     @FXML private Button btnAgregarProducto;
     @FXML private Button btnEliminarProducto;
+    @FXML private Button btnSubirImagenProducto;
+    @FXML private ImageView imagenViewProducto;
+    
     @FXML private TableView<Producto> tablaProductos;
     @FXML private TableColumn<Producto, String> columnaNombreProducto;
     @FXML private TableColumn<Producto, String> columnaPrecioProducto;
@@ -472,12 +484,23 @@ public class MarketplaceViewController implements Initializable{
     		tablaContactos.getItems().clear();	// Limpio la tabla porque se usan diferentes productos que pertenecen a otros vendedores
     		tablaContactos.setItems(getContactosData(mainApp.getVendedorSeleccionadoGeneral()));
     		
-    		// Acción de la tabla para mostrar informacion de un empleado
+    		// Acción de la tabla para mostrar informacion de un contacto
     		tablaContactos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) ->{
     			contactoSeleccionado = newSelection;
     			
+    			
     			// Usar doble click acá para mostrar el tab y talvez un mensjae de confirmacion
 //    			mostrarInformacionProducto(contactoSeleccionado); Esto sería como mostrar el tab del contacto
+    			try {    			
+	    			FXMLLoader fxmlLoader = new FXMLLoader();
+	    			fxmlLoader.setLocation(MainApp.class.getResource("view/tabView/contactoTab.fxml"));
+	    			TabContactoController tabContactoController = new TabContactoController();
+	    			
+					mainTabPane.getTabs().add(fxmlLoader.load());
+				} catch (IOException e) {				
+					e.printStackTrace();
+				}
+    			
     		});
     		
     		
@@ -741,6 +764,47 @@ public class MarketplaceViewController implements Initializable{
 		
 	
     }
+    
+    @FXML
+    void accionBtnSubirImagenProducto(ActionEvent event) {
+    	
+    	if(productoSeleccionado != null){
+    		// Creo un fileChooser donde solo se pueda escoger imagenes .jpg o .png
+    		FileChooser fileChooser = new FileChooser();
+        	FileChooser.ExtensionFilter ext1 = new FileChooser.ExtensionFilter("JPG files(*.jpg)","*.JPG");
+        	FileChooser.ExtensionFilter ext2 = new FileChooser.ExtensionFilter("PNG files(*.png)","*.PNG");
+        	fileChooser.getExtensionFilters().addAll(ext1,ext2);
+        	
+        	
+        	File archivoSeleccionado = fileChooser.showOpenDialog(null);
+        	
+        	try {
+    	    	BufferedImage bf;
+    	    	
+    	    	if(archivoSeleccionado != null){
+    	    		// Leo la imagen para luego mostrarla en el ImageView
+    				bf = ImageIO.read(archivoSeleccionado);
+    				
+    	    		Image imagen = SwingFXUtils.toFXImage(bf, null);
+    	    		imagenViewProducto.setImage(imagen);
+    	    		
+    	    		
+    	    	}
+    	    	else{
+    	    		mostrarMensaje("Notifacion", "Archivo NO valido", "El archivo no ha sido encontrado", AlertType.ERROR);
+    	    	}
+        	} catch (IOException e) {
+    			e.printStackTrace();
+    		}	
+    	}
+    	else{
+    		mostrarMensaje("Notifacion", "Error Imagen", "NO se puede agregar imagen sin elegir un producto", AlertType.ERROR);
+    	}
+    	
+    	
+       
+    }
+    
     
     
     /*

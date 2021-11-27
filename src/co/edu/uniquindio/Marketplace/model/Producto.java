@@ -2,6 +2,8 @@ package co.edu.uniquindio.Marketplace.model;
 
 import java.io.Serializable;
 
+import javafx.scene.image.ImageView;
+
 public class Producto implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -9,14 +11,16 @@ public class Producto implements Serializable {
 	private String precio;
 	private String categoria;
 	private EstadoProducto estado;
+	private ImageView imagen;
 
 	public Producto() { }
 	
-	public Producto(String nombre, String precio, String categoria, EstadoProducto estado) {
+	public Producto(String nombre, String precio, String categoria, EstadoProducto estado, ImageView imagen) {
 		this.nombre = nombre;
 		this.precio = precio;
 		this.categoria = categoria;
 		this.estado = estado;
+		this.imagen = imagen;
 }
 	
 	
@@ -53,5 +57,15 @@ public class Producto implements Serializable {
 	public void setEstado(EstadoProducto estado) {
 		this.estado = estado;
 	}
+
+	public ImageView getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(ImageView imagen) {
+		this.imagen = imagen;
+	}
+	
+	
 
 }

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+
+
+<Tab fx:id="tabContactoDinamica" text="Untitled Tab 1" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.Marketplace.controller.dinamico.TabContactoController" />

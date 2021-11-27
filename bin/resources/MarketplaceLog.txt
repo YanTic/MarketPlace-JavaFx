@@ -108,3 +108,15 @@ Nov 23, 2021 10:17:36 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil 
 INFO: Agregar Producto,El producto ha sido creado con exito!. Realizado por el Usuario : admin,2021-11-23
 Nov 23, 2021 10:17:43 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
 INFO: CerrarSesion,Cerrar sesion del usuario: admin,2021-11-23
+Nov 23, 2021 10:34:07 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-11-23
+Nov 26, 2021 7:04:42 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-11-26
+Nov 26, 2021 8:15:16 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-11-26
+Nov 26, 2021 8:16:55 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-11-26
+Nov 26, 2021 8:19:37 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-11-26
+Nov 26, 2021 9:42:16 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-11-26
