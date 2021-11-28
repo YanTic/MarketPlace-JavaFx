@@ -613,12 +613,30 @@ public class MarketplaceViewController implements Initializable{
 			
 			// Muestro la imagen en el ImageView
 			try{
-				Image imagen = new Image(MainApp.class.getResourceAsStream(productoSeleccionado.getRutaImagen()));
+//				Image imagen = new Image(getClass().getResourceAsStream(productoSeleccionado.getRutaImagen()));
+//				Image imagen = new Image(MainApp.class.getResourceAsStream(productoSeleccionado.getRutaImagen()));
+//				Image imagen = new Image(""+productoSeleccionado.getRutaImagen());
+//				Image imagen = new Image(productoSeleccionado.getRutaImagen());
 				
-				imagenViewProducto.setImage(imagen);	
-			} catch(Exception e){ 
+//				imagenViewProducto.setImage(imagen);
+				
+				File archivoImagen = new File(productoSeleccionado.getRutaImagen());
+				BufferedImage bf;	
+	        	
+				if(archivoImagen != null){
+    	    		// Leo la imagen para luego mostrarla en el ImageView
+    				bf = ImageIO.read(archivoImagen);
+    				
+    	    		Image imagen = SwingFXUtils.toFXImage(bf, null);
+    	    		imagenViewProducto.setImage(imagen);
+				}
+	        		        			    	    	
+				
+			} catch(IOException e){
+				
 				imagenViewProducto.setImage(null);
-				System.out.println("Imagen No encontrada");
+				System.out.println("Imagen No encontrada. Ruta: "+productoSeleccionado.getRutaImagen());
+//				e.printStackTrace();
 			}
 			
 		});

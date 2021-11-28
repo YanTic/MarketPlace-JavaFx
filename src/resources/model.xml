@@ -86,7 +86,7 @@
          <string>5000</string>
         </void>
         <void property="rutaImagen">
-         <string>src/resources/imagenesProducto/imagen_Helado Pelapop.png</string>
+         <string>src/resources/imagenesProducto/imagen_HeladoPelapop.png</string>
         </void>
        </object>
       </void>
@@ -108,7 +108,7 @@
          <string>999999</string>
         </void>
         <void property="rutaImagen">
-         <string>a</string>
+         <string>src/resources/imagenesProducto/imagen_Galleta.png</string>
         </void>
        </object>
       </void>
