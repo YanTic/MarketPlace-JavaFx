@@ -11,9 +11,9 @@ public class Vendedor implements Serializable {
 	private String cedula;
 	
 	private static final long serialVersionUID = 1L;
-	ArrayList<Producto> listaProductos = new ArrayList<>();
-	ArrayList<Vendedor> listaContactos = new ArrayList<>();
-
+	ArrayList<Producto> 	 listaProductos     = new ArrayList<>();
+	ArrayList<Vendedor> 	 listaContactos     = new ArrayList<>();
+	ArrayList<Publicacion> listaPublicaciones = new ArrayList<>();
 
 	public Vendedor() {}
 
@@ -73,6 +73,16 @@ public class Vendedor implements Serializable {
 	public void setCedula(String cedula) {
 		this.cedula = cedula;
 	}
+
+	public ArrayList<Publicacion> getListaPublicaciones() {
+		return listaPublicaciones;
+	}
+
+	public void setListaPublicaciones(ArrayList<Publicacion> listaPublicaciones) {
+		this.listaPublicaciones = listaPublicaciones;
+	}
+	
+	
 
 
 }

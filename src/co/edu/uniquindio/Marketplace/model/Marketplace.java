@@ -127,6 +127,7 @@ public class Marketplace implements Serializable, IMarketplaceService{
 	
 	
 	
+	
 	// -------------- METODOS PARA MODEL FACTORY CONTROLLER DE PRODUCTO --------------
 	
 	@Override
@@ -233,6 +234,33 @@ public class Marketplace implements Serializable, IMarketplaceService{
 		
 		return flagProductoExistente;
 	}
+	
+	
+	//////////////////////////////////////////////////////////////////////////////////
+	/*
+	 * Este metodo crea una publicacion cada vez que se crea/actualiza/elimina un producto 
+	 * */
+	public boolean crearPublicacion(Vendedor vendedor, Producto producto, String numeroLikes, 
+								    String fechaPublicado) {
+		Boolean flagPublicacionCreada = false;
+		
+		Publicacion nuevaPublicacion = new Publicacion();
+		nuevaPublicacion.setProducto(producto);
+		nuevaPublicacion.setNumeroLikes(0);
+		nuevaPublicacion.setComentarios(null);
+		nuevaPublicacion.setFechaPublicado(fechaPublicado);
+		
+//		else{
+//		// Aquí se propaga una excepcion, para que el ModelFactoryController la capture
+//			throw new ProductoException("El producto \""+nombre+ "\" NO se ha podido crear. Ya existe");			
+//		}
+		
+		
+		
+		return flagPublicacionCreada;
+	}
+	
+	
 	
 	
 	

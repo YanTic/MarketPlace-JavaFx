@@ -160,3 +160,11 @@ Nov 27, 2021 9:50:00 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil g
 INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-11-27
 Nov 27, 2021 9:51:10 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
 INFO: Actualizar Producto,El producto ha sido actualizado con exito!. Realizado por el Usuario : admin,2021-11-27
+Nov 28, 2021 8:26:56 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-11-28
+Nov 28, 2021 10:55:50 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-11-28
+Nov 28, 2021 10:59:45 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-11-28
+Nov 28, 2021 11:02:38 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: CerrarSesion,Cerrar sesion del usuario: admin,2021-11-28
