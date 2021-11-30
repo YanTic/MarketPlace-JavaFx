@@ -21,7 +21,7 @@
         <tabs>
             <Tab fx:id="tabAdministracion" text="Administracion">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <AnchorPane fx:id="anchorPaneTabAdministracion" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <TabPane prefHeight="478.0" prefWidth="646.0" tabClosingPolicy="UNAVAILABLE">
                           <tabs>

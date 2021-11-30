@@ -45,11 +45,12 @@ public class TabVendedorController implements Initializable{
 
 	// Principal
 	private TabPane mainTabPane;
-    @FXML private TabPane tabPaneVendedor;
-	@FXML private Tab tabCRUDProductos;
-	@FXML private Tab tabVendedorPrincipal;
-	
-	
+		@FXML private Tab tabVendedorPrincipal;
+		@FXML private TabPane tabPaneVendedor; 
+			@FXML private Tab tabInformacionVendedorPrincipal;
+			@FXML private Tab tabCRUDProductosVendedorPrincipal;
+			
+			
 	
 	@FXML private Label labelVendedorNombre;
 	@FXML private ScrollPane scrollpaneProductos;
@@ -99,7 +100,9 @@ public class TabVendedorController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		Platform.runLater(()->{
-			tabPaneVendedor.getTabs().remove(tabCRUDProductos);
+			tabPaneVendedor.getTabs().remove(tabCRUDProductosVendedorPrincipal);
+			
+			cargarInformacionTabVendedor();
 		});
 	}
 	
@@ -108,9 +111,9 @@ public class TabVendedorController implements Initializable{
 								  Usuario usuarioLogeado,
 								  Vendedor vendedorPrincipal){
 		this.mainTabPane = mainTabPane;
-		this.vendedorPrincipal = vendedorPrincipal;
-		this.usuarioLogeado = usuarioLogeado;
 		this.crudVendedorViewController = crudVendedorViewController;		
+		this.usuarioLogeado = usuarioLogeado;
+		this.vendedorPrincipal = vendedorPrincipal;
 }
 	
 	
@@ -118,10 +121,10 @@ public class TabVendedorController implements Initializable{
      * Este metodo crea un tabulador con la informacion (nombre, productos, contactos...)
      * del vendedor seleccionado en la tabla
      * */
-    public void cargarInformacionTabVendedor(TabPane mainTabPane, Vendedor vendedor){
-    	if(vendedor != null){
+    public void cargarInformacionTabVendedor(){
+    	if(vendedorPrincipal != null){
 //    		mainTabPane.getTabs().add(tabVendedorPrincipal);
-    		labelVendedorNombre.setText(vendedor.getNombre());
+    		labelVendedorNombre.setText(vendedorPrincipal.getNombre());
     		cargarPublicacionesVendedor();
     		
     		
@@ -132,7 +135,7 @@ public class TabVendedorController implements Initializable{
     		// Añade los datos de la lista observable a la tabla
     		// Esa lista se obtiene del modelFactoryController, que se obtiene desde un CRUD
     		tablaContactos.getItems().clear();	// Limpio la tabla porque se usan diferentes productos que pertenecen a otros vendedores
-    		tablaContactos.setItems(getContactosData(vendedor));
+    		tablaContactos.setItems(getContactosData(vendedorPrincipal));
     		
     		// Acción de la tabla para mostrar informacion de un contacto
     		tablaContactos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) ->{
@@ -169,26 +172,16 @@ public class TabVendedorController implements Initializable{
 	
 	@FXML
     void accionBtnEditarProductos(ActionEvent event) {
-
+		mostrarTabCRUDProductos();
     }
 	
-	@FXML
-    void accionBtnMostrarVendedor(ActionEvent event) {
-//	    	mostrarTabVendedor();
-    }    
-	    
-	    
-
-    @FXML
-    void accionBtnMostrarProductos(ActionEvent event) {
-    	mostrarTabCRUDProductos();
-    }
-    
     /*
      * Este metodo muestra el tab de 'CRUD Productos', para el vendedor seleccionado
      * */
     public void mostrarTabCRUDProductos(){
-    	mainTabPane.getTabs().add(tabCRUDProductos);
+    	
+//    	mainTabPane.getTabs().add(tabCRUDProductos);
+    	tabPaneVendedor.getTabs().add(tabCRUDProductosVendedorPrincipal);
     	inicializarProductoView();
     	tablaProductos.refresh();
     }
