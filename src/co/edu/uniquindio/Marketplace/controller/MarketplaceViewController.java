@@ -457,12 +457,16 @@ public class MarketplaceViewController implements Initializable{
     	try {    			
 			FXMLLoader fxmlLoader = new FXMLLoader();
 			fxmlLoader.setLocation(MainApp.class.getResource("view/tabView/vendedorTab.fxml"));
-			TabVendedorController tabVendedorController = new TabVendedorController();
-			tabVendedorController.establecerValores(mainTabPane, crudVendedorViewController, 
+			mainTabPane.getTabs().add(fxmlLoader.load());
+			
+			// RECORDAR: El error anterior de que no se establecian los datos en el controlador,
+			// 			 era porque el fxmlLoader no se habia cargado antes (.load()), así que 
+			//			 se tiene que cargar antes de asignarle el controlador y los valores
+			
+			TabVendedorController tabVendedorController = fxmlLoader.getController();
+			tabVendedorController.establecerValores(/*mainTabPane,*/ crudVendedorViewController, 
 													mainApp.getUsuarioLogeado(), vendedorSeleccionado);
 			
-			mainTabPane.getTabs().add(fxmlLoader.load());
-//			anchorPaneTabAdministracion.getChildren().add(fxmlLoader.load());
 		} catch (IOException e) {				
 			e.printStackTrace();
 		}

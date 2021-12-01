@@ -182,3 +182,21 @@ Nov 30, 2021 10:02:21 AM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil 
 INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-11-30
 Nov 30, 2021 10:05:34 AM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
 INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-11-30
+Nov 30, 2021 12:55:52 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-11-30
+Nov 30, 2021 12:58:10 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-11-30
+Nov 30, 2021 1:00:14 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-11-30
+Nov 30, 2021 1:01:47 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-11-30
+Nov 30, 2021 1:11:07 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-11-30
+Nov 30, 2021 9:17:27 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-11-30
+Nov 30, 2021 9:24:36 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-11-30
+Nov 30, 2021 9:37:25 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-11-30
+Nov 30, 2021 9:39:59 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: CerrarSesion,Cerrar sesion del usuario: admin,2021-11-30

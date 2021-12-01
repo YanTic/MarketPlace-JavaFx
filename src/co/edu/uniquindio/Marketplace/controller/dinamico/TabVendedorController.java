@@ -102,15 +102,17 @@ public class TabVendedorController implements Initializable{
 		Platform.runLater(()->{
 			tabPaneVendedor.getTabs().remove(tabCRUDProductosVendedorPrincipal);
 			
-			cargarInformacionTabVendedor();
+//			labelVendedorNombre.setText(vendedorPrincipal.getNombre());
+			cargarInformacionTabVendedor();							
+			
 		});
 	}
 	
-	public void establecerValores(TabPane mainTabPane,
+	public void establecerValores(/*TabPane mainTabPane,*/
 								  CrudVendedorViewController crudVendedorViewController,
 								  Usuario usuarioLogeado,
 								  Vendedor vendedorPrincipal){
-		this.mainTabPane = mainTabPane;
+//		this.mainTabPane = mainTabPane;
 		this.crudVendedorViewController = crudVendedorViewController;		
 		this.usuarioLogeado = usuarioLogeado;
 		this.vendedorPrincipal = vendedorPrincipal;
@@ -147,7 +149,7 @@ public class TabVendedorController implements Initializable{
     			try {    			
 	    			FXMLLoader fxmlLoader = new FXMLLoader();
 	    			fxmlLoader.setLocation(MainApp.class.getResource("view/tabView/contactoTab.fxml"));
-	    			TabContactoController tabContactoController = new TabContactoController();
+	    			TabContactoController tabContactoController = fxmlLoader.getController();
 	    			
 					tabPaneVendedor.getTabs().add(fxmlLoader.load());
 				} catch (IOException e) {				
