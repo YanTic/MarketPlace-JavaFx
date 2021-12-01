@@ -2,8 +2,6 @@ package co.edu.uniquindio.Marketplace.model;
 
 import java.io.Serializable;
 
-import javafx.scene.image.ImageView;
-
 public class Producto implements Serializable {
 	
 	private static final long serialVersionUID = 1L;

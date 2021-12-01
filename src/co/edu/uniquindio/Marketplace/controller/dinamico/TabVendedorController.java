@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -38,17 +39,17 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 
 public class TabVendedorController implements Initializable{
 
 	// Principal
-	private TabPane mainTabPane;
-		@FXML private Tab tabVendedorPrincipal;
-		@FXML private TabPane tabPaneVendedor; 
-			@FXML private Tab tabInformacionVendedorPrincipal;
-			@FXML private Tab tabCRUDProductosVendedorPrincipal;
+	@FXML private Tab tabVendedorPrincipal;
+	@FXML private TabPane tabPaneVendedor; 
+		@FXML private Tab tabInformacionVendedorPrincipal;
+		@FXML private Tab tabCRUDProductosVendedorPrincipal;
 			
 			
 	
@@ -102,14 +103,11 @@ public class TabVendedorController implements Initializable{
 		Platform.runLater(()->{
 			tabPaneVendedor.getTabs().remove(tabCRUDProductosVendedorPrincipal);
 			
-//			labelVendedorNombre.setText(vendedorPrincipal.getNombre());
 			cargarInformacionTabVendedor();							
-			
 		});
 	}
 	
-	public void establecerValores(/*TabPane mainTabPane,*/
-								  CrudVendedorViewController crudVendedorViewController,
+	public void establecerValores(CrudVendedorViewController crudVendedorViewController,
 								  Usuario usuarioLogeado,
 								  Vendedor vendedorPrincipal){
 //		this.mainTabPane = mainTabPane;
@@ -125,7 +123,7 @@ public class TabVendedorController implements Initializable{
      * */
     public void cargarInformacionTabVendedor(){
     	if(vendedorPrincipal != null){
-//    		mainTabPane.getTabs().add(tabVendedorPrincipal);
+    		
     		labelVendedorNombre.setText(vendedorPrincipal.getNombre());
     		cargarPublicacionesVendedor();
     		
@@ -165,11 +163,41 @@ public class TabVendedorController implements Initializable{
     	}
     }
     
-    
     public void cargarPublicacionesVendedor(){
+    	ArrayList<Producto> productos = getListaProductos(vendedorPrincipal);
+    	int filas = 0;
     	
+    	for(int i=0; i<productos.size(); i++){
+    		try {
+	    		FXMLLoader fxmlLoader = new FXMLLoader();
+				fxmlLoader.setLocation(MainApp.class.getResource("view/tabView/producto.fxml"));
+				AnchorPane anchorPane = fxmlLoader.load();
+			
+				
+				ProductoController productoController = fxmlLoader.getController();
+				productoController.establecerDatos(productos.get(i), "Publicado: "+ "27_11_2021");
+				
+				gridpaneProductos.add(anchorPane, 0, filas); // (Nodo, Columna, Filas)
+				filas++;
+				
+			} catch (IOException e) {
+
+				e.printStackTrace();
+			}
+			
+			
+    	}
     	
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 	
 	@FXML
@@ -182,20 +210,15 @@ public class TabVendedorController implements Initializable{
      * */
     public void mostrarTabCRUDProductos(){
     	
-//    	mainTabPane.getTabs().add(tabCRUDProductos);
     	tabPaneVendedor.getTabs().add(tabCRUDProductosVendedorPrincipal);
     	inicializarProductoView();
     	tablaProductos.refresh();
     }
 	    
+    
 	    
 	    
-	    
-	    
-	    
-	    
-	    
-    // -------------- METODOS PARA PRODUCTO VIEW CONTROLLER --------------
+    // -------------- METODOS PARA CRUD PRODUCTO VIEW CONTROLLER --------------
     
 	
 	public void inicializarProductoView(){
@@ -524,6 +547,10 @@ public class TabVendedorController implements Initializable{
     	
     } 
     
+    
+    public ArrayList<Producto> getListaProductos(Vendedor vendedorSeleccionado){
+    	return crudVendedorViewController.getListaProductos(vendedorSeleccionado);
+    }
     
     
     /*

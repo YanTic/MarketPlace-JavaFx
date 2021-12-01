@@ -13,7 +13,7 @@ public class Vendedor implements Serializable {
 	private static final long serialVersionUID = 1L;
 	ArrayList<Producto> 	 listaProductos     = new ArrayList<>();
 	ArrayList<Vendedor> 	 listaContactos     = new ArrayList<>();
-	ArrayList<Publicacion> listaPublicaciones = new ArrayList<>();
+	ArrayList<Publicacion>   listaPublicaciones = new ArrayList<>();
 
 	public Vendedor() {}
 

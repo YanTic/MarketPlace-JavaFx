@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -32,10 +33,15 @@
                      </font>
                   </Label>
                   <Label fx:id="fechaPublicadoProducto" prefHeight="17.0" prefWidth="267.0" text="Publicado: 27_11_2021" />
-                  <Pane prefHeight="29.0" prefWidth="275.0" />
-                  <HBox prefHeight="28.0" prefWidth="275.0">
+                  <Pane prefHeight="19.0" prefWidth="275.0" />
+                  <HBox prefHeight="0.0" prefWidth="275.0">
                      <children>
-                        <Button fx:id="btnLikeProducto" contentDisplay="CENTER" mnemonicParsing="false" onAction="#accionBtnLikeProducto" textAlignment="CENTER">
+                        <Label fx:id="cantidadLikes" alignment="CENTER" prefHeight="23.0" prefWidth="25.0" text="10" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btnLikeProducto" contentDisplay="CENTER" mnemonicParsing="false" onAction="#accionBtnLikeProducto" prefHeight="0.0" prefWidth="0.0" textAlignment="CENTER">
                            <graphic>
                               <ImageView fitHeight="39.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -44,7 +50,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button fx:id="btnComentariosProducto" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#accionBtnComentariosProducto" textAlignment="CENTER">
+                        <Button fx:id="btnComentariosProducto" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#accionBtnComentariosProducto" prefHeight="0.0" prefWidth="0.0" textAlignment="CENTER">
                            <graphic>
                               <ImageView fitHeight="39.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -53,9 +59,18 @@
                               </ImageView>
                            </graphic>
                         </Button>
+                        <Pane prefHeight="28.0" prefWidth="119.0" />
+                        <Label prefHeight="28.0" prefWidth="91.0" text="Publicado">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Label>
                      </children>
                   </HBox>
                </children>
+               <HBox.margin>
+                  <Insets top="3.0" />
+               </HBox.margin>
             </VBox>
          </children>
       </HBox>

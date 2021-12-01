@@ -464,8 +464,8 @@ public class MarketplaceViewController implements Initializable{
 			//			 se tiene que cargar antes de asignarle el controlador y los valores
 			
 			TabVendedorController tabVendedorController = fxmlLoader.getController();
-			tabVendedorController.establecerValores(/*mainTabPane,*/ crudVendedorViewController, 
-													mainApp.getUsuarioLogeado(), vendedorSeleccionado);
+			tabVendedorController.establecerValores(crudVendedorViewController, mainApp.getUsuarioLogeado(), 
+													vendedorSeleccionado);
 			
 		} catch (IOException e) {				
 			e.printStackTrace();
