@@ -17,6 +17,7 @@ import co.edu.uniquindio.Marketplace.exceptions.UsuarioException;
 import co.edu.uniquindio.Marketplace.model.EstadoProducto;
 import co.edu.uniquindio.Marketplace.model.Marketplace;
 import co.edu.uniquindio.Marketplace.model.Producto;
+import co.edu.uniquindio.Marketplace.model.Publicacion;
 import co.edu.uniquindio.Marketplace.model.Usuario;
 import co.edu.uniquindio.Marketplace.model.Vendedor;
 
@@ -30,6 +31,7 @@ public class Persistencia {
 	public static final String RUTA_ARCHIVO_USUARIOS = "src/resources/archivoUsuarios.txt";
 	public static final String RUTA_ARCHIVO_PRODUCTOS = "src/resources/archivoProductos.txt";
 	public static final String RUTA_ARCHIVO_CONTACTOS = "src/resources/archivoContactos.txt";
+	public static final String RUTA_ARCHIVO_PUBLICACIONES = "src/resources/archivoPublicaciones.txt";
 	public static final String RUTA_ARCHIVO_LOG = "src/resources/MarketplaceLog.txt";
 	public static final String RUTA_ARCHIVO_MODELO_MARKETPLACE_BINARIO = "src/resources/model.dat";
 	public static final String RUTA_ARCHIVO_MODELO_MARKETPLACE_XML = "src/resources/model.xml";
@@ -43,6 +45,7 @@ public class Persistencia {
 	public static final String RUTA_ARCHIVO_SEGURIDAD_USUARIOS = "C:/td/persistencia/archivos/archivoUsuarios.txt";
 	public static final String RUTA_ARCHIVO_SEGURIDAD_PRODUCTOS = "C:/td/persistencia/archivos/archivoProductos.txt";
 	public static final String RUTA_ARCHIVO_SEGURIDAD_CONTACTOS = "C:/td/persistencia/archivos/archivoContactos.txt";
+	public static final String RUTA_ARCHIVO_SEGURIDAD_PUBLICACIONES = "C:/td/persistencia/archivos/archivoPublicaciones.txt";
 	
 	public static final String RUTA_ARCHIVO_SEGURIDAD_RESPALDO = "C:/td/persistencia/respaldo/Marketplace_";
 	
@@ -104,6 +107,7 @@ public class Persistencia {
 		String contenidoVendedores = "";
 		String contenidoProductos = "";
 		String contenidoContactos = "";
+		String contenidoPublicaciones = "";
 		
 		for(Vendedor vendedor :listaVendedores) 
 		{
@@ -111,12 +115,14 @@ public class Persistencia {
 					     		   vendedor.getCedula()+ "@@"+ vendedor.getDireccion()+ "\n";
 			contenidoProductos += guardarProductos(vendedor);
 			contenidoContactos += guardarContactos(vendedor);
+			contenidoPublicaciones += guardarPublicaciones(vendedor); 
 			
 		}
 		
 		ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_VENDEDORES, contenidoVendedores, false);
 		ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_PRODUCTOS, contenidoProductos, false);
 		ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_CONTACTOS, contenidoContactos, false);
+		ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_PUBLICACIONES, contenidoPublicaciones, false);
 		
 	}
 	
@@ -144,6 +150,22 @@ public class Persistencia {
 		{
 			contenido += vendedor.getNombre()+ "@@"+ contacto.getNombre()+ "@@"+ 
 						 contacto.getCedula()+ "\n";
+		}
+		
+		return contenido;
+	}
+	
+	public static String guardarPublicaciones(Vendedor vendedor) throws IOException {
+		String contenido = "";
+		
+		System.out.println("GUARDANDO PUBLICACIONES");
+		
+		for(Publicacion publicacion : vendedor.getListaPublicaciones()) 
+		{
+			contenido += vendedor.getNombre()+ "@@"+ publicacion.getNombreProducto()+ "@@"+ 
+					     publicacion.getPrecioProducto()+ "@@"+ publicacion.getRutaImagenProducto()+ "@@"+
+					     publicacion.getEstadoProducto()+ "@@"+ publicacion.getFechaPublicado()+ "@@"+
+					     publicacion.getCantidadLikes()+ "\n";
 		}
 		
 		return contenido;
@@ -210,6 +232,7 @@ public class Persistencia {
 			
 			vendedor.getListaProductos().addAll(cargarProductos(vendedor));
 			vendedor.getListaContactos().addAll(cargarContactos(vendedor));
+			vendedor.getListaPublicaciones().addAll(cargarPublicaciones(vendedor));
 //			vendedor.setListaProductos(cargarProductos(vendedor));
 			
 			vendedores.add(vendedor);
@@ -246,13 +269,7 @@ public class Persistencia {
 				
 				vendedor.getListaProductos().add(producto);	
 			}
-			
-			
-//			cliente.setCorreo(linea.split(",")[4]);
-//			cliente.setFechaNacimiento(linea.split(",")[5]);
-//			cliente.setTelefono(linea.split(",")[6]);
-			
-//			producto.add(vendedor);
+		
 		}
 		return productos;
 	}
@@ -281,6 +298,42 @@ public class Persistencia {
 		}
 		
 		return contactos;
+	}
+	
+	public static ArrayList<Publicacion> cargarPublicaciones(Vendedor vendedor) throws FileNotFoundException, IOException 
+	{
+		ArrayList<Publicacion> publicaciones = new ArrayList<Publicacion>();
+		
+		ArrayList<String> contenido = ArchivoUtil.leerArchivo(RUTA_ARCHIVO_PUBLICACIONES);
+		String linea="";
+		
+		for (int i = 0; i < contenido.size(); i++)
+		{
+			linea = contenido.get(i);	// Juan@@Helado Pelapop@@5000@@src/view/imagen@@Publicado@@11_10_2021@@3
+			
+			// Verifico si le estoy añadiendo los productos al vendedor correspondiente
+			if(linea.split("@@")[0].equals(vendedor.getNombre())){
+				
+//				contenido += vendedor.getNombre()+ "@@"+ publicacion.getNombreProducto()+ "@@"+ 
+//					     publicacion.getPrecioProducto()+ "@@"+ publicacion.getRutaImagenProducto()+ "@@"+
+//					     publicacion.getEstadoProducto()+ "@@"+ publicacion.getFechaPublicado()+ "@@"+
+//					     publicacion.getCantidadLikes()+ "\n"; 
+				
+				Publicacion publicacion = new Publicacion();
+				
+				// No se carga el "linea.split("@@")[0]" porque es el nombre del vendedor
+				publicacion.setNombreProducto(linea.split("@@")[1]);
+				publicacion.setPrecioProducto(linea.split("@@")[2]);
+				publicacion.setRutaImagenProducto(linea.split("@@")[3]);
+				publicacion.setEstadoProducto(linea.split("@@")[4]);
+				publicacion.setFechaPublicado(linea.split("@@")[5]);
+				publicacion.setCantidadLikes(Integer.parseInt(linea.split("@@")[6]));
+				
+				vendedor.getListaPublicaciones().add(publicacion);
+			}
+			
+		}
+		return publicaciones; // La verdad no se para que retorno si esto está vacio, directamente la publicacion se le agrega a la lista del vendedor
 	}
 	
 	
@@ -421,6 +474,13 @@ public class Persistencia {
 		return rutaDestino;
 		
 	}
+	
+	
+	public static String getFechaSistema(){
+		return ArchivoUtil.fechaSistema();
+	}
+	
+	
 
 	
 //	public static void guardarAppendVendedores(ArrayList<Vendedor> listaVendedores) throws IOException {
@@ -569,7 +629,8 @@ public class Persistencia {
 		try {
 			ArchivoUtil.copiarArchivo(RUTA_ARCHIVO_VENDEDORES, RUTA_ARCHIVO_SEGURIDAD_VENDEDORES);
 			ArchivoUtil.copiarArchivo(RUTA_ARCHIVO_PRODUCTOS, RUTA_ARCHIVO_SEGURIDAD_PRODUCTOS);
-//			ArchivoUtil.copiarArchivo(RUTA_ARCHIVO_CONTACTOS, RUTA_ARCHIVO_SEGURIDAD_CONTACTOS);
+			ArchivoUtil.copiarArchivo(RUTA_ARCHIVO_CONTACTOS, RUTA_ARCHIVO_SEGURIDAD_CONTACTOS);
+			ArchivoUtil.copiarArchivo(RUTA_ARCHIVO_PUBLICACIONES, RUTA_ARCHIVO_SEGURIDAD_PUBLICACIONES);
 			ArchivoUtil.copiarArchivo(RUTA_ARCHIVO_USUARIOS, RUTA_ARCHIVO_SEGURIDAD_USUARIOS);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

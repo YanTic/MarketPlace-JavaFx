@@ -1,6 +1,6 @@
 Juan@@Helado Pelapop@@5000@@Postre@@Publicado@@src/resources/imagenesProducto/imagen_HeladoPelapop.png
-Juan@@Galleta@@999999@@COMIDA@@Cancelado@@src/resources/imagenesProducto/imagen_Galleta.png
-Juan@@Servilletas@@3500@@Utiles de Cocina@@Cancelado@@a
+Juan@@Galleta@@600@@COMIDA@@Cancelado@@src/resources/imagenesProducto/imagen_Galleta.png
+Juan@@Servilletas@@3500@@Utiles de Cocina@@Cancelado@@src/resources/imagenesProducto/imagen_Servilletas.png
 Pedro@@Tabla@@1000@@Madera@@Publicado@@a
 Jose@@Computador@@20000@@Electronica@@Publicado@@a
 Jose@@Salchicha@@2500@@Carne@@Cancelado@@a

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import co.edu.uniquindio.Marketplace.model.EstadoProducto;
 import co.edu.uniquindio.Marketplace.model.Producto;
+import co.edu.uniquindio.Marketplace.model.Publicacion;
 import co.edu.uniquindio.Marketplace.model.Usuario;
 import co.edu.uniquindio.Marketplace.model.Vendedor;
 
@@ -17,6 +18,7 @@ public interface IModelFactoryService {
 	public ArrayList<Usuario>  getListaUsuarios();
 	public ArrayList<Producto> getListaProductos(Vendedor vendedorSeleccionado);
 	public ArrayList<Vendedor> getListaContactos(Vendedor vendedorSeleccionado);
+	public ArrayList<Publicacion> getListaPublicaciones(Vendedor vendedorSeleccionado);
 	
 	// Producto
 	public Producto crearProducto(Vendedor vendedor, String nombre, String precio, String categoria, EstadoProducto estado, String rutaImagen);

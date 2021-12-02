@@ -191,6 +191,8 @@ public  class ArchivoUtil {
 		
 		return diaN+"_"+mesN+"_"+año+"_"+hora+"_"+minuto+"_"+segundo;
 	}
+	
+	
 
 	
 	

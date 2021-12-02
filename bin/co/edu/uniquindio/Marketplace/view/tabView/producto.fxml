@@ -13,7 +13,7 @@
 
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="123.0" prefWidth="398.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.Marketplace.controller.dinamico.ProductoController">
    <children>
-      <HBox prefHeight="57.0" prefWidth="133.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="CENTER" prefHeight="57.0" prefWidth="133.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fx:id="imagenProducto" fitHeight="123.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -33,15 +33,15 @@
                      </font>
                   </Label>
                   <Label fx:id="fechaPublicadoProducto" prefHeight="17.0" prefWidth="267.0" text="Publicado: 27_11_2021" />
-                  <Pane prefHeight="23.0" prefWidth="275.0" />
-                  <HBox prefHeight="28.0" prefWidth="275.0">
+                  <Pane prefHeight="19.0" prefWidth="275.0" />
+                  <HBox prefHeight="0.0" prefWidth="275.0">
                      <children>
-                        <Label fx:id="cantidadLikes" alignment="CENTER" prefHeight="25.0" prefWidth="36.0" text="10" textAlignment="CENTER">
+                        <Label fx:id="cantidadLikes" alignment="CENTER" prefHeight="23.0" prefWidth="25.0" text="10" textAlignment="CENTER">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <Button fx:id="btnLikeProducto" contentDisplay="CENTER" mnemonicParsing="false" onAction="#accionBtnLikeProducto" textAlignment="CENTER">
+                        <Button fx:id="btnLikeProducto" contentDisplay="CENTER" mnemonicParsing="false" onAction="#accionBtnLikeProducto" prefHeight="0.0" prefWidth="0.0" textAlignment="CENTER">
                            <graphic>
                               <ImageView fitHeight="39.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -50,7 +50,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button fx:id="btnComentariosProducto" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#accionBtnComentariosProducto" textAlignment="CENTER">
+                        <Button fx:id="btnComentariosProducto" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#accionBtnComentariosProducto" prefHeight="0.0" prefWidth="0.0" textAlignment="CENTER">
                            <graphic>
                               <ImageView fitHeight="39.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -60,7 +60,7 @@
                            </graphic>
                         </Button>
                         <Pane prefHeight="28.0" prefWidth="119.0" />
-                        <Label prefHeight="28.0" prefWidth="91.0" text="Publicado">
+                        <Label fx:id="productoEstado" prefHeight="28.0" prefWidth="91.0" text="Publicadoo">
                            <font>
                               <Font size="10.0" />
                            </font>

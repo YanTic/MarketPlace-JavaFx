@@ -14,11 +14,13 @@ import co.edu.uniquindio.Marketplace.model.Vendedor;
 import co.edu.uniquindio.Marketplace.model.services.IModelFactoryService;
 import co.edu.uniquindio.Marketplace.persistencia.Persistencia;
 import co.edu.uniquindio.Marketplace.exceptions.ProductoException;
+import co.edu.uniquindio.Marketplace.exceptions.PublicacionException;
 import co.edu.uniquindio.Marketplace.exceptions.UsuarioException;
 import co.edu.uniquindio.Marketplace.exceptions.VendedorException;
 import co.edu.uniquindio.Marketplace.model.EstadoProducto;
 import co.edu.uniquindio.Marketplace.model.Marketplace;
 import co.edu.uniquindio.Marketplace.model.Producto;
+import co.edu.uniquindio.Marketplace.model.Publicacion;
 import co.edu.uniquindio.Marketplace.model.Usuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -61,7 +63,11 @@ public class ModelFactoryController implements IModelFactoryService{
 //		iniciarSalvarDatosPrueba();
 		
 		// 2. Cargar los datos de los archivos
-		cargarDatosDesdeArchivos();
+//		cargarDatosDesdeArchivos();
+		
+		// RECORDAR: Cuando quiera cambiar, modificar o agregar informacion, es mejor modificar los
+		//			 .txt, así que se cargan los datos desde archivos (es usa el metodo anterior),
+		//			 para luego guardarlo en xml. Cuando ya se haga esto se carga directamente en xml
 		
 		// 3. Guardar y cargar el recurso serializable binario
 //		guardarResourceBinario();
@@ -69,7 +75,7 @@ public class ModelFactoryController implements IModelFactoryService{
 		
 		// 4. Guardar y cargar el recurso serializable XML
 //		guardarResourceXML();
-//		cargarResourceXML();
+		cargarResourceXML();
 		
 		// Siempre se verifica si la raiz del recurso es null
 		if(marketplace == null){
@@ -327,10 +333,20 @@ public class ModelFactoryController implements IModelFactoryService{
 		Producto producto = null;
 		
 		try{
-			producto = marketplace.crearProducto(vendedor, nombre, precio, categoria, estado, rutaImagen);			
+			producto = marketplace.crearProducto(vendedor, nombre, precio, categoria, estado, rutaImagen);
+			
+			// Creo la publicacion del producto
+			if(producto != null){
+				marketplace.crearPublicacion(vendedor, producto, Persistencia.getFechaSistema());				
+			}
+			
 		}
 		catch(ProductoException e){
 			Persistencia.guardaRegistroLog(e.getMessage(), 2, "Producto Exception");
+			e.getMessage();
+		}
+		catch(PublicacionException e){
+			Persistencia.guardaRegistroLog(e.getMessage(), 2, "Publicacion Exception");
 			e.getMessage();
 		}
 		
@@ -344,10 +360,21 @@ public class ModelFactoryController implements IModelFactoryService{
 		
 		try {
 			flagProductoEliminado = marketplace.eliminarProducto(vendedor, nombre);
-		} catch (ProductoException e) {
+			
+			if(flagProductoEliminado != false){
+				marketplace.eliminarPublicacion(vendedor, nombre);
+			}
+			
+		} 
+		catch (ProductoException e) {
 			Persistencia.guardaRegistroLog(e.getMessage(), 2, "Producto Exception");
 			e.getMessage();
+		} 
+		catch (PublicacionException e){
+			Persistencia.guardaRegistroLog(e.getMessage(), 2, "Publicacion Exception");
+			e.getMessage();
 		}
+		
 		
 		return flagProductoEliminado;
 	}
@@ -360,8 +387,17 @@ public class ModelFactoryController implements IModelFactoryService{
 		
 		try {
 			flagVendedorActualizado = marketplace.actualizarProducto(vendedor, nombreActual, nombre, precio, categoria, estado, rutaImagen);
-		} catch (ProductoException e) {
+			
+			if(flagVendedorActualizado != false){
+				marketplace.actualizarPublicacion(vendedor, nombre);
+			}
+		} 
+		catch (ProductoException e) {
 			Persistencia.guardaRegistroLog(e.getMessage(), 2, "Producto Exception");
+			e.getMessage();
+		}
+		catch (PublicacionException e){
+			Persistencia.guardaRegistroLog(e.getMessage(), 2, "Publicacion Exception");
 			e.getMessage();
 		}
 		
@@ -441,6 +477,12 @@ public class ModelFactoryController implements IModelFactoryService{
 	public ArrayList<Producto> getListaProductos(Vendedor vendedorSeleccionado) {
 		return marketplace.getListaVendedores().get(marketplace.getListaVendedores().
 						   indexOf(vendedorSeleccionado)).getListaProductos();
+	}
+	
+	@Override
+	public ArrayList<Publicacion> getListaPublicaciones(Vendedor vendedorSeleccionado) {
+		return marketplace.getListaVendedores().get(marketplace.getListaVendedores().
+						   indexOf(vendedorSeleccionado)).getListaPublicaciones();
 	}
 
 	@Override

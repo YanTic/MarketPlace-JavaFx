@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import co.edu.uniquindio.Marketplace.exceptions.ProductoException;
+import co.edu.uniquindio.Marketplace.exceptions.PublicacionException;
 import co.edu.uniquindio.Marketplace.exceptions.UsuarioException;
 import co.edu.uniquindio.Marketplace.exceptions.VendedorException;
 import co.edu.uniquindio.Marketplace.model.services.IMarketplaceService;
@@ -237,28 +238,86 @@ public class Marketplace implements Serializable, IMarketplaceService{
 	
 	
 	//////////////////////////////////////////////////////////////////////////////////
+	// --------- METODOS PARA LAS PUBLICACIONES -----------------
 	/*
-	 * Este metodo crea una publicacion cada vez que se crea/actualiza/elimina un producto 
+	 * Este metodo crea una publicacion cada vez que se crea un producto
+	 * No le paso el numero de likes porque estos se generan desde otro
+	 * Controlador como los comentarios 
 	 * */
-	public boolean crearPublicacion(Vendedor vendedor, Producto producto, String numeroLikes, 
-								    String fechaPublicado) {
-		Boolean flagPublicacionCreada = false;
+	@Override
+	public void crearPublicacion(Vendedor vendedor, Producto producto, String fechaPublicado) throws PublicacionException{
 		
-		Publicacion nuevaPublicacion = new Publicacion();
-		nuevaPublicacion.setProducto(producto);
-		nuevaPublicacion.setNumeroLikes(0);
-		nuevaPublicacion.setComentarios(null);
-		nuevaPublicacion.setFechaPublicado(fechaPublicado);
+		Boolean flagProductoExiste = verificarProductoExistente(vendedor, producto.getNombre());
 		
-//		else{
-//		// Aquí se propaga una excepcion, para que el ModelFactoryController la capture
-//			throw new ProductoException("El producto \""+nombre+ "\" NO se ha podido crear. Ya existe");			
-//		}
+		if(flagProductoExiste != true){
 		
+			Publicacion nuevaPublicacion = new Publicacion();
+			nuevaPublicacion.setNombreProducto(producto.getNombre());
+			nuevaPublicacion.setPrecioProducto(producto.getPrecio());
+			nuevaPublicacion.setRutaImagenProducto(producto.getRutaImagen());
+			nuevaPublicacion.setEstadoProducto(""+producto.getEstado());
+			nuevaPublicacion.setComentarios(null);
+			nuevaPublicacion.setCantidadLikes(0);
+			nuevaPublicacion.setFechaPublicado(fechaPublicado);
+			
+			vendedor.getListaPublicaciones().add(nuevaPublicacion);
+		}
+		else{
+			throw new PublicacionException("La publicacion NO se ha podido crear. Producto NO encontrada");			
+		}
 		
-		
-		return flagPublicacionCreada;
 	}
+	
+	@Override
+	public void actualizarPublicacion(Vendedor vendedor, String nombreProducto) throws PublicacionException {
+		
+		Publicacion publicacion = getPublicacion(vendedor, nombreProducto);
+		Producto producto = getProducto(vendedor, nombreProducto);
+
+		if(publicacion != null){
+			publicacion.setNombreProducto(producto.getNombre());
+			publicacion.setPrecioProducto(producto.getPrecio());
+			publicacion.setRutaImagenProducto(producto.getRutaImagen());
+			publicacion.setEstadoProducto(""+producto.getEstado());
+		}
+		else{
+			throw new PublicacionException("La publicacion NO se ha podido actualizar. No encontrada");
+		}
+		
+	}
+	
+	
+	@Override
+	public void eliminarPublicacion(Vendedor vendedor, String nombreProducto) throws PublicacionException {
+		Publicacion publicacion = getPublicacion(vendedor, nombreProducto);
+
+		if(publicacion != null) {
+			vendedor.getListaPublicaciones().remove(publicacion);
+		}
+		else{
+			throw new PublicacionException("La publicacion NO se ha podido eliminar. Ya Eliminada");
+		}
+
+	}
+	
+	
+	@Override
+	public Publicacion getPublicacion(Vendedor vendedor, String nombreProducto) {
+		Publicacion publicacionEncontrada = null;
+
+		for (Publicacion publicacion : vendedor.getListaPublicaciones()) {
+			if(publicacion.getNombreProducto().equals(nombreProducto)) {
+				publicacionEncontrada = publicacion;
+				break;
+			}
+		}
+
+		return publicacionEncontrada;
+	}
+	
+	
+	
+	
 	
 	
 	

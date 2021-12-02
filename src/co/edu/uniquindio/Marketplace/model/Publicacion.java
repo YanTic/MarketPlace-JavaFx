@@ -6,29 +6,56 @@ import java.util.ArrayList;
 public class Publicacion implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private Producto producto;
-	private int numeroLikes;
+	private String nombreProducto;
+	private String precioProducto;
+	private String rutaImagenProducto;
+	private String estadoProducto;
 	private String fechaPublicado;
+	private int cantidadLikes;
 	private ArrayList<String> comentarios;
 	
 	public Publicacion() {
 		
 	}
 
-	public Producto getProducto() {
-		return producto;
+	public int getCantidadLikes() {
+		return cantidadLikes;
 	}
 
-	public void setProducto(Producto producto) {
-		this.producto = producto;
+	public void setCantidadLikes(int cantidadLikes) {
+		this.cantidadLikes = cantidadLikes;
 	}
 
-	public int getNumeroLikes() {
-		return numeroLikes;
+	public String getNombreProducto() {
+		return nombreProducto;
 	}
 
-	public void setNumeroLikes(int numeroLikes) {
-		this.numeroLikes = numeroLikes;
+	public void setNombreProducto(String nombreProducto) {
+		this.nombreProducto = nombreProducto;
+	}
+
+	public String getPrecioProducto() {
+		return precioProducto;
+	}
+
+	public void setPrecioProducto(String precioProducto) {
+		this.precioProducto = precioProducto;
+	}
+
+	public String getRutaImagenProducto() {
+		return rutaImagenProducto;
+	}
+
+	public void setRutaImagenProducto(String rutaImagenProducto) {
+		this.rutaImagenProducto = rutaImagenProducto;
+	}
+
+	public String getEstadoProducto() {
+		return estadoProducto;
+	}
+
+	public void setEstadoProducto(String estadoProducto) {
+		this.estadoProducto = estadoProducto;
 	}
 
 	public String getFechaPublicado() {
@@ -46,7 +73,7 @@ public class Publicacion implements Serializable {
 	public void setComentarios(ArrayList<String> comentarios) {
 		this.comentarios = comentarios;
 	}
-	
-	
+
+		
 
 }

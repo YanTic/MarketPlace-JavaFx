@@ -3,10 +3,12 @@ package co.edu.uniquindio.Marketplace.model.services;
 import java.util.ArrayList;
 
 import co.edu.uniquindio.Marketplace.exceptions.ProductoException;
+import co.edu.uniquindio.Marketplace.exceptions.PublicacionException;
 import co.edu.uniquindio.Marketplace.exceptions.UsuarioException;
 import co.edu.uniquindio.Marketplace.exceptions.VendedorException;
 import co.edu.uniquindio.Marketplace.model.EstadoProducto;
 import co.edu.uniquindio.Marketplace.model.Producto;
+import co.edu.uniquindio.Marketplace.model.Publicacion;
 import co.edu.uniquindio.Marketplace.model.Usuario;
 import co.edu.uniquindio.Marketplace.model.Vendedor;
 
@@ -26,6 +28,12 @@ public interface IMarketplaceService {
 	public boolean eliminarProducto(Vendedor vendedor, String nombreProducto) throws ProductoException;
 	public Producto getProducto(Vendedor vendedor, String nombreProducto);
 	public boolean verificarProductoExistente(Vendedor vendedor, String nombreProducto);
+	
+	// Publicacion
+	public void crearPublicacion(Vendedor vendedor, Producto producto, String fechaPublicado) throws PublicacionException;
+	public void eliminarPublicacion(Vendedor vendedor, String nombreProducto) throws PublicacionException;
+	public void actualizarPublicacion(Vendedor vendedor, String nombreProducto) throws PublicacionException; 
+	public Publicacion getPublicacion(Vendedor vendedor, String nombreProducto);
 	
 	// Usuario
 	public Usuario crearUsuario(String usuario, String contrasenia) throws UsuarioException;

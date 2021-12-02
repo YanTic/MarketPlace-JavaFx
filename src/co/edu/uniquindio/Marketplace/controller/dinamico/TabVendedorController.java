@@ -14,6 +14,7 @@ import co.edu.uniquindio.Marketplace.MainApp;
 import co.edu.uniquindio.Marketplace.controller.CrudVendedorViewController;
 import co.edu.uniquindio.Marketplace.model.EstadoProducto;
 import co.edu.uniquindio.Marketplace.model.Producto;
+import co.edu.uniquindio.Marketplace.model.Publicacion;
 import co.edu.uniquindio.Marketplace.model.Usuario;
 import co.edu.uniquindio.Marketplace.model.Vendedor;
 import javafx.application.Platform;
@@ -163,21 +164,47 @@ public class TabVendedorController implements Initializable{
     	}
     }
     
+//    public void cargarPublicacionesVendedor(){
+//    	ArrayList<Producto> productos = getListaProductos(vendedorPrincipal);
+//    	int filas = 0;
+//    	
+//    	for(int i=0; i<productos.size(); i++){
+//    		try {
+//	    		FXMLLoader fxmlLoader = new FXMLLoader();
+//				fxmlLoader.setLocation(MainApp.class.getResource("view/tabView/producto.fxml"));
+////				AnchorPane anchorPane = fxmlLoader.load();
+//			
+//				gridpaneProductos.add(fxmlLoader.load(), 0, filas); // (Nodo, Columna, Filas)
+//				
+//				ProductoController productoController = fxmlLoader.getController();
+//				productoController.establecerDatos(productos.get(i), "Publicado: "+ "27_11_2021");
+//				
+//				filas++;
+//				
+//			} catch (IOException e) {
+//
+//				e.printStackTrace();
+//			}
+//			
+//			
+//    	}
+//    	
+//    }
+    
     public void cargarPublicacionesVendedor(){
-    	ArrayList<Producto> productos = getListaProductos(vendedorPrincipal);
+    	ArrayList<Publicacion> publicaciones = getListaPublicaciones(vendedorPrincipal);
     	int filas = 0;
     	
-    	for(int i=0; i<productos.size(); i++){
+    	for(int i=0; i<publicaciones.size(); i++){
     		try {
 	    		FXMLLoader fxmlLoader = new FXMLLoader();
 				fxmlLoader.setLocation(MainApp.class.getResource("view/tabView/producto.fxml"));
-				AnchorPane anchorPane = fxmlLoader.load();
 			
+				gridpaneProductos.add(fxmlLoader.load(), 0, filas); // (Nodo, Columna, Filas)
 				
 				ProductoController productoController = fxmlLoader.getController();
-				productoController.establecerDatos(productos.get(i), "Publicado: "+ "27_11_2021");
+				productoController.establecerDatos(publicaciones.get(i));
 				
-				gridpaneProductos.add(anchorPane, 0, filas); // (Nodo, Columna, Filas)
 				filas++;
 				
 			} catch (IOException e) {
@@ -244,7 +271,9 @@ public class TabVendedorController implements Initializable{
 		// Acción de la tabla para mostrar informacion de un empleado
 		tablaProductos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) ->{
 			productoSeleccionado = newSelection;
-			mostrarInformacionProducto(productoSeleccionado);	
+			rutaImagenProducto = productoSeleccionado.getRutaImagen();
+			mostrarInformacionProducto(productoSeleccionado);
+			
 		});
 
 	}
@@ -550,6 +579,10 @@ public class TabVendedorController implements Initializable{
     
     public ArrayList<Producto> getListaProductos(Vendedor vendedorSeleccionado){
     	return crudVendedorViewController.getListaProductos(vendedorSeleccionado);
+    }
+    
+    public ArrayList<Publicacion> getListaPublicaciones(Vendedor vendedorSeleccionado){
+    	return crudVendedorViewController.getListaPublicaciones(vendedorSeleccionado);
     }
     
     

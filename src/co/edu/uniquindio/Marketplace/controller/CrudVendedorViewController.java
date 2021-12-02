@@ -6,6 +6,7 @@ import co.edu.uniquindio.Marketplace.MainApp;
 import co.edu.uniquindio.Marketplace.model.EstadoProducto;
 import co.edu.uniquindio.Marketplace.model.Marketplace;
 import co.edu.uniquindio.Marketplace.model.Producto;
+import co.edu.uniquindio.Marketplace.model.Publicacion;
 import co.edu.uniquindio.Marketplace.model.Vendedor;
 
 public class CrudVendedorViewController {	
@@ -33,6 +34,10 @@ public class CrudVendedorViewController {
 	
 	public ArrayList<Producto> getListaProductos(Vendedor vendedorSeleccionado) {
 		return modelFactoryController.getListaProductos(vendedorSeleccionado); 
+	}
+	
+	public ArrayList<Publicacion> getListaPublicaciones(Vendedor vendedorSeleccionado) {
+		return modelFactoryController.getListaPublicaciones(vendedorSeleccionado); 
 	}
 	
 	public ArrayList<Vendedor> getListaContactos(Vendedor vendedorSeleccionado) {

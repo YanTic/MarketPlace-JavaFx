@@ -1,0 +1,8 @@
+Juan@@Helado Pelapop@@5000@@src/resources/imagenesProducto/imagen_HeladoPelapop.png@@Publicado@@1_12_2021_30_21@@0
+Juan@@Galleta@@600@@src/resources/imagenesProducto/imagen_Galleta.png@@Cancelado@@1_12_2021_10_11@@0
+Juan@@Servilletas@@3500@@src/resources/imagenesProducto/imagen_Servilletas.png@@Cancelado@@30_11_2021_40_13@@0
+Pedro@@Tabla@@1000@@a@@Publicado@@1_12_2021_41_51@@0
+Jose@@Computador@@20000@@a@@Publicado@@1_12_2021_40_30@@0
+Jose@@Salchicha@@2500@@a@@Cancelado@@1_12_2021_54_53@@0
+Julian@@Celular@@1000@@a@@Cancelado@@1_12_2021_23_21@@0
+Roberto@@Cuaderno@@2000@@a@@Publicado@@1_12_2021_36_10@@0
