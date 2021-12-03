@@ -105,6 +105,7 @@ public class TabVendedorController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		Platform.runLater(()->{
 			tabPaneVendedor.getTabs().remove(tabCRUDProductosVendedorPrincipal);
+			tabVendedorPrincipal.setText("Vendedor "+ vendedorPrincipal.getNombre());
 			CRUDabierto = false;
 			
 			cargarInformacionTabVendedor();							

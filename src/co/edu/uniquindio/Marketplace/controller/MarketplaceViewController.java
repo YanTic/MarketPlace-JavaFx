@@ -2,6 +2,7 @@ package co.edu.uniquindio.Marketplace.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -74,6 +75,7 @@ public class MarketplaceViewController implements Initializable{
 	
 	// Listas observable para mostrar en tablas, junto a su objeto seleccionado
 	ObservableList<Vendedor> listaVendedoresData = FXCollections.observableArrayList();
+	ArrayList<Vendedor> listaTabVendedoresAbiertas;
 	Vendedor vendedorSeleccionado;
 	String   rutaImagenProducto;
     
@@ -105,6 +107,9 @@ public class MarketplaceViewController implements Initializable{
 		Platform.runLater(()->{
 			// Inicializo los datos de cada controlador CRUD (Como tablas...)
 			inicializarVendedorView();
+			
+			// Digo que no se han abierto tabs de ningun vendedor
+			listaTabVendedoresAbiertas = new ArrayList<Vendedor>();
 			
 			// Establesco el Usuario que acaba de iniciara sesion
 			usuarioLogeado();
@@ -400,22 +405,41 @@ public class MarketplaceViewController implements Initializable{
      * Este metodo crea una tab dinamica del vendedor seleccionado en la tabla
      * */
     public void mostrarTabVendedor() {
-    	try {    			
-			FXMLLoader fxmlLoader = new FXMLLoader();
-			fxmlLoader.setLocation(MainApp.class.getResource("view/tabView/vendedorTab.fxml"));
-			mainTabPane.getTabs().add(fxmlLoader.load());
-			
-			// RECORDAR: El error anterior de que no se establecian los datos en el controlador,
-			// 			 era porque el fxmlLoader no se habia cargado antes (.load()), así que 
-			//			 se tiene que cargar antes de asignarle el controlador y los valores
-			
-			TabVendedorController tabVendedorController = fxmlLoader.getController();
-			tabVendedorController.establecerValores(crudVendedorViewController, mainApp.getUsuarioLogeado(), 
-													vendedorSeleccionado);
-			
-		} catch (IOException e) {				
-			e.printStackTrace();
-		}
+    	boolean tabVendedorAbierta = false;
+    	
+    	// Verifico si la tab del vendedor ya está abierta
+    	for(Vendedor vendedor : listaTabVendedoresAbiertas){
+    		if(vendedor.equals(vendedorSeleccionado)){
+    			tabVendedorAbierta = true;
+    			break;
+    		}
+    	}
+    	
+    	// Si no está abierta la tab del vendedor, puede abrirla
+    	if(tabVendedorAbierta != true){
+    		try {    			
+    			FXMLLoader fxmlLoader = new FXMLLoader();
+    			fxmlLoader.setLocation(MainApp.class.getResource("view/tabView/vendedorTab.fxml"));
+    			mainTabPane.getTabs().add(fxmlLoader.load());
+    			
+    			// RECORDAR: El error anterior de que no se establecian los datos en el controlador,
+    			// 			 era porque el fxmlLoader no se habia cargado antes (.load()), así que 
+    			//			 se tiene que cargar antes de asignarle el controlador y los valores
+    			
+    			TabVendedorController tabVendedorController = fxmlLoader.getController();
+    			tabVendedorController.establecerValores(crudVendedorViewController, mainApp.getUsuarioLogeado(), 
+    													vendedorSeleccionado);
+    			
+    			listaTabVendedoresAbiertas.add(vendedorSeleccionado);
+    		} catch (IOException e) {				
+    			e.printStackTrace();
+    		}
+    	}
+    	else{
+    		mostrarMensaje("Notificacion", "Tab Ya Abierta", "La tab del vendedor "+vendedorSeleccionado.getNombre()+ " ya está abierta", AlertType.INFORMATION);
+    	}
+    	
+    	
     }
     
     

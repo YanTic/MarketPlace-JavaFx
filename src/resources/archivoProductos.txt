@@ -3,5 +3,6 @@ Juan@@Galleta@@600@@COMIDA@@Cancelado@@src/resources/imagenesProducto/imagen_Gal
 Juan@@Servilletas@@3500@@Utiles de Cocina@@Cancelado@@src/resources/imagenesProducto/imagen_Servilletas.png
 Pedro@@Tabla de Madera@@6500@@Madera@@Publicado@@src/resources/imagenesProducto/imagen_Tabla de Madera.png
 Jose@@Computador@@20000@@Electronica@@Publicado@@src/resources/imagenesProducto/imagen_Computador.png
-Julian@@Celular@@450000@@Electronica@@Cancelado@@src/resources/imagenesProducto/imagen_Celular.png
+Julian@@Celular Huawei@@450000@@Electronica@@Cancelado@@src/resources/imagenesProducto/imagen_Celular.png
+Julian@@Celular Iphone@@1400000@@Electronica@@Publicado@@src/resources/imagenesProducto/imagen_Celular Iphone.png
 Roberto@@Cuaderno@@3500@@Utiles@@Publicado@@src/resources/imagenesProducto/imagen_Cuaderno.png

@@ -345,13 +345,32 @@
          <object idref="EstadoProducto1"/>
         </void>
         <void property="nombre">
-         <string>Celular</string>
+         <string>Celular Huawei</string>
         </void>
         <void property="precio">
          <string>450000</string>
         </void>
         <void property="rutaImagen">
          <string>src/resources/imagenesProducto/imagen_Celular.png</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Producto">
+        <void property="categoria">
+         <string>Electronica</string>
+        </void>
+        <void property="estado">
+         <object idref="EstadoProducto0"/>
+        </void>
+        <void property="nombre">
+         <string>Celular Iphone</string>
+        </void>
+        <void property="precio">
+         <string>1400000</string>
+        </void>
+        <void property="rutaImagen">
+         <string>src/resources/imagenesProducto/imagen_Celular Iphone.png</string>
         </void>
        </object>
       </void>
@@ -366,13 +385,32 @@
          <string>1_12_2021_23_21</string>
         </void>
         <void property="nombreProducto">
-         <string>Celular</string>
+         <string>Celular Huawei</string>
         </void>
         <void property="precioProducto">
          <string>450000</string>
         </void>
         <void property="rutaImagenProducto">
          <string>src/resources/imagenesProducto/imagen_Celular.png</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Publicacion">
+        <void property="estadoProducto">
+         <string>Publicado</string>
+        </void>
+        <void property="fechaPublicado">
+         <string>03_12_2021_10_42_10</string>
+        </void>
+        <void property="nombreProducto">
+         <string>Celular Iphone</string>
+        </void>
+        <void property="precioProducto">
+         <string>1400000</string>
+        </void>
+        <void property="rutaImagenProducto">
+         <string>src/resources/imagenesProducto/imagen_Celular Iphone.png</string>
         </void>
        </object>
       </void>

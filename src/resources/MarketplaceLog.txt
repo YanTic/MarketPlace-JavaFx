@@ -386,3 +386,21 @@ Dec 03, 2021 10:37:21 AM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil 
 INFO: Actualizar Publicacion,La publicacion ha sido actualizada con exito!. Realizado por el Usuario : admin,2021-12-03
 Dec 03, 2021 10:37:35 AM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
 INFO: CerrarSesion,Cerrar sesion del usuario: admin,2021-12-03
+Dec 03, 2021 10:40:15 AM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-12-03
+Dec 03, 2021 10:42:13 AM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Agregar Producto,El producto ha sido creado con exito!. Realizado por el Usuario : admin,2021-12-03
+Dec 03, 2021 10:42:13 AM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Agregar Publicacion,La publicacion ha sido creada con exito!. Realizado por el Usuario : admin,2021-12-03
+Dec 03, 2021 10:42:26 AM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Actualizar Producto,El producto ha sido actualizado con exito!. Realizado por el Usuario : admin,2021-12-03
+Dec 03, 2021 10:42:26 AM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Actualizar Publicacion,La publicacion ha sido actualizada con exito!. Realizado por el Usuario : admin,2021-12-03
+Dec 03, 2021 11:09:15 AM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-12-03
+Dec 03, 2021 11:10:23 AM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-12-03
+Dec 03, 2021 11:12:28 AM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-12-03
+Dec 03, 2021 11:12:41 AM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: CerrarSesion,Cerrar sesion del usuario: admin,2021-12-03
