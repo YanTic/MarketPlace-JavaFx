@@ -172,6 +172,8 @@ public class TabVendedorController implements Initializable{
     	ArrayList<Publicacion> publicaciones = getListaPublicaciones(vendedorPrincipal);
     	int filas = 0;
     	
+    	gridpaneProductos.getChildren().clear();
+    	
     	for(int i=0; i<publicaciones.size(); i++){
     		try {
 	    		FXMLLoader fxmlLoader = new FXMLLoader();
@@ -327,6 +329,8 @@ public class TabVendedorController implements Initializable{
 		txtCategoriaProducto.clear();
 		cbEstadoProducto.getSelectionModel().clearSelection();
 		imagenViewProducto.setImage(null);
+		
+		tablaProductos.getSelectionModel().clearSelection();
 		
 		// setPromptText a diferencia de setText, es mejor, porque la letra es transparente
 		// y se elimina al tocar en el textfield, y no es como poner un texto plano y ya		
@@ -516,7 +520,7 @@ public class TabVendedorController implements Initializable{
 	    		} 
 	    		else{ // Esto me permite guardar la imagen de un nuevo producto sin hacer seleccion en la tabla 
 	    			rutaImagenNuevoProducto = crudVendedorViewController.copiarImagen(txtNombreProducto.getText(),
-		    				 															     archivoSeleccionado.getAbsolutePath());
+		    				 														  archivoSeleccionado.getAbsolutePath());
 	    		}
 	    	
 	    	}

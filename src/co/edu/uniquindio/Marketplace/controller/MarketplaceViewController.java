@@ -42,8 +42,8 @@ public class MarketplaceViewController implements Initializable{
 	
 	@FXML private TabPane mainTabPane;
 	@FXML private Tab tabAdministracion;
-    @FXML private Tab tabVendedorPrincipal;
-	@FXML private Tab tabCRUDProductos;
+//  @FXML private Tab tabVendedorPrincipal;
+//	@FXML private Tab tabCRUDProductos;
 	@FXML private AnchorPane anchorPaneTabAdministracion;
 	
 	
@@ -93,9 +93,9 @@ public class MarketplaceViewController implements Initializable{
 //		inicializarProductoView();
 		
 		
-		// Oculto los tabs
-		mainTabPane.getTabs().remove(tabVendedorPrincipal);
-		mainTabPane.getTabs().remove(tabCRUDProductos);
+		// Oculto los tabs || Nota: YA NO EXISTEN 
+//		mainTabPane.getTabs().remove(tabVendedorPrincipal);
+//		mainTabPane.getTabs().remove(tabCRUDProductos);
 		
 		
 		
