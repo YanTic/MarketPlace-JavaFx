@@ -132,72 +132,13 @@
        </object>
       </void>
      </void>
-     <void property="listaPublicaciones">
-      <void method="add">
-       <object class="co.edu.uniquindio.Marketplace.model.Publicacion">
-        <void property="estadoProducto">
-         <string>Publicado</string>
-        </void>
-        <void property="fechaPublicado">
-         <string>1_12_2021_30_21</string>
-        </void>
-        <void property="nombreProducto">
-         <string>Helado Pelapop</string>
-        </void>
-        <void property="precioProducto">
-         <string>5000</string>
-        </void>
-        <void property="rutaImagenProducto">
-         <string>src/resources/imagenesProducto/imagen_HeladoPelapop.png</string>
-        </void>
-       </object>
-      </void>
-      <void method="add">
-       <object class="co.edu.uniquindio.Marketplace.model.Publicacion">
-        <void property="estadoProducto">
-         <string>Cancelado</string>
-        </void>
-        <void property="fechaPublicado">
-         <string>1_12_2021_10_11</string>
-        </void>
-        <void property="nombreProducto">
-         <string>Galleta</string>
-        </void>
-        <void property="precioProducto">
-         <string>600</string>
-        </void>
-        <void property="rutaImagenProducto">
-         <string>src/resources/imagenesProducto/imagen_Galleta.png</string>
-        </void>
-       </object>
-      </void>
-      <void method="add">
-       <object class="co.edu.uniquindio.Marketplace.model.Publicacion">
-        <void property="estadoProducto">
-         <string>Cancelado</string>
-        </void>
-        <void property="fechaPublicado">
-         <string>30_11_2021_40_13</string>
-        </void>
-        <void property="nombreProducto">
-         <string>Servilletas</string>
-        </void>
-        <void property="precioProducto">
-         <string>3500</string>
-        </void>
-        <void property="rutaImagenProducto">
-         <string>src/resources/imagenesProducto/imagen_Servilletas.png</string>
-        </void>
-       </object>
-      </void>
-     </void>
      <void property="nombre">
       <string>Juan</string>
      </void>
     </object>
    </void>
    <void method="add">
-    <object class="co.edu.uniquindio.Marketplace.model.Vendedor" id="Vendedor1">
+    <object class="co.edu.uniquindio.Marketplace.model.Vendedor">
      <void property="apellido">
       <string>Perez</string>
      </void>
@@ -207,55 +148,13 @@
      <void property="direccion">
       <string>Quimbaya</string>
      </void>
-     <void property="listaProductos">
-      <void method="add">
-       <object class="co.edu.uniquindio.Marketplace.model.Producto">
-        <void property="categoria">
-         <string>Madera</string>
-        </void>
-        <void property="estado">
-         <object idref="EstadoProducto0"/>
-        </void>
-        <void property="nombre">
-         <string>Tabla</string>
-        </void>
-        <void property="precio">
-         <string>1000</string>
-        </void>
-        <void property="rutaImagen">
-         <string>a</string>
-        </void>
-       </object>
-      </void>
-     </void>
-     <void property="listaPublicaciones">
-      <void method="add">
-       <object class="co.edu.uniquindio.Marketplace.model.Publicacion">
-        <void property="estadoProducto">
-         <string>Publicado</string>
-        </void>
-        <void property="fechaPublicado">
-         <string>1_12_2021_41_51</string>
-        </void>
-        <void property="nombreProducto">
-         <string>Tabla</string>
-        </void>
-        <void property="precioProducto">
-         <string>1000</string>
-        </void>
-        <void property="rutaImagenProducto">
-         <string>a</string>
-        </void>
-       </object>
-      </void>
-     </void>
      <void property="nombre">
       <string>Pedro</string>
      </void>
     </object>
    </void>
    <void method="add">
-    <object class="co.edu.uniquindio.Marketplace.model.Vendedor" id="Vendedor2">
+    <object class="co.edu.uniquindio.Marketplace.model.Vendedor" id="Vendedor1">
      <void property="apellido">
       <string>Restrepo</string>
      </void>
@@ -317,53 +216,13 @@
        </object>
       </void>
      </void>
-     <void property="listaPublicaciones">
-      <void method="add">
-       <object class="co.edu.uniquindio.Marketplace.model.Publicacion">
-        <void property="estadoProducto">
-         <string>Publicado</string>
-        </void>
-        <void property="fechaPublicado">
-         <string>1_12_2021_40_30</string>
-        </void>
-        <void property="nombreProducto">
-         <string>Computador</string>
-        </void>
-        <void property="precioProducto">
-         <string>20000</string>
-        </void>
-        <void property="rutaImagenProducto">
-         <string>a</string>
-        </void>
-       </object>
-      </void>
-      <void method="add">
-       <object class="co.edu.uniquindio.Marketplace.model.Publicacion">
-        <void property="estadoProducto">
-         <string>Cancelado</string>
-        </void>
-        <void property="fechaPublicado">
-         <string>1_12_2021_54_53</string>
-        </void>
-        <void property="nombreProducto">
-         <string>Salchicha</string>
-        </void>
-        <void property="precioProducto">
-         <string>2500</string>
-        </void>
-        <void property="rutaImagenProducto">
-         <string>a</string>
-        </void>
-       </object>
-      </void>
-     </void>
      <void property="nombre">
       <string>Jose</string>
      </void>
     </object>
    </void>
    <void method="add">
-    <object class="co.edu.uniquindio.Marketplace.model.Vendedor" id="Vendedor3">
+    <object class="co.edu.uniquindio.Marketplace.model.Vendedor" id="Vendedor2">
      <void property="apellido">
       <string>Acosta</string>
      </void>
@@ -394,34 +253,13 @@
        </object>
       </void>
      </void>
-     <void property="listaPublicaciones">
-      <void method="add">
-       <object class="co.edu.uniquindio.Marketplace.model.Publicacion">
-        <void property="estadoProducto">
-         <string>Cancelado</string>
-        </void>
-        <void property="fechaPublicado">
-         <string>1_12_2021_23_21</string>
-        </void>
-        <void property="nombreProducto">
-         <string>Celular</string>
-        </void>
-        <void property="precioProducto">
-         <string>1000</string>
-        </void>
-        <void property="rutaImagenProducto">
-         <string>a</string>
-        </void>
-       </object>
-      </void>
-     </void>
      <void property="nombre">
       <string>Julian</string>
      </void>
     </object>
    </void>
    <void method="add">
-    <object class="co.edu.uniquindio.Marketplace.model.Vendedor" id="Vendedor4">
+    <object class="co.edu.uniquindio.Marketplace.model.Vendedor" id="Vendedor3">
      <void property="apellido">
       <string>Alzate</string>
      </void>
@@ -447,27 +285,6 @@
          <string>2000</string>
         </void>
         <void property="rutaImagen">
-         <string>a</string>
-        </void>
-       </object>
-      </void>
-     </void>
-     <void property="listaPublicaciones">
-      <void method="add">
-       <object class="co.edu.uniquindio.Marketplace.model.Publicacion">
-        <void property="estadoProducto">
-         <string>Publicado</string>
-        </void>
-        <void property="fechaPublicado">
-         <string>1_12_2021_36_10</string>
-        </void>
-        <void property="nombreProducto">
-         <string>Cuaderno</string>
-        </void>
-        <void property="precioProducto">
-         <string>2000</string>
-        </void>
-        <void property="rutaImagenProducto">
          <string>a</string>
         </void>
        </object>

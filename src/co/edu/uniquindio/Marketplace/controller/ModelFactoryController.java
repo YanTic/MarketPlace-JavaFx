@@ -63,7 +63,7 @@ public class ModelFactoryController implements IModelFactoryService{
 //		iniciarSalvarDatosPrueba();
 		
 		// 2. Cargar los datos de los archivos
-//		cargarDatosDesdeArchivos();
+		cargarDatosDesdeArchivos();
 		
 		// RECORDAR: Cuando quiera cambiar, modificar o agregar informacion, es mejor modificar los
 		//			 .txt, así que se cargan los datos desde archivos (es usa el metodo anterior),
@@ -75,7 +75,7 @@ public class ModelFactoryController implements IModelFactoryService{
 		
 		// 4. Guardar y cargar el recurso serializable XML
 //		guardarResourceXML();
-		cargarResourceXML();
+//		cargarResourceXML();
 		
 		// Siempre se verifica si la raiz del recurso es null
 		if(marketplace == null){
@@ -334,19 +334,9 @@ public class ModelFactoryController implements IModelFactoryService{
 		
 		try{
 			producto = marketplace.crearProducto(vendedor, nombre, precio, categoria, estado, rutaImagen);
-			
-			// Creo la publicacion del producto
-			if(producto != null){
-				marketplace.crearPublicacion(vendedor, producto, Persistencia.getFechaSistema());				
-			}
-			
 		}
 		catch(ProductoException e){
 			Persistencia.guardaRegistroLog(e.getMessage(), 2, "Producto Exception");
-			e.getMessage();
-		}
-		catch(PublicacionException e){
-			Persistencia.guardaRegistroLog(e.getMessage(), 2, "Publicacion Exception");
 			e.getMessage();
 		}
 		
@@ -359,22 +349,12 @@ public class ModelFactoryController implements IModelFactoryService{
 		boolean flagProductoEliminado = false;
 		
 		try {
-			flagProductoEliminado = marketplace.eliminarProducto(vendedor, nombre);
-			
-			if(flagProductoEliminado != false){
-				marketplace.eliminarPublicacion(vendedor, nombre);
-			}
-			
+			flagProductoEliminado = marketplace.eliminarProducto(vendedor, nombre);	
 		} 
 		catch (ProductoException e) {
 			Persistencia.guardaRegistroLog(e.getMessage(), 2, "Producto Exception");
 			e.getMessage();
 		} 
-		catch (PublicacionException e){
-			Persistencia.guardaRegistroLog(e.getMessage(), 2, "Publicacion Exception");
-			e.getMessage();
-		}
-		
 		
 		return flagProductoEliminado;
 	}
@@ -383,30 +363,71 @@ public class ModelFactoryController implements IModelFactoryService{
 	public boolean actualizarProducto(Vendedor vendedor, String nombreActual, String nombre, 
 								      String precio, String categoria, EstadoProducto estado,
 								      String rutaImagen) {
-		boolean flagVendedorActualizado = false;
+		boolean flagProductoActualizado = false;
 		
 		try {
-			flagVendedorActualizado = marketplace.actualizarProducto(vendedor, nombreActual, nombre, precio, categoria, estado, rutaImagen);
-			
-			if(flagVendedorActualizado != false){
-				marketplace.actualizarPublicacion(vendedor, nombre);
-			}
+			flagProductoActualizado = marketplace.actualizarProducto(vendedor, nombreActual, nombre, precio, categoria, estado, rutaImagen);
 		} 
 		catch (ProductoException e) {
 			Persistencia.guardaRegistroLog(e.getMessage(), 2, "Producto Exception");
 			e.getMessage();
 		}
+				
+		return flagProductoActualizado;
+	}
+
+	
+	// -------------- METODOS PARA CRUD PRODUCTO VIEW CONTROLLER --------------
+	
+	@Override
+	public Publicacion crearPublicacion(Vendedor vendedor, String nombreProducto) {
+		Publicacion publicacion = null;
+		
+		try{			
+			publicacion = marketplace.crearPublicacion(vendedor, nombreProducto, Persistencia.getFechaSistema());				
+		}		
+		catch(PublicacionException e){
+			Persistencia.guardaRegistroLog(e.getMessage(), 2, "Publicacion Exception");
+			e.getMessage();
+		}
+		
+		return publicacion;
+		
+	}
+	
+	@Override
+	public boolean eliminarPublicacion(Vendedor vendedor, String nombre) {
+		boolean flagPublicacionEliminada = false;
+		
+		try {
+			flagPublicacionEliminada = marketplace.eliminarPublicacion(vendedor, nombre);
+		}  
 		catch (PublicacionException e){
 			Persistencia.guardaRegistroLog(e.getMessage(), 2, "Publicacion Exception");
 			e.getMessage();
 		}
 		
-		return flagVendedorActualizado;
+		
+		return flagPublicacionEliminada;
+	}
+	
+	@Override
+	public boolean actualizarPublicacion(Vendedor vendedor, String viejoNombreProducto, String nuevoNombreProducto) {
+		boolean flagPublicacionActualizada = false;
+		
+		try {
+			flagPublicacionActualizada = marketplace.actualizarPublicacion(vendedor, viejoNombreProducto, nuevoNombreProducto);
+		} 
+		catch (PublicacionException e){
+			Persistencia.guardaRegistroLog(e.getMessage(), 2, "Publicacion Exception");
+			e.getMessage();
+		}
+		
+		return flagPublicacionActualizada;
 	}
 
+
 	
-
-
 	
 	
 	

@@ -25,6 +25,11 @@ public interface IModelFactoryService {
 	public boolean actualizarProducto(Vendedor vendedor, String nombreActual, String nombre, String precio, String categoria, EstadoProducto estado, String rutaImagen);
 	public boolean eliminarProducto(Vendedor vendedor, String nombre);
 	
+	// Publicacion
+	public Publicacion crearPublicacion(Vendedor vendedor, String nombreProducto);
+	public boolean eliminarPublicacion(Vendedor vendedor, String nombre); 
+	public boolean actualizarPublicacion(Vendedor vendedor, String viejoNombreProducto, String nuevoNombreProducto);
+	
 	// Usuario
 	public Usuario crearUsuario(String usuario, String contrasenia);
 	public boolean verificarUsuario(String usuario, String contrasenia);

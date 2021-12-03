@@ -245,13 +245,15 @@ public class Marketplace implements Serializable, IMarketplaceService{
 	 * Controlador como los comentarios 
 	 * */
 	@Override
-	public void crearPublicacion(Vendedor vendedor, Producto producto, String fechaPublicado) throws PublicacionException{
+	public Publicacion crearPublicacion(Vendedor vendedor, String nombreProducto, String fechaPublicado) throws PublicacionException{
+		Publicacion nuevaPublicacion = null;
 		
-		Boolean flagProductoExiste = verificarProductoExistente(vendedor, producto.getNombre());
+		Boolean flagProductoExiste = verificarProductoExistente(vendedor, nombreProducto);
+		Producto producto = getProducto(vendedor, nombreProducto);
 		
-		if(flagProductoExiste != true){
+		if(flagProductoExiste == true){
 		
-			Publicacion nuevaPublicacion = new Publicacion();
+			nuevaPublicacion = new Publicacion();
 			nuevaPublicacion.setNombreProducto(producto.getNombre());
 			nuevaPublicacion.setPrecioProducto(producto.getPrecio());
 			nuevaPublicacion.setRutaImagenProducto(producto.getRutaImagen());
@@ -266,38 +268,47 @@ public class Marketplace implements Serializable, IMarketplaceService{
 			throw new PublicacionException("La publicacion NO se ha podido crear. Producto NO encontrada");			
 		}
 		
+		return nuevaPublicacion;
+		
 	}
 	
 	@Override
-	public void actualizarPublicacion(Vendedor vendedor, String nombreProducto) throws PublicacionException {
-		
-		Publicacion publicacion = getPublicacion(vendedor, nombreProducto);
-		Producto producto = getProducto(vendedor, nombreProducto);
+	public boolean actualizarPublicacion(Vendedor vendedor, String viejoNombreProducto, String nuevoNombreProducto) throws PublicacionException {
+		Boolean flagActualizado = false;
+		Publicacion publicacion = getPublicacion(vendedor, viejoNombreProducto);
+		Producto producto = getProducto(vendedor, nuevoNombreProducto);
 
 		if(publicacion != null){
 			publicacion.setNombreProducto(producto.getNombre());
 			publicacion.setPrecioProducto(producto.getPrecio());
 			publicacion.setRutaImagenProducto(producto.getRutaImagen());
 			publicacion.setEstadoProducto(""+producto.getEstado());
+			
+			flagActualizado = true;
 		}
 		else{
 			throw new PublicacionException("La publicacion NO se ha podido actualizar. No encontrada");
 		}
 		
+		
+		return flagActualizado;
 	}
 	
 	
 	@Override
-	public void eliminarPublicacion(Vendedor vendedor, String nombreProducto) throws PublicacionException {
+	public boolean eliminarPublicacion(Vendedor vendedor, String nombreProducto) throws PublicacionException {
+		Boolean flagEliminado = false;
 		Publicacion publicacion = getPublicacion(vendedor, nombreProducto);
 
 		if(publicacion != null) {
 			vendedor.getListaPublicaciones().remove(publicacion);
+			flagEliminado = true;
 		}
 		else{
 			throw new PublicacionException("La publicacion NO se ha podido eliminar. Ya Eliminada");
 		}
-
+				
+		return flagEliminado;
 	}
 	
 	

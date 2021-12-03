@@ -30,9 +30,9 @@ public interface IMarketplaceService {
 	public boolean verificarProductoExistente(Vendedor vendedor, String nombreProducto);
 	
 	// Publicacion
-	public void crearPublicacion(Vendedor vendedor, Producto producto, String fechaPublicado) throws PublicacionException;
-	public void eliminarPublicacion(Vendedor vendedor, String nombreProducto) throws PublicacionException;
-	public void actualizarPublicacion(Vendedor vendedor, String nombreProducto) throws PublicacionException; 
+	public Publicacion crearPublicacion(Vendedor vendedor, String nombreProducto, String fechaPublicado) throws PublicacionException;
+	public boolean eliminarPublicacion(Vendedor vendedor, String nombreProducto) throws PublicacionException;
+	public boolean actualizarPublicacion(Vendedor vendedor, String viejoNombreProducto, String nuevoNombreProducto) throws PublicacionException; 
 	public Publicacion getPublicacion(Vendedor vendedor, String nombreProducto);
 	
 	// Usuario
@@ -40,4 +40,5 @@ public interface IMarketplaceService {
 	public Usuario getUsuario(String usuario, String contrasenia);
 	public boolean verificarUsuarioExistente(String nombreUsuario);
 	public boolean verificarUsuario(String nombreUsuario, String contrasenia) throws UsuarioException;
+
 }

@@ -75,6 +75,22 @@ public class CrudVendedorViewController {
 	}
 	
 	
+	// CRUD comunica con ModelFactoryController  ( Publicacion )
+	public Publicacion crearPublicacion(Vendedor vendedor, String nombreProducto) {		
+		return modelFactoryController.crearPublicacion(vendedor, nombreProducto);
+	}
+	
+	public boolean eliminarPublicacion(Vendedor vendedor, String nombreProducto) {		
+		return modelFactoryController.eliminarPublicacion(vendedor, nombreProducto);
+	}
+
+	public boolean actualizarPublicacion(Vendedor vendedor, String viejoNombreProducto, String nuevoNombreProducto) {		
+		return modelFactoryController.actualizarPublicacion(vendedor, viejoNombreProducto, nuevoNombreProducto);
+	}
+	
+	
+	
+	
 	
 	// Persistencia Metodos
 	public void guardarDatos() {

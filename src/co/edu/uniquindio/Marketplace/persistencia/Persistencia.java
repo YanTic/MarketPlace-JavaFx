@@ -186,19 +186,6 @@ public class Persistencia {
 	}
 	
 	
-//	public static void guardarEmpleados(ArrayList<Empleado> listaEmpleados) throws IOException {
-//		
-//		// TODO Auto-generated method stub
-//		String contenido = "";
-//		
-//		for(Empleado empleado:listaEmpleados) 
-//		{
-//			contenido+= empleado.getNombre()+","+empleado.getApellido()+","+empleado.getCedula()+","+empleado.getFechaNacimiento()+"\n";
-//		}
-//		ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_EMPLEADOS, contenido, false);
-//	}
-	
-	
 	
 //	----------------------LOADS------------------------
 	

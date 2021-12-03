@@ -105,7 +105,7 @@
          <string>Galleta</string>
         </void>
         <void property="precio">
-         <string>999999</string>
+         <string>600</string>
         </void>
         <void property="rutaImagen">
          <string>src/resources/imagenesProducto/imagen_Galleta.png</string>
@@ -164,7 +164,7 @@
          <string>Galleta</string>
         </void>
         <void property="precioProducto">
-         <string>999999</string>
+         <string>600</string>
         </void>
         <void property="rutaImagenProducto">
          <string>src/resources/imagenesProducto/imagen_Galleta.png</string>
@@ -217,13 +217,32 @@
          <object idref="EstadoProducto0"/>
         </void>
         <void property="nombre">
-         <string>Tabla</string>
+         <string>Tablas</string>
         </void>
         <void property="precio">
-         <string>1000</string>
+         <string>2000</string>
         </void>
         <void property="rutaImagen">
-         <string>a</string>
+         <string>src/resources/imagenesProducto/imagen_Tabla.png</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Producto">
+        <void property="categoria">
+         <string>Madera</string>
+        </void>
+        <void property="estado">
+         <object idref="EstadoProducto0"/>
+        </void>
+        <void property="nombre">
+         <string>Silla</string>
+        </void>
+        <void property="precio">
+         <string>65000</string>
+        </void>
+        <void property="rutaImagen">
+         <string>src/resources/imagenesProducto/imagen_Tablas.png</string>
         </void>
        </object>
       </void>

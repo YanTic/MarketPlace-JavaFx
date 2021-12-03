@@ -96,13 +96,16 @@ public class TabVendedorController implements Initializable{
  	Vendedor vendedorPrincipal; // El responsable del tab
  	Vendedor contactoSeleccionado;
  	Producto productoSeleccionado;
- 	String   rutaImagenProducto;
+ 	String   rutaImagenProductoSeleccionado;
+ 	String   rutaImagenNuevoProducto;
+ 	Boolean CRUDabierto;
     
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		Platform.runLater(()->{
 			tabPaneVendedor.getTabs().remove(tabCRUDProductosVendedorPrincipal);
+			CRUDabierto = false;
 			
 			cargarInformacionTabVendedor();							
 		});
@@ -164,32 +167,6 @@ public class TabVendedorController implements Initializable{
     	}
     }
     
-//    public void cargarPublicacionesVendedor(){
-//    	ArrayList<Producto> productos = getListaProductos(vendedorPrincipal);
-//    	int filas = 0;
-//    	
-//    	for(int i=0; i<productos.size(); i++){
-//    		try {
-//	    		FXMLLoader fxmlLoader = new FXMLLoader();
-//				fxmlLoader.setLocation(MainApp.class.getResource("view/tabView/producto.fxml"));
-////				AnchorPane anchorPane = fxmlLoader.load();
-//			
-//				gridpaneProductos.add(fxmlLoader.load(), 0, filas); // (Nodo, Columna, Filas)
-//				
-//				ProductoController productoController = fxmlLoader.getController();
-//				productoController.establecerDatos(productos.get(i), "Publicado: "+ "27_11_2021");
-//				
-//				filas++;
-//				
-//			} catch (IOException e) {
-//
-//				e.printStackTrace();
-//			}
-//			
-//			
-//    	}
-//    	
-//    }
     
     public void cargarPublicacionesVendedor(){
     	ArrayList<Publicacion> publicaciones = getListaPublicaciones(vendedorPrincipal);
@@ -205,6 +182,7 @@ public class TabVendedorController implements Initializable{
 				ProductoController productoController = fxmlLoader.getController();
 				productoController.establecerDatos(publicaciones.get(i));
 				
+				
 				filas++;
 				
 			} catch (IOException e) {
@@ -214,6 +192,10 @@ public class TabVendedorController implements Initializable{
 			
 			
     	}
+    	
+    }
+    
+    public void setCerrarTabHandler(Runnable handler){
     	
     }
     
@@ -237,9 +219,16 @@ public class TabVendedorController implements Initializable{
      * */
     public void mostrarTabCRUDProductos(){
     	
-    	tabPaneVendedor.getTabs().add(tabCRUDProductosVendedorPrincipal);
-    	inicializarProductoView();
-    	tablaProductos.refresh();
+    	if(CRUDabierto != true){
+    		tabPaneVendedor.getTabs().add(tabCRUDProductosVendedorPrincipal);
+    		inicializarProductoView();
+    		tablaProductos.refresh();
+
+    		CRUDabierto = true;
+    	}
+    	else{
+    		mostrarMensaje("Notificacion", "CRUD Productos", "La ventana CRUD productos ya está abierta", AlertType.INFORMATION);
+    	}
     }
 	    
     
@@ -271,7 +260,7 @@ public class TabVendedorController implements Initializable{
 		// Acción de la tabla para mostrar informacion de un empleado
 		tablaProductos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) ->{
 			productoSeleccionado = newSelection;
-			rutaImagenProducto = productoSeleccionado.getRutaImagen();
+			rutaImagenProductoSeleccionado = productoSeleccionado.getRutaImagen();
 			mostrarInformacionProducto(productoSeleccionado);
 			
 		});
@@ -292,26 +281,33 @@ public class TabVendedorController implements Initializable{
 		String precio = txtPrecioProducto.getText();
 		String categoria = txtCategoriaProducto.getText();
 		EstadoProducto estado = cbEstadoProducto.getValue(); 
-		String rutaImagen = rutaImagenProducto;
+		String rutaImagen = rutaImagenNuevoProducto;
 		
 		// Valida los datos
 		if(datosValidos(nombre, precio, categoria, estado, rutaImagen)){
 			Producto producto = null;
+			Publicacion publicacion = null;
 			
 			producto = crudVendedorViewController.crearProducto(vendedor, nombre, precio, categoria, estado, rutaImagen);
+			publicacion = crudVendedorViewController.crearPublicacion(vendedor, nombre);
 			
-			if(producto != null){
+			
+			if(producto != null && publicacion != null){
 				listaProductosData.add(producto);
 				mostrarMensaje("Notifacion", "Producto Creado", "El producto ha sido creado con exito!", AlertType.INFORMATION);
+				mostrarMensaje("Notifacion", "Publicacion Creada", "La publicacion ha sido creada con exito!", AlertType.INFORMATION);
 				
 				// Registro la accion de agregar Producto y guardo los datos
 				crudVendedorViewController.guardarDatos();    	
 				crudVendedorViewController.registrarAccion("El producto ha sido creado con exito!. Realizado por el Usuario : "+ 
 															usuarioLogeado.getUsuario(), 1, "Agregar Producto");
+				crudVendedorViewController.registrarAccion("La publicacion ha sido creada con exito!. Realizado por el Usuario : "+ 
+															usuarioLogeado.getUsuario(), 1, "Agregar Publicacion");
 				crudVendedorViewController.guardarDatosTXT();
 				
-				// Limpio los textfield
+				// Limpio los textfield y Actualiza las publicaciones
 				accionBtnNuevoProducto(new ActionEvent());
+				cargarPublicacionesVendedor();
 			}
 			else{
 				mostrarMensaje("Notifacion", "Producto NO Creado", "El producto NO ha sido creado", AlertType.ERROR);
@@ -338,6 +334,7 @@ public class TabVendedorController implements Initializable{
 		txtPrecioProducto.setPromptText("Ingrese el Precio");
 		txtCategoriaProducto.setPromptText("Ingrese la Categoria");
 		cbEstadoProducto.setPromptText("Ingrese el Estado");
+		rutaImagenNuevoProducto = "";
 		
     }
 	    
@@ -351,25 +348,31 @@ public class TabVendedorController implements Initializable{
     public void eliminarProducto(){
     	Vendedor vendedor = vendedorPrincipal;
     	boolean productoEliminado = false;
+    	boolean publicacionEliminada = false;
     	
     	if(productoSeleccionado != null){
     		if(mostrarMensajeConfirmacion("¿Está seguro de eliminar el producto?")){
 //	    			vendedorEliminado = crudVendedorViewController.eliminarVendedor(vendedorSeleccionado.getCedula());
     			productoEliminado = crudVendedorViewController.eliminarProducto(vendedor, productoSeleccionado.getNombre());
+    			publicacionEliminada = crudVendedorViewController.eliminarPublicacion(vendedor, productoSeleccionado.getNombre());
     			
-    			if(productoEliminado){
+    			if(productoEliminado && publicacionEliminada){
     				listaProductosData.remove(productoSeleccionado);
     				productoSeleccionado = null;
     				
-    				// Se elimina el producto de la tabla y limpiamos los textfield
+    				// Se elimina el producto de la tabla y limpiamos los textfield y Actualiza las publicaciones
     				tablaProductos.getSelectionModel().clearSelection();
     				accionBtnNuevoProducto(new ActionEvent());
+    				cargarPublicacionesVendedor();
+    				
     				mostrarMensaje("Notifacion", "Producto Eliminado", "El producto ha sido eliminado con exito!", AlertType.INFORMATION);
     				
     				// Registro la accion de eliminar Producto y guardo los datos
     				crudVendedorViewController.guardarDatos();    	
     				crudVendedorViewController.registrarAccion("El producto ha sido eliminado con exito!. Realizado por el Usuario : "+ 
     															usuarioLogeado.getUsuario(), 1, "Eliminar Producto");
+    				crudVendedorViewController.registrarAccion("La publicacion ha sido eliminada con exito!. Realizado por el Usuario : "+ 
+																usuarioLogeado.getUsuario(), 1, "Eliminar Publicacion");
     				crudVendedorViewController.guardarDatosTXT();
     				
     			}
@@ -392,13 +395,15 @@ public class TabVendedorController implements Initializable{
     	// Capturo los datos
 		Vendedor vendedor = vendedorPrincipal;
     	
+		String nombreActual = productoSeleccionado.getNombre();
 		String nombre = txtNombreProducto.getText();
 		String precio = txtPrecioProducto.getText();
 		String categoria = txtCategoriaProducto.getText();
 		EstadoProducto estado = cbEstadoProducto.getValue();
-		String rutaImagen = rutaImagenProducto;
+		String rutaImagen = rutaImagenProductoSeleccionado;
 		
 		boolean productoActualizado = false;
+		boolean publicacionActualizada = false;
 		
 		// Verifico los datos
 		if(productoSeleccionado != null){
@@ -406,9 +411,10 @@ public class TabVendedorController implements Initializable{
 			if(datosValidos(nombre, precio, categoria, estado, rutaImagen)){
 				
 //					vendedorActualizado = crudVendedorViewController.actualizarVendedor(vendedorSeleccionado.getCedula(), nombre, apellido, cedula, direccion);
-				productoActualizado = crudVendedorViewController.actualizarProducto(vendedor, productoSeleccionado.getNombre(),nombre, precio, categoria, estado, rutaImagen);
+				productoActualizado = crudVendedorViewController.actualizarProducto(vendedor, nombreActual, nombre, precio, categoria, estado, rutaImagen);
+				publicacionActualizada = crudVendedorViewController.actualizarPublicacion(vendedor, nombreActual, nombre);
 				
-				if(productoActualizado == true){
+				if(productoActualizado && publicacionActualizada){
 					tablaProductos.refresh();
 					mostrarMensaje("Notifacion", "Producto Actualizado", "El producto ha sido actualizado con exito!", AlertType.INFORMATION);
 					
@@ -416,10 +422,13 @@ public class TabVendedorController implements Initializable{
     				crudVendedorViewController.guardarDatos();    	
     				crudVendedorViewController.registrarAccion("El producto ha sido actualizado con exito!. Realizado por el Usuario : "+ 
     															usuarioLogeado.getUsuario(), 1, "Actualizar Producto");
+    				crudVendedorViewController.registrarAccion("La publicacion ha sido actualizada con exito!. Realizado por el Usuario : "+ 
+																usuarioLogeado.getUsuario(), 1, "Actualizar Publicacion");
     				crudVendedorViewController.guardarDatosTXT();
 					
-					// Limpio los textfield
+					// Limpio los textfield y Actualiza las publicaciones
 					accionBtnNuevoProducto(new ActionEvent());
+					cargarPublicacionesVendedor();
 				}
 				else{
 					mostrarMensaje("Notifacion", "Producto NO Actualizado", "El producto NO ha sido actualizado", AlertType.ERROR);
@@ -436,48 +445,94 @@ public class TabVendedorController implements Initializable{
 	    
     @FXML
     void accionBtnSubirImagenProducto(ActionEvent event) {
-    	
-    	if(productoSeleccionado != null){
-    		// Creo un fileChooser donde solo se pueda escoger imagenes .jpg o .png
-    		FileChooser fileChooser = new FileChooser();
-//	        	FileChooser.ExtensionFilter ext1 = new FileChooser.ExtensionFilter("JPG files(*.jpg)","*.JPG");
-        	FileChooser.ExtensionFilter ext2 = new FileChooser.ExtensionFilter("PNG files(*.png)","*.PNG");
-        	fileChooser.getExtensionFilters().addAll(ext2);
-        	
-        	
-        	File archivoSeleccionado = fileChooser.showOpenDialog(null);
-        	
-        	try {
-        		        		
-    	    	BufferedImage bf;	
-    	    	
-    	    	if(archivoSeleccionado != null){
-    	    		// Leo la imagen para luego mostrarla en el ImageView
-    				bf = ImageIO.read(archivoSeleccionado);
-    				
-    	    		Image imagen = SwingFXUtils.toFXImage(bf, null);
-    	    		imagenViewProducto.setImage(imagen);    	   
-    	    		
-    	    		// Hacer una copia de la imagen porque la imagen le pertenece a la ruta especifica del usuario
-    	    		// Y guardo la nueva ruta para asignarsela al producto
-    	    		rutaImagenProducto = crudVendedorViewController.copiarImagen(productoSeleccionado.getNombre(),
-    	    																	 archivoSeleccionado.getAbsolutePath());    	    		    	    		
-    	    	
-    	    	}
-    	    	else{
-    	    		mostrarMensaje("Notifacion", "Archivo NO valido", "El archivo no ha sido encontrado", AlertType.ERROR);
-    	    	}
-        	} catch (IOException e) {
-    			e.printStackTrace();
-    		}	
-    	}
-    	else{
-    		mostrarMensaje("Notifacion", "Error Imagen", "NO se puede agregar imagen sin elegir un producto", AlertType.ERROR);
-    	}
-    	
-    	
-       
+    	subirImagen();
     }
+    
+//    public void subirImagen(){
+//    	if(productoSeleccionado != null){
+//    		// Creo un fileChooser donde solo se pueda escoger imagenes .jpg o .png
+//    		FileChooser fileChooser = new FileChooser();
+////	        	FileChooser.ExtensionFilter ext1 = new FileChooser.ExtensionFilter("JPG files(*.jpg)","*.JPG");
+//        	FileChooser.ExtensionFilter ext2 = new FileChooser.ExtensionFilter("PNG files(*.png)","*.PNG");
+//        	fileChooser.getExtensionFilters().addAll(ext2);
+//        	
+//        	
+//        	File archivoSeleccionado = fileChooser.showOpenDialog(null);
+//        	
+//        	try {
+//        		        		
+//    	    	BufferedImage bf;	
+//    	    	
+//    	    	if(archivoSeleccionado != null){
+//    	    		// Leo la imagen para luego mostrarla en el ImageView
+//    				bf = ImageIO.read(archivoSeleccionado);
+//    				
+//    	    		Image imagen = SwingFXUtils.toFXImage(bf, null);
+//    	    		imagenViewProducto.setImage(imagen);    	   
+//    	    		
+//    	    		// Hacer una copia de la imagen porque la imagen le pertenece a la ruta especifica del usuario
+//    	    		// Y guardo la nueva ruta para asignarsela al producto
+//    	    		rutaImagenProductoSeleccionado = crudVendedorViewController.copiarImagen(productoSeleccionado.getNombre(),
+//    	    																	 archivoSeleccionado.getAbsolutePath());    	    		    	    		
+//    	    	
+//    	    	}
+//    	    	else{
+//    	    		mostrarMensaje("Notifacion", "Archivo NO valido", "El archivo no ha sido encontrado", AlertType.ERROR);
+//    	    	}
+//        	} catch (IOException e) {
+//    			e.printStackTrace();
+//    		}	
+//    	}
+//    	else{
+//    		mostrarMensaje("Notifacion", "Error Imagen", "NO se puede agregar imagen sin elegir un producto", AlertType.ERROR);
+//    	}
+//    	
+//    }
+    
+    public void subirImagen(){
+		// Creo un fileChooser donde solo se pueda escoger imagenes .jpg o .png
+		FileChooser fileChooser = new FileChooser();
+//	        	FileChooser.ExtensionFilter ext1 = new FileChooser.ExtensionFilter("JPG files(*.jpg)","*.JPG");
+    	FileChooser.ExtensionFilter ext2 = new FileChooser.ExtensionFilter("PNG files(*.png)","*.PNG");
+    	fileChooser.getExtensionFilters().addAll(ext2);
+    	    	
+    	File archivoSeleccionado = fileChooser.showOpenDialog(null);
+    	
+    	try {    		        		
+	    	BufferedImage bf;	
+	    	
+	    	if(archivoSeleccionado != null){
+	    		// Leo la imagen para luego mostrarla en el ImageView
+				bf = ImageIO.read(archivoSeleccionado);
+				
+	    		Image imagen = SwingFXUtils.toFXImage(bf, null);
+	    		imagenViewProducto.setImage(imagen);    	   
+	    		
+	    		// Hacer una copia de la imagen porque la imagen le pertenece a la ruta especifica del usuario
+	    		// Y guardo la nueva ruta para asignarsela al producto
+	    		if(productoSeleccionado != null){
+	    			rutaImagenProductoSeleccionado = crudVendedorViewController.copiarImagen(productoSeleccionado.getNombre(),
+																		    				 archivoSeleccionado.getAbsolutePath());    	    		    	    			   
+	    		} 
+	    		else{ // Esto me permite guardar la imagen de un nuevo producto sin hacer seleccion en la tabla 
+	    			rutaImagenNuevoProducto = crudVendedorViewController.copiarImagen(txtNombreProducto.getText(),
+		    				 															     archivoSeleccionado.getAbsolutePath());
+	    		}
+	    	
+	    	}
+	    	else{
+	    		mostrarMensaje("Notifacion", "Archivo NO valido", "El archivo no ha sido encontrado", AlertType.ERROR);
+	    	}
+    	} catch (IOException e) {
+			e.printStackTrace();
+		}	
+//    	}
+//    	else{
+//    		mostrarMensaje("Notifacion", "Error Imagen", "NO se puede agregar imagen sin elegir un producto", AlertType.ERROR);
+//    	}
+    	
+    }
+    
 	    
 	    
 	    
