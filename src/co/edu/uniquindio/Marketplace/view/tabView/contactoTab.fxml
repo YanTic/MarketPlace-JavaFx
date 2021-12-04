@@ -1,6 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-
-<Tab fx:id="tabContactoDinamica" text="Untitled Tab 1" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.Marketplace.controller.dinamico.TabContactoController" />
+<Tab fx:id="tabContactoDinamica" text="Contacto" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.Marketplace.controller.dinamico.TabContactoController">
+   <content>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+         <children>
+            <Pane layoutX="22.0" layoutY="26.0" prefHeight="83.0" prefWidth="128.0" style="-fx-background-color: BBFF98;">
+               <children>
+                  <Label fx:id="labelContactoNombre" layoutX="22.0" layoutY="27.0" text="Vendedor " textAlignment="CENTER">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <HBox alignment="CENTER" layoutX="197.0" layoutY="14.0" prefHeight="418.0" prefWidth="421.0" style="-fx-background-color: FFE7AA;">
+               <children>
+                  <ScrollPane fx:id="scrollpaneProductos" prefHeight="438.0" prefWidth="437.0" style="-fx-background-color: FFE7AA;">
+                     <content>
+                        <GridPane fx:id="gridpaneProductos" prefHeight="0.0" prefWidth="0.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </HBox>
+            <TableView fx:id="tablaContactos" layoutX="22.0" layoutY="144.0" prefHeight="221.0" prefWidth="127.0" style="-fx-background-color: #85FFD5;">
+               <columns>
+                  <TableColumn fx:id="columnaNombreContacto" prefWidth="125.99999936421712" text="Contactos" />
+               </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+   </content>
+</Tab>

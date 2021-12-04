@@ -43,6 +43,17 @@ public class CrudVendedorViewController {
 	public ArrayList<Vendedor> getListaContactos(Vendedor vendedorSeleccionado) {
 		return modelFactoryController.getListaContactos(vendedorSeleccionado); 
 	}
+
+	
+	//  Getters usando solo el nombre del vendedor (contacto)
+	public ArrayList<Publicacion> getListaPublicacionesDesdeContactos(Vendedor contactoSeleccionado) {
+		return modelFactoryController.getListaPublicacionesDesdeContactos(contactoSeleccionado); 
+	}
+	
+	public ArrayList<Vendedor> getListaContactosDesdeContactos(Vendedor vendedorSeleccionado) {
+		return modelFactoryController.getListaContactosDesdeContactos(vendedorSeleccionado); 
+	}
+	
 	
 	
 

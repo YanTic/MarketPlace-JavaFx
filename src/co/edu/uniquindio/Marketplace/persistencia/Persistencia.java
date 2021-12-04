@@ -278,7 +278,7 @@ public class Persistencia {
 				
 				// No se carga el "linea.split("@@")[0]" porque es el nombre del vendedor
 				contacto.setNombre(linea.split("@@")[1]);
-				contacto.setCedula(linea.split("@@")[2]);
+				contacto.setCedula(linea.split("@@")[2]);				
 				
 				vendedor.getListaContactos().add(contacto);	
 			}
@@ -342,29 +342,10 @@ public class Persistencia {
 		}
 		return usuarios;
 	}
+
 	
 	
-//	private static ArrayList<Empleado> cargarEmpleados() throws FileNotFoundException, IOException {
-//
-//		ArrayList<Empleado> empleados =new ArrayList<Empleado>();
-//		
-//		ArrayList<String> contenido = ArchivoUtil.leerArchivo(RUTA_ARCHIVO_EMPLEADOS);
-//		String linea="";
-//		
-//		for (int i = 0; i < contenido.size(); i++)
-//		{
-//			linea = contenido.get(i);
-//			Empleado empleado = new Empleado();
-//			empleado.setNombre(linea.split(",")[0]);
-//			empleado.setApellido(linea.split(",")[1]);
-//			empleado.setCedula(linea.split(",")[2]);
-//			empleado.setFechaNacimiento(linea.split(",")[3]);
-//			empleados.add(empleado);
-//		}
-//		return empleados;
-//		
-//		
-//	}
+	
 	
 	
 

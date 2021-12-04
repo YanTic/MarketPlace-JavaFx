@@ -43,8 +43,6 @@ public class MarketplaceViewController implements Initializable{
 	
 	@FXML private TabPane mainTabPane;
 	@FXML private Tab tabAdministracion;
-//  @FXML private Tab tabVendedorPrincipal;
-//	@FXML private Tab tabCRUDProductos;
 	@FXML private AnchorPane anchorPaneTabAdministracion;
 	
 	
@@ -234,6 +232,8 @@ public class MarketplaceViewController implements Initializable{
 		txtApellidoVendedor.clear();
 		txtCedulaVendedor.clear();
 		txtDireccionVendedor.clear();
+		
+		tablaVendedores.getSelectionModel().clearSelection();
 		
 		// setPromptText a diferencia de setText, es mejor, porque la letra es transparente
 		// y se elimina al tocar en el textfield, y no es como poner un texto plano y ya		

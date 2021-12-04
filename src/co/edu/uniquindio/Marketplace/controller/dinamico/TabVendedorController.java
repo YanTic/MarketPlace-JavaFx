@@ -91,6 +91,7 @@ public class TabVendedorController implements Initializable{
     // Listas observable para mostrar en tablas, junto a su objeto seleccionado
  	ObservableList<Vendedor> listaContactosData = FXCollections.observableArrayList();
  	ObservableList<Producto> listaProductosData = FXCollections.observableArrayList();
+    ArrayList<Vendedor> listaTabContactosAbiertos;
 // 	Vendedor vendedorSeleccionado;
  	Usuario  usuarioLogeado;
  	Vendedor vendedorPrincipal; // El responsable del tab
@@ -107,6 +108,8 @@ public class TabVendedorController implements Initializable{
 			tabPaneVendedor.getTabs().remove(tabCRUDProductosVendedorPrincipal);
 			tabVendedorPrincipal.setText("Vendedor "+ vendedorPrincipal.getNombre());
 			CRUDabierto = false;
+			
+			listaTabContactosAbiertos = new ArrayList<Vendedor>();
 			
 			cargarInformacionTabVendedor();							
 		});
@@ -146,19 +149,9 @@ public class TabVendedorController implements Initializable{
     		tablaContactos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) ->{
     			contactoSeleccionado = newSelection;
     			
-    			
     			// Usar doble click acá para mostrar el tab y talvez un mensjae de confirmacion
-//    			mostrarInformacionProducto(contactoSeleccionado); Esto sería como mostrar el tab del contacto
-    			try {    			
-	    			FXMLLoader fxmlLoader = new FXMLLoader();
-	    			fxmlLoader.setLocation(MainApp.class.getResource("view/tabView/contactoTab.fxml"));
-	    			TabContactoController tabContactoController = fxmlLoader.getController();
-	    			
-					tabPaneVendedor.getTabs().add(fxmlLoader.load());
-				} catch (IOException e) {				
-					e.printStackTrace();
-				}
     			
+    			mostrarTabContacto();
     		});
     		
     		
@@ -197,6 +190,42 @@ public class TabVendedorController implements Initializable{
     	}
     	
     }
+    
+    public void mostrarTabContacto() {
+    	boolean tabContactoAbierto = false;
+    	
+    	// Verifico si la tab del vendedor ya está abierta
+    	for(Vendedor vendedor : listaTabContactosAbiertos){
+    		if(vendedor.equals(contactoSeleccionado)){
+    			tabContactoAbierto = true;
+    			break;
+    		}
+    	}
+    	
+    	// Si no está abierta la tab del vendedor, puede abrirla
+    	if(tabContactoAbierto != true){
+    		try {    			
+    			FXMLLoader fxmlLoader = new FXMLLoader();
+    			fxmlLoader.setLocation(MainApp.class.getResource("view/tabView/contactoTab.fxml"));
+    			tabPaneVendedor.getTabs().add(fxmlLoader.load());
+    			
+    			TabContactoController tabContactoController = fxmlLoader.getController();
+    			tabContactoController.setInformacionContacto(crudVendedorViewController, contactoSeleccionado);
+    			
+    			listaTabContactosAbiertos.add(contactoSeleccionado);
+    			
+			} catch (IOException e) {				
+				e.printStackTrace();
+			}
+    	}
+    	else{
+    		mostrarMensaje("Notificacion", "Tab Ya Abierta", "La tab del contacto "+contactoSeleccionado.getNombre()+ " ya está abierta", AlertType.INFORMATION);
+    	}
+    	
+    	
+    }
+    
+    
     
     public void setCerrarTabHandler(Runnable handler){
     	
@@ -453,47 +482,6 @@ public class TabVendedorController implements Initializable{
     	subirImagen();
     }
     
-//    public void subirImagen(){
-//    	if(productoSeleccionado != null){
-//    		// Creo un fileChooser donde solo se pueda escoger imagenes .jpg o .png
-//    		FileChooser fileChooser = new FileChooser();
-////	        	FileChooser.ExtensionFilter ext1 = new FileChooser.ExtensionFilter("JPG files(*.jpg)","*.JPG");
-//        	FileChooser.ExtensionFilter ext2 = new FileChooser.ExtensionFilter("PNG files(*.png)","*.PNG");
-//        	fileChooser.getExtensionFilters().addAll(ext2);
-//        	
-//        	
-//        	File archivoSeleccionado = fileChooser.showOpenDialog(null);
-//        	
-//        	try {
-//        		        		
-//    	    	BufferedImage bf;	
-//    	    	
-//    	    	if(archivoSeleccionado != null){
-//    	    		// Leo la imagen para luego mostrarla en el ImageView
-//    				bf = ImageIO.read(archivoSeleccionado);
-//    				
-//    	    		Image imagen = SwingFXUtils.toFXImage(bf, null);
-//    	    		imagenViewProducto.setImage(imagen);    	   
-//    	    		
-//    	    		// Hacer una copia de la imagen porque la imagen le pertenece a la ruta especifica del usuario
-//    	    		// Y guardo la nueva ruta para asignarsela al producto
-//    	    		rutaImagenProductoSeleccionado = crudVendedorViewController.copiarImagen(productoSeleccionado.getNombre(),
-//    	    																	 archivoSeleccionado.getAbsolutePath());    	    		    	    		
-//    	    	
-//    	    	}
-//    	    	else{
-//    	    		mostrarMensaje("Notifacion", "Archivo NO valido", "El archivo no ha sido encontrado", AlertType.ERROR);
-//    	    	}
-//        	} catch (IOException e) {
-//    			e.printStackTrace();
-//    		}	
-//    	}
-//    	else{
-//    		mostrarMensaje("Notifacion", "Error Imagen", "NO se puede agregar imagen sin elegir un producto", AlertType.ERROR);
-//    	}
-//    	
-//    }
-    
     public void subirImagen(){
 		// Creo un fileChooser donde solo se pueda escoger imagenes .jpg o .png
 		FileChooser fileChooser = new FileChooser();
@@ -644,6 +632,7 @@ public class TabVendedorController implements Initializable{
     public ArrayList<Publicacion> getListaPublicaciones(Vendedor vendedorSeleccionado){
     	return crudVendedorViewController.getListaPublicaciones(vendedorSeleccionado);
     }
+
     
     
     /*
