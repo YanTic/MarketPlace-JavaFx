@@ -15,20 +15,60 @@
    <void method="add">
     <object class="co.edu.uniquindio.Marketplace.model.Usuario">
      <void property="contrasenia">
-      <string>carlitos1234</string>
+      <string>juan123</string>
      </void>
      <void property="usuario">
-      <string>Juan Carlos</string>
+      <string>Juan</string>
      </void>
     </object>
    </void>
    <void method="add">
     <object class="co.edu.uniquindio.Marketplace.model.Usuario">
      <void property="contrasenia">
-      <string>mario123</string>
+      <string>pedro123</string>
      </void>
      <void property="usuario">
-      <string>Mario</string>
+      <string>Pedro</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.Marketplace.model.Usuario">
+     <void property="contrasenia">
+      <string>jose123</string>
+     </void>
+     <void property="usuario">
+      <string>Jose</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.Marketplace.model.Usuario">
+     <void property="contrasenia">
+      <string>julian123</string>
+     </void>
+     <void property="usuario">
+      <string>Julian</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.Marketplace.model.Usuario">
+     <void property="contrasenia">
+      <string>roberto123</string>
+     </void>
+     <void property="usuario">
+      <string>Roberto</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.Marketplace.model.Usuario">
+     <void property="contrasenia">
+      <string>juanito123</string>
+     </void>
+     <void property="usuario">
+      <string>Juan Diego</string>
      </void>
     </object>
    </void>
@@ -475,6 +515,13 @@
      </void>
      <void property="nombre">
       <string>Roberto</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.Marketplace.model.Vendedor">
+     <void property="nombre">
+      <string>Juan Diego</string>
      </void>
     </object>
    </void>

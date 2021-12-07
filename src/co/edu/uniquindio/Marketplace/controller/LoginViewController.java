@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import co.edu.uniquindio.Marketplace.MainApp;
 import co.edu.uniquindio.Marketplace.model.Marketplace;
 import co.edu.uniquindio.Marketplace.model.Usuario;
+import co.edu.uniquindio.Marketplace.model.Vendedor;
 import co.edu.uniquindio.Marketplace.persistencia.Persistencia;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -183,8 +184,13 @@ public class LoginViewController implements Initializable {
 		// Valida los datos
 		if(datosValidos(nuevoUsuario, nuevaContrasenia, confirmarNuevaContrasenia)){
 			Usuario usuario = null;
+			Vendedor vendedor = null;
 			
+			// Creo el usuario
 			usuario = crudLoginViewController.crearUsuario(nuevoUsuario, nuevaContrasenia);
+			
+			// Y creo el vendedor solo con su nombre
+			vendedor = crudVendedorViewController.crearVendedor(nuevoUsuario, null, null, null);
 			
 			if(usuario != null){				
 				mostrarMensaje("Notifacion", "Usuario Creado", "Usuario creado con exito! Bienvenido "+ 

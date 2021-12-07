@@ -91,6 +91,7 @@ public class TabVendedorController implements Initializable{
     // Listas observable para mostrar en tablas, junto a su objeto seleccionado
  	ObservableList<Vendedor> listaContactosData = FXCollections.observableArrayList();
  	ObservableList<Producto> listaProductosData = FXCollections.observableArrayList();
+ 	ObservableList<Vendedor> listaSugeridosData = FXCollections.observableArrayList();
     ArrayList<Vendedor> listaTabContactosAbiertos;
 // 	Vendedor vendedorSeleccionado;
  	Usuario  usuarioLogeado;
@@ -136,8 +137,9 @@ public class TabVendedorController implements Initializable{
     		cargarPublicacionesVendedor();
     		
     		
-    		// Inicializa los vendederos en la tabla con sus columnas.
+    		// Inicializa los contactos y sugeridos en sus tablas con sus columnas.
     		columnaNombreContacto.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+    		columnaNombreSugeridos.setCellValueFactory(new PropertyValueFactory<>("nombre"));
     		
     		
     		// Añade los datos de la lista observable a la tabla
@@ -154,6 +156,12 @@ public class TabVendedorController implements Initializable{
     			mostrarTabContacto();
     		});
     		
+    		// Muestra un vendedor aleatorio para agregar como contacto
+    		tablaSugeridos.getItems().clear();
+    		tablaSugeridos.setItems(getVendedoresSugeridosData());
+    		
+    		CON UN MOSTRAR MENSAJE DE CONFIRMACION Y UN METODO DE SELECCION HACER QUE EL
+    		VENDEDOR PUEDA AGREGAR AMIGOS CONTACTOS
     		
     	}
     	else{
@@ -230,6 +238,30 @@ public class TabVendedorController implements Initializable{
     public void setCerrarTabHandler(Runnable handler){
     	
     }
+    
+    
+    public ObservableList<Vendedor> getVendedoresSugeridosData(){    	
+    	listaSugeridosData.addAll(getListaVendedores());
+    	
+    	for(Vendedor v : listaSugeridosData){
+    		for(Vendedor c : getListaContactos(vendedorPrincipal)){
+    			if(v.getNombre() == c.getNombre() || v.getNombre().equals(c.getNombre())){
+    				listaSugeridosData.remove(v);			
+    			}
+    		}
+    	}
+    	
+    	return listaSugeridosData;
+
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -632,6 +664,14 @@ public class TabVendedorController implements Initializable{
     public ArrayList<Publicacion> getListaPublicaciones(Vendedor vendedorSeleccionado){
     	return crudVendedorViewController.getListaPublicaciones(vendedorSeleccionado);
     }
+    
+    public ArrayList<Vendedor> getListaContactos(Vendedor vendedorSeleccionado){
+    	return crudVendedorViewController.getListaContactos(vendedorSeleccionado);
+    }
+    
+    public ArrayList<Vendedor> getListaVendedores(){
+		return crudVendedorViewController.getListaVendedores();
+	}
 
     
     
