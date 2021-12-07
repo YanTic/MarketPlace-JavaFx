@@ -111,6 +111,27 @@ public class MarketplaceViewController implements Initializable{
 			
 			// Establesco el Usuario que acaba de iniciara sesion
 			usuarioLogeado();
+			
+			
+			// Muestro la tab dependiendo del usuario logeado
+			if(!mainApp.getUsuarioLogeado().getUsuario().equals("admin")){
+				mainTabPane.getTabs().remove(tabAdministracion);
+				
+				for(Vendedor vendedor : getListaVendedores()){
+					if(mainApp.getUsuarioLogeado().getUsuario() == vendedor.getNombre() ||
+					   mainApp.getUsuarioLogeado().getUsuario().equals(vendedor.getNombre())){
+						vendedorSeleccionado = vendedor;
+						mostrarTabVendedor();
+						break;
+					}					
+				}
+				
+//				vendedorSeleccionado = mainApp.getUsuarioLogeado().getUsuario() =
+			}
+			
+			
+			
+			
 		});
 	}
 	
@@ -218,7 +239,7 @@ public class MarketplaceViewController implements Initializable{
 		// Acción de la tabla para mostrar informacion de un empleado
 		tablaVendedores.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) ->{
 			vendedorSeleccionado = newSelection;
-			mainApp.setVendedorSeleccionadoGeneral(vendedorSeleccionado);
+//			mainApp.setVendedorSeleccionadoGeneral(vendedorSeleccionado);
 			
 			mostrarInformacionVendedor(vendedorSeleccionado);
 		});
@@ -527,6 +548,10 @@ public class MarketplaceViewController implements Initializable{
 	public ObservableList<Vendedor> getVendedoresData(){
 		listaVendedoresData.addAll(crudVendedorViewController.getListaVendedores()) ;
 		return listaVendedoresData;
+	}
+	
+	public ArrayList<Vendedor> getListaVendedores(){
+		return crudVendedorViewController.getListaVendedores();
 	}
 	
 	

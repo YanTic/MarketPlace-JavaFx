@@ -410,3 +410,13 @@ Dec 03, 2021 9:34:36 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil g
 INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-12-03
 Dec 03, 2021 9:43:55 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
 INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-12-03
+Dec 07, 2021 10:22:14 AM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-12-07
+Dec 07, 2021 10:44:01 AM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-12-07
+Dec 07, 2021 10:44:05 AM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: CerrarSesion,Cerrar sesion del usuario: admin,2021-12-07
+Dec 07, 2021 10:44:21 AM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: Juan,2021-12-07
+Dec 07, 2021 10:44:49 AM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: CerrarSesion,Cerrar sesion del usuario: Juan,2021-12-07
