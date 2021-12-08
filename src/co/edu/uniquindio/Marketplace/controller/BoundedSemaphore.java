@@ -1,4 +1,4 @@
-package co.edu.uniquindio.Marketplace.threads;
+package co.edu.uniquindio.Marketplace.controller;
 
 public class BoundedSemaphore {
 	private int señal = 0;

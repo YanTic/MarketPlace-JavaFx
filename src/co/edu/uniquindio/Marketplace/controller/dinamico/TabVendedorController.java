@@ -265,9 +265,9 @@ public class TabVendedorController implements Initializable{
     				
     				// Registro la accion de agregar Producto y guardo los datos
     				crudVendedorViewController.guardarDatos();    	
+    				crudVendedorViewController.guardarDatosTXT();
     				crudVendedorViewController.registrarAccion("El contacto ha sido creado con exito!. Realizado por el Usuario : "+ 
     						usuarioLogeado.getUsuario(), 1, "Agregar Contacto");
-    				crudVendedorViewController.guardarDatosTXT();
     				
     			}
     			else{
@@ -380,11 +380,10 @@ public class TabVendedorController implements Initializable{
 			productoSeleccionado = newSelection;
 			mostrarInformacionProducto(productoSeleccionado);
 			
-			try{
-				rutaImagenProductoSeleccionado = productoSeleccionado.getRutaImagen();				
-			} catch(NullPointerException e){
-				System.out.println("Imagen no encontrada al seleccionar el producto");
-			}
+//			try{
+//			} catch(NullPointerException e){
+//				System.out.println("Imagen no encontrada al seleccionar el producto");
+//			}
 			
 		});
 
@@ -422,11 +421,11 @@ public class TabVendedorController implements Initializable{
 				
 				// Registro la accion de agregar Producto y guardo los datos
 				crudVendedorViewController.guardarDatos();    	
+				crudVendedorViewController.guardarDatosTXT();
 				crudVendedorViewController.registrarAccion("El producto ha sido creado con exito!. Realizado por el Usuario : "+ 
 															usuarioLogeado.getUsuario(), 1, "Agregar Producto");
 				crudVendedorViewController.registrarAccion("La publicacion ha sido creada con exito!. Realizado por el Usuario : "+ 
 															usuarioLogeado.getUsuario(), 1, "Agregar Publicacion");
-				crudVendedorViewController.guardarDatosTXT();
 				
 				// Limpio los textfield y Actualiza las publicaciones
 				accionBtnNuevoProducto(new ActionEvent());
@@ -494,11 +493,11 @@ public class TabVendedorController implements Initializable{
     				
     				// Registro la accion de eliminar Producto y guardo los datos
     				crudVendedorViewController.guardarDatos();    	
+    				crudVendedorViewController.guardarDatosTXT();
     				crudVendedorViewController.registrarAccion("El producto ha sido eliminado con exito!. Realizado por el Usuario : "+ 
     															usuarioLogeado.getUsuario(), 1, "Eliminar Producto");
     				crudVendedorViewController.registrarAccion("La publicacion ha sido eliminada con exito!. Realizado por el Usuario : "+ 
 																usuarioLogeado.getUsuario(), 1, "Eliminar Publicacion");
-    				crudVendedorViewController.guardarDatosTXT();
     				
     			}
     			else{
@@ -517,21 +516,24 @@ public class TabVendedorController implements Initializable{
     }
 	    
     public void actualizarProducto(){
-    	// Capturo los datos
-		Vendedor vendedor = vendedorPrincipal;
     	
-		String nombreActual = productoSeleccionado.getNombre();
-		String nombre = txtNombreProducto.getText();
-		String precio = txtPrecioProducto.getText();
-		String categoria = txtCategoriaProducto.getText();
-		EstadoProducto estado = cbEstadoProducto.getValue();
-		String rutaImagen = rutaImagenProductoSeleccionado;
-		
 		boolean productoActualizado = false;
 		boolean publicacionActualizada = false;
 		
 		// Verifico los datos
 		if(productoSeleccionado != null){
+			
+			// Capturo los datos
+			Vendedor vendedor = vendedorPrincipal;
+	    	
+			String nombreActual = productoSeleccionado.getNombre();
+			String nombre = txtNombreProducto.getText();
+			String precio = txtPrecioProducto.getText();
+			String categoria = txtCategoriaProducto.getText();
+			EstadoProducto estado = cbEstadoProducto.getValue();
+			String rutaImagen = rutaImagenProductoSeleccionado;
+			
+			
 			// Valido los datos
 			if(datosValidos(nombre, precio, categoria, estado, rutaImagen)){
 				
@@ -545,14 +547,15 @@ public class TabVendedorController implements Initializable{
 					
 					// Registro la accion de actualizar Producto y guardo los datos
     				crudVendedorViewController.guardarDatos();    	
+    				crudVendedorViewController.guardarDatosTXT();
     				crudVendedorViewController.registrarAccion("El producto ha sido actualizado con exito!. Realizado por el Usuario : "+ 
     															usuarioLogeado.getUsuario(), 1, "Actualizar Producto");
     				crudVendedorViewController.registrarAccion("La publicacion ha sido actualizada con exito!. Realizado por el Usuario : "+ 
 																usuarioLogeado.getUsuario(), 1, "Actualizar Publicacion");
-    				crudVendedorViewController.guardarDatosTXT();
 					
 					// Limpio los textfield y Actualiza las publicaciones
 					accionBtnNuevoProducto(new ActionEvent());
+					productoSeleccionado = null;
 					cargarPublicacionesVendedor();
 				}
 				else{
@@ -629,6 +632,8 @@ public class TabVendedorController implements Initializable{
 		    txtPrecioProducto.setText(productoSeleccionado.getPrecio());
 		    txtCategoriaProducto.setText(productoSeleccionado.getCategoria());
 		    cbEstadoProducto.getSelectionModel().select(productoSeleccionado.getEstado());
+			rutaImagenProductoSeleccionado = productoSeleccionado.getRutaImagen();				
+
 		    
 		 // Muestro la imagen en el ImageView
  			try{ 				

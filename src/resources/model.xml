@@ -133,7 +133,7 @@
       <void method="add">
        <object class="co.edu.uniquindio.Marketplace.model.Producto">
         <void property="categoria">
-         <string>COMIDA</string>
+         <string>Comida</string>
         </void>
         <void property="estado">
          <object class="java.lang.Enum" id="EstadoProducto1" method="valueOf">
@@ -168,6 +168,28 @@
         </void>
         <void property="rutaImagen">
          <string>src/resources/imagenesProducto/imagen_Servilletas.png</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Producto">
+        <void property="categoria">
+         <string>Postre</string>
+        </void>
+        <void property="estado">
+         <object class="java.lang.Enum" id="EstadoProducto2" method="valueOf">
+          <class>co.edu.uniquindio.Marketplace.model.EstadoProducto</class>
+          <string>Vendido</string>
+         </object>
+        </void>
+        <void property="nombre">
+         <string>Helado de cono</string>
+        </void>
+        <void property="precio">
+         <string>3000</string>
+        </void>
+        <void property="rutaImagen">
+         <string>src/resources/imagenesProducto/imagen_Helado de cono.png</string>
         </void>
        </object>
       </void>
@@ -230,6 +252,25 @@
         </void>
        </object>
       </void>
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Publicacion">
+        <void property="estadoProducto">
+         <string>Vendido</string>
+        </void>
+        <void property="fechaPublicado">
+         <string>08_12_2021_3_47_32</string>
+        </void>
+        <void property="nombreProducto">
+         <string>Helado de cono</string>
+        </void>
+        <void property="precioProducto">
+         <string>3000</string>
+        </void>
+        <void property="rutaImagenProducto">
+         <string>src/resources/imagenesProducto/imagen_Helado de cono.png</string>
+        </void>
+       </object>
+      </void>
      </void>
      <void property="nombre">
       <string>Juan</string>
@@ -257,13 +298,70 @@
          <object idref="EstadoProducto0"/>
         </void>
         <void property="nombre">
-         <string>Tabla de Madera</string>
+         <string>Tabla de madera</string>
         </void>
         <void property="precio">
-         <string>6500</string>
+         <string>65500</string>
         </void>
         <void property="rutaImagen">
          <string>src/resources/imagenesProducto/imagen_Tabla de Madera.png</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Producto">
+        <void property="categoria">
+         <string>Madera</string>
+        </void>
+        <void property="estado">
+         <object idref="EstadoProducto2"/>
+        </void>
+        <void property="nombre">
+         <string>Mesa de madera</string>
+        </void>
+        <void property="precio">
+         <string>180500</string>
+        </void>
+        <void property="rutaImagen">
+         <string>src/resources/imagenesProducto/imagen_Mesa de madera.png</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Producto">
+        <void property="categoria">
+         <string>Madera</string>
+        </void>
+        <void property="estado">
+         <object idref="EstadoProducto1"/>
+        </void>
+        <void property="nombre">
+         <string>Madera recien cortada</string>
+        </void>
+        <void property="precio">
+         <string>160900</string>
+        </void>
+        <void property="rutaImagen">
+         <string>src/resources/imagenesProducto/imagen_Madera recien cortada.png</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Producto">
+        <void property="categoria">
+         <string>Madera</string>
+        </void>
+        <void property="estado">
+         <object idref="EstadoProducto0"/>
+        </void>
+        <void property="nombre">
+         <string>Steps de madera</string>
+        </void>
+        <void property="precio">
+         <string>40000</string>
+        </void>
+        <void property="rutaImagen">
+         <string>src/resources/imagenesProducto/imagen_Steps de madera.png</string>
         </void>
        </object>
       </void>
@@ -278,13 +376,70 @@
          <string>03_12_2021_10_15_20</string>
         </void>
         <void property="nombreProducto">
-         <string>Tabla de Madera</string>
+         <string>Tabla de madera</string>
         </void>
         <void property="precioProducto">
-         <string>6500</string>
+         <string>65500</string>
         </void>
         <void property="rutaImagenProducto">
          <string>src/resources/imagenesProducto/imagen_Tabla de Madera.png</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Publicacion">
+        <void property="estadoProducto">
+         <string>Vendido</string>
+        </void>
+        <void property="fechaPublicado">
+         <string>08_12_2021_5_10_7</string>
+        </void>
+        <void property="nombreProducto">
+         <string>Mesa de madera</string>
+        </void>
+        <void property="precioProducto">
+         <string>180500</string>
+        </void>
+        <void property="rutaImagenProducto">
+         <string>src/resources/imagenesProducto/imagen_Mesa de madera.png</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Publicacion">
+        <void property="estadoProducto">
+         <string>Cancelado</string>
+        </void>
+        <void property="fechaPublicado">
+         <string>08_12_2021_5_53_14</string>
+        </void>
+        <void property="nombreProducto">
+         <string>Madera recien cortada</string>
+        </void>
+        <void property="precioProducto">
+         <string>160900</string>
+        </void>
+        <void property="rutaImagenProducto">
+         <string>src/resources/imagenesProducto/imagen_Madera recien cortada.png</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Publicacion">
+        <void property="estadoProducto">
+         <string>Publicado</string>
+        </void>
+        <void property="fechaPublicado">
+         <string>08_12_2021_5_53_58</string>
+        </void>
+        <void property="nombreProducto">
+         <string>Steps de madera</string>
+        </void>
+        <void property="precioProducto">
+         <string>40000</string>
+        </void>
+        <void property="rutaImagenProducto">
+         <string>src/resources/imagenesProducto/imagen_Steps de madera.png</string>
         </void>
        </object>
       </void>
@@ -327,13 +482,32 @@
          <object idref="EstadoProducto0"/>
         </void>
         <void property="nombre">
-         <string>Computador</string>
+         <string>Computadora</string>
         </void>
         <void property="precio">
-         <string>20000</string>
+         <string>750000</string>
         </void>
         <void property="rutaImagen">
          <string>src/resources/imagenesProducto/imagen_Computador.png</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Producto">
+        <void property="categoria">
+         <string>Electronica</string>
+        </void>
+        <void property="estado">
+         <object idref="EstadoProducto2"/>
+        </void>
+        <void property="nombre">
+         <string>Mouse Logitech</string>
+        </void>
+        <void property="precio">
+         <string>110000</string>
+        </void>
+        <void property="rutaImagen">
+         <string>src/resources/imagenesProducto/imagen_Mouse Logitech.png</string>
         </void>
        </object>
       </void>
@@ -348,13 +522,32 @@
          <string>1_12_2021_40_30</string>
         </void>
         <void property="nombreProducto">
-         <string>Computador</string>
+         <string>Computadora</string>
         </void>
         <void property="precioProducto">
-         <string>20000</string>
+         <string>750000</string>
         </void>
         <void property="rutaImagenProducto">
          <string>src/resources/imagenesProducto/imagen_Computador.png</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Publicacion">
+        <void property="estadoProducto">
+         <string>Vendido</string>
+        </void>
+        <void property="fechaPublicado">
+         <string>08_12_2021_5_47_8</string>
+        </void>
+        <void property="nombreProducto">
+         <string>Mouse Logitech</string>
+        </void>
+        <void property="precioProducto">
+         <string>110000</string>
+        </void>
+        <void property="rutaImagenProducto">
+         <string>src/resources/imagenesProducto/imagen_Mouse Logitech.png</string>
         </void>
        </object>
       </void>

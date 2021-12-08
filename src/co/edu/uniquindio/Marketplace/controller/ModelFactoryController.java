@@ -13,7 +13,6 @@ import java.util.TreeSet;
 import co.edu.uniquindio.Marketplace.model.Vendedor;
 import co.edu.uniquindio.Marketplace.model.services.IModelFactoryService;
 import co.edu.uniquindio.Marketplace.persistencia.Persistencia;
-import co.edu.uniquindio.Marketplace.threads.BoundedSemaphore;
 import co.edu.uniquindio.Marketplace.exceptions.ProductoException;
 import co.edu.uniquindio.Marketplace.exceptions.PublicacionException;
 import co.edu.uniquindio.Marketplace.exceptions.UsuarioException;
@@ -191,12 +190,15 @@ public class ModelFactoryController implements IModelFactoryService, Runnable {
 				Persistencia.guardarUsuarios(marketplace.getListaUsuarios());
 				Persistencia.guardarVendedores(marketplace.getListaVendedores());
 				
-				semaforo.liberar();
+				try {
+					semaforo.liberar();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
 			} catch (IOException e) {
 				e.printStackTrace();
-			} catch (InterruptedException e1){
-				e1.printStackTrace();
 			}
 		}
 		
@@ -367,21 +369,24 @@ public class ModelFactoryController implements IModelFactoryService, Runnable {
 //		Persistencia.guardarRecursoMarketplaceXML(marketplace);
 //	}
 	
-	
-	public void registrarAccionesSistema(String mensajeLog, int nivel, String accion){
-		this.mensajeLog = mensajeLog;
-		this.nivel = nivel;
-		this.accion = accion;
-		
-		hiloRegistrarAccionesSistema = new Thread(this);
-		hiloRegistrarAccionesSistema.start();
-	}
+	// EL PROBLEMA ERA ESTE METODO:
+	// 		CUANDO YO LLAMABA ESTE METODO VARIAS VECES, LOS VALORES DE MENSAJELOG, NIVEL, ACCION
+	//		CAMBIABAN Y POR ALGUNA RAZON, NO SE EJECUTABA EL HILO, ASÍ QUE ESTE METODO
+	// 		SE LLAMA DIRECTAMENTE A PERSISTENCIA SIN USAR HILOS 
+//	public void registrarAccionesSistema(String mensajeLog, int nivel, String accion){
+//		this.mensajeLog = mensajeLog;
+//		this.nivel = nivel;
+//		this.accion = accion;
+//		
+//		hiloRegistrarAccionesSistema = new Thread(this);
+//		hiloRegistrarAccionesSistema.start();
+//	}
 	
 	
 	// Registrar las acciones que provengan de los CRUD en un archivo Log
-//	public void registrarAccionesSistema(String mensajeLog, int nivel, String accion){
-//		Persistencia.guardaRegistroLog(mensajeLog, nivel, accion);
-//	}
+	public void registrarAccionesSistema(String mensajeLog, int nivel, String accion){
+		Persistencia.guardaRegistroLog(mensajeLog, nivel, accion);
+	}
 	
 	public void guardarDatosTXT(){
 		hiloGuardarDatosTXT = new Thread(this);

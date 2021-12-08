@@ -524,3 +524,53 @@ Dec 08, 2021 2:31:11 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil g
 INFO: Actualizar Publicacion,La publicacion ha sido actualizada con exito!. Realizado por el Usuario : Julian,2021-12-08
 Dec 08, 2021 2:34:11 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
 INFO: inicioSesion,Inicio de sesion del usuario: Julian,2021-12-08
+Dec 08, 2021 2:49:24 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-12-08
+Dec 08, 2021 2:55:50 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Actualizar Publicacion,La publicacion ha sido actualizada con exito!. Realizado por el Usuario : admin,2021-12-08
+Dec 08, 2021 3:46:17 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-12-08
+Dec 08, 2021 3:47:35 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Agregar Publicacion,La publicacion ha sido creada con exito!. Realizado por el Usuario : admin,2021-12-08
+Dec 08, 2021 3:58:34 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-12-08
+Dec 08, 2021 4:33:24 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-12-08
+Dec 08, 2021 4:51:44 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-12-08
+Dec 08, 2021 5:03:13 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-12-08
+Dec 08, 2021 5:06:56 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Agregar Publicacion,La publicacion ha sido creada con exito!. Realizado por el Usuario : admin,2021-12-08
+Dec 08, 2021 5:08:56 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-12-08
+Dec 08, 2021 5:11:31 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Agregar Producto,El producto ha sido creado con exito!. Realizado por el Usuario : admin,2021-12-08
+Dec 08, 2021 5:11:45 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Agregar Publicacion,La publicacion ha sido creada con exito!. Realizado por el Usuario : admin,2021-12-08
+Dec 08, 2021 5:28:10 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-12-08
+Dec 08, 2021 5:46:15 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-12-08
+Dec 08, 2021 5:47:11 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Agregar Producto,El producto ha sido creado con exito!. Realizado por el Usuario : admin,2021-12-08
+Dec 08, 2021 5:47:11 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Agregar Publicacion,La publicacion ha sido creada con exito!. Realizado por el Usuario : admin,2021-12-08
+Dec 08, 2021 5:52:04 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Agregar Producto,El producto ha sido creado con exito!. Realizado por el Usuario : admin,2021-12-08
+Dec 08, 2021 5:52:04 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Agregar Publicacion,La publicacion ha sido creada con exito!. Realizado por el Usuario : admin,2021-12-08
+Dec 08, 2021 5:52:28 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Eliminar Producto,El producto ha sido eliminado con exito!. Realizado por el Usuario : admin,2021-12-08
+Dec 08, 2021 5:52:28 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Eliminar Publicacion,La publicacion ha sido eliminada con exito!. Realizado por el Usuario : admin,2021-12-08
+Dec 08, 2021 5:53:17 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Agregar Producto,El producto ha sido creado con exito!. Realizado por el Usuario : admin,2021-12-08
+Dec 08, 2021 5:53:17 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Agregar Publicacion,La publicacion ha sido creada con exito!. Realizado por el Usuario : admin,2021-12-08
+Dec 08, 2021 5:54:00 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Agregar Producto,El producto ha sido creado con exito!. Realizado por el Usuario : admin,2021-12-08
+Dec 08, 2021 5:54:00 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Agregar Publicacion,La publicacion ha sido creada con exito!. Realizado por el Usuario : admin,2021-12-08
+Dec 08, 2021 5:54:27 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: CerrarSesion,Cerrar sesion del usuario: admin,2021-12-08
