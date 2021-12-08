@@ -1,5 +1,5 @@
 Juan@@Helado Pelapop@@3000@@Postre@@Publicado@@src/resources/imagenesProducto/imagen_HeladoPelapop.png
-Juan@@Galleta@@600@@Comida@@Cancelado@@src/resources/imagenesProducto/imagen_Galleta.png
+Juan@@Galleta@@650@@Comida@@Cancelado@@src/resources/imagenesProducto/imagen_Galleta.png
 Juan@@Servilletas@@3500@@Utiles de Cocina@@Cancelado@@src/resources/imagenesProducto/imagen_Servilletas.png
 Juan@@Helado de cono@@3000@@Postre@@Vendido@@src/resources/imagenesProducto/imagen_Helado de cono.png
 Pedro@@Tabla de madera@@65500@@Madera@@Publicado@@src/resources/imagenesProducto/imagen_Tabla de Madera.png
@@ -8,6 +8,10 @@ Pedro@@Madera recien cortada@@160900@@Madera@@Cancelado@@src/resources/imagenesP
 Pedro@@Steps de madera@@40000@@Madera@@Publicado@@src/resources/imagenesProducto/imagen_Steps de madera.png
 Jose@@Computadora@@750000@@Electronica@@Publicado@@src/resources/imagenesProducto/imagen_Computador.png
 Jose@@Mouse Logitech@@110000@@Electronica@@Vendido@@src/resources/imagenesProducto/imagen_Mouse Logitech.png
+Jose@@Teclado Redragon@@260000@@Electronica@@Vendido@@src/resources/imagenesProducto/imagen_Teclado Redragon.png
 Julian@@Celular Huawei@@554600@@Electronica@@Cancelado@@src/resources/imagenesProducto/imagen_Celular.png
 Julian@@Celular Iphone@@1400400@@Electronica@@Publicado@@src/resources/imagenesProducto/imagen_Celular Iphone.png
 Roberto@@Cuaderno@@3500@@Utiles@@Publicado@@src/resources/imagenesProducto/imagen_Cuaderno.png
+Roberto@@Tijeras@@900@@Utiles Escolares@@Vendido@@src/resources/imagenesProducto/imagen_Tijeras.png
+Juan Diego@@Camisa roja@@50000@@Ropa@@Publicado@@src/resources/imagenesProducto/imagen_Camisa roja.png
+Juan Diego@@Pantalon Jean@@55000@@Ropa@@Publicado@@src/resources/imagenesProducto/imagen_Pantalon Jean.png

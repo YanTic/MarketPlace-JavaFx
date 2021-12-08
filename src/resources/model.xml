@@ -145,7 +145,7 @@
          <string>Galleta</string>
         </void>
         <void property="precio">
-         <string>600</string>
+         <string>650</string>
         </void>
         <void property="rutaImagen">
          <string>src/resources/imagenesProducto/imagen_Galleta.png</string>
@@ -226,7 +226,7 @@
          <string>Galleta</string>
         </void>
         <void property="precioProducto">
-         <string>600</string>
+         <string>650</string>
         </void>
         <void property="rutaImagenProducto">
          <string>src/resources/imagenesProducto/imagen_Galleta.png</string>
@@ -287,6 +287,18 @@
      </void>
      <void property="direccion">
       <string>Quimbaya</string>
+     </void>
+     <void property="listaContactos">
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Vendedor">
+        <void property="cedula">
+         <string>1096</string>
+        </void>
+        <void property="nombre">
+         <string>Jose</string>
+        </void>
+       </object>
+      </void>
      </void>
      <void property="listaProductos">
       <void method="add">
@@ -511,6 +523,25 @@
         </void>
        </object>
       </void>
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Producto">
+        <void property="categoria">
+         <string>Electronica</string>
+        </void>
+        <void property="estado">
+         <object idref="EstadoProducto2"/>
+        </void>
+        <void property="nombre">
+         <string>Teclado Redragon</string>
+        </void>
+        <void property="precio">
+         <string>260000</string>
+        </void>
+        <void property="rutaImagen">
+         <string>src/resources/imagenesProducto/imagen_Teclado Redragon.png</string>
+        </void>
+       </object>
+      </void>
      </void>
      <void property="listaPublicaciones">
       <void method="add">
@@ -548,6 +579,25 @@
         </void>
         <void property="rutaImagenProducto">
          <string>src/resources/imagenesProducto/imagen_Mouse Logitech.png</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Publicacion">
+        <void property="estadoProducto">
+         <string>Vendido</string>
+        </void>
+        <void property="fechaPublicado">
+         <string>08_12_2021_6_17_53</string>
+        </void>
+        <void property="nombreProducto">
+         <string>Teclado Redragon</string>
+        </void>
+        <void property="precioProducto">
+         <string>260000</string>
+        </void>
+        <void property="rutaImagenProducto">
+         <string>src/resources/imagenesProducto/imagen_Teclado Redragon.png</string>
         </void>
        </object>
       </void>
@@ -696,6 +746,28 @@
      <void property="direccion">
       <string>Calarcá</string>
      </void>
+     <void property="listaContactos">
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Vendedor">
+        <void property="cedula">
+         <string>324234</string>
+        </void>
+        <void property="nombre">
+         <string>Juan Diego</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Vendedor">
+        <void property="cedula">
+         <string>34343</string>
+        </void>
+        <void property="nombre">
+         <string>Julian</string>
+        </void>
+       </object>
+      </void>
+     </void>
      <void property="listaProductos">
       <void method="add">
        <object class="co.edu.uniquindio.Marketplace.model.Producto">
@@ -713,6 +785,25 @@
         </void>
         <void property="rutaImagen">
          <string>src/resources/imagenesProducto/imagen_Cuaderno.png</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Producto">
+        <void property="categoria">
+         <string>Utiles Escolares</string>
+        </void>
+        <void property="estado">
+         <object idref="EstadoProducto2"/>
+        </void>
+        <void property="nombre">
+         <string>Tijeras</string>
+        </void>
+        <void property="precio">
+         <string>900</string>
+        </void>
+        <void property="rutaImagen">
+         <string>src/resources/imagenesProducto/imagen_Tijeras.png</string>
         </void>
        </object>
       </void>
@@ -737,6 +828,25 @@
         </void>
        </object>
       </void>
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Publicacion">
+        <void property="estadoProducto">
+         <string>Vendido</string>
+        </void>
+        <void property="fechaPublicado">
+         <string>08_12_2021_6_20_55</string>
+        </void>
+        <void property="nombreProducto">
+         <string>Tijeras</string>
+        </void>
+        <void property="precioProducto">
+         <string>900</string>
+        </void>
+        <void property="rutaImagenProducto">
+         <string>src/resources/imagenesProducto/imagen_Tijeras.png</string>
+        </void>
+       </object>
+      </void>
      </void>
      <void property="nombre">
       <string>Roberto</string>
@@ -744,7 +854,7 @@
     </object>
    </void>
    <void method="add">
-    <object class="co.edu.uniquindio.Marketplace.model.Vendedor">
+    <object class="co.edu.uniquindio.Marketplace.model.Vendedor" id="Vendedor5">
      <void property="apellido">
       <string>Alcatraz</string>
      </void>
@@ -753,6 +863,98 @@
      </void>
      <void property="direccion">
       <string>Armenia</string>
+     </void>
+     <void property="listaContactos">
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Vendedor">
+        <void property="cedula">
+         <string>1094</string>
+        </void>
+        <void property="nombre">
+         <string>Juan</string>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="listaProductos">
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Producto">
+        <void property="categoria">
+         <string>Ropa</string>
+        </void>
+        <void property="estado">
+         <object idref="EstadoProducto0"/>
+        </void>
+        <void property="nombre">
+         <string>Camisa roja</string>
+        </void>
+        <void property="precio">
+         <string>50000</string>
+        </void>
+        <void property="rutaImagen">
+         <string>src/resources/imagenesProducto/imagen_Camisa roja.png</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Producto">
+        <void property="categoria">
+         <string>Ropa</string>
+        </void>
+        <void property="estado">
+         <object idref="EstadoProducto0"/>
+        </void>
+        <void property="nombre">
+         <string>Pantalon Jean</string>
+        </void>
+        <void property="precio">
+         <string>55000</string>
+        </void>
+        <void property="rutaImagen">
+         <string>src/resources/imagenesProducto/imagen_Pantalon Jean.png</string>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="listaPublicaciones">
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Publicacion">
+        <void property="estadoProducto">
+         <string>Publicado</string>
+        </void>
+        <void property="fechaPublicado">
+         <string>08_12_2021_6_23_7</string>
+        </void>
+        <void property="nombreProducto">
+         <string>Camisa roja</string>
+        </void>
+        <void property="precioProducto">
+         <string>50000</string>
+        </void>
+        <void property="rutaImagenProducto">
+         <string>src/resources/imagenesProducto/imagen_Camisa roja.png</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Publicacion">
+        <void property="estadoProducto">
+         <string>Publicado</string>
+        </void>
+        <void property="fechaPublicado">
+         <string>08_12_2021_6_25_28</string>
+        </void>
+        <void property="nombreProducto">
+         <string>Pantalon Jean</string>
+        </void>
+        <void property="precioProducto">
+         <string>55000</string>
+        </void>
+        <void property="rutaImagenProducto">
+         <string>src/resources/imagenesProducto/imagen_Pantalon Jean.png</string>
+        </void>
+       </object>
+      </void>
      </void>
      <void property="nombre">
       <string>Juan Diego</string>

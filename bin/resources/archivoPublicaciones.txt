@@ -1,5 +1,5 @@
 Juan@@Helado Pelapop@@3000@@src/resources/imagenesProducto/imagen_HeladoPelapop.png@@Publicado@@1_12_2021_30_21@@0
-Juan@@Galleta@@600@@src/resources/imagenesProducto/imagen_Galleta.png@@Cancelado@@1_12_2021_10_11@@0
+Juan@@Galleta@@650@@src/resources/imagenesProducto/imagen_Galleta.png@@Cancelado@@1_12_2021_10_11@@0
 Juan@@Servilletas@@3500@@src/resources/imagenesProducto/imagen_Servilletas.png@@Cancelado@@30_11_2021_40_13@@0
 Juan@@Helado de cono@@3000@@src/resources/imagenesProducto/imagen_Helado de cono.png@@Vendido@@08_12_2021_3_47_32@@0
 Pedro@@Tabla de madera@@65500@@src/resources/imagenesProducto/imagen_Tabla de Madera.png@@Publicado@@03_12_2021_10_15_20@@0
@@ -8,6 +8,10 @@ Pedro@@Madera recien cortada@@160900@@src/resources/imagenesProducto/imagen_Made
 Pedro@@Steps de madera@@40000@@src/resources/imagenesProducto/imagen_Steps de madera.png@@Publicado@@08_12_2021_5_53_58@@0
 Jose@@Computadora@@750000@@src/resources/imagenesProducto/imagen_Computador.png@@Publicado@@1_12_2021_40_30@@0
 Jose@@Mouse Logitech@@110000@@src/resources/imagenesProducto/imagen_Mouse Logitech.png@@Vendido@@08_12_2021_5_47_8@@0
+Jose@@Teclado Redragon@@260000@@src/resources/imagenesProducto/imagen_Teclado Redragon.png@@Vendido@@08_12_2021_6_17_53@@0
 Julian@@Celular Huawei@@554600@@src/resources/imagenesProducto/imagen_Celular.png@@Cancelado@@1_12_2021_23_21@@0
 Julian@@Celular Iphone@@1400400@@src/resources/imagenesProducto/imagen_Celular Iphone.png@@Publicado@@03_12_2021_10_42_10@@0
 Roberto@@Cuaderno@@3500@@src/resources/imagenesProducto/imagen_Cuaderno.png@@Publicado@@1_12_2021_36_10@@0
+Roberto@@Tijeras@@900@@src/resources/imagenesProducto/imagen_Tijeras.png@@Vendido@@08_12_2021_6_20_55@@0
+Juan Diego@@Camisa roja@@50000@@src/resources/imagenesProducto/imagen_Camisa roja.png@@Publicado@@08_12_2021_6_23_7@@0
+Juan Diego@@Pantalon Jean@@55000@@src/resources/imagenesProducto/imagen_Pantalon Jean.png@@Publicado@@08_12_2021_6_25_28@@0

@@ -547,7 +547,7 @@ public class Persistencia {
 	
 	//------------------------------------ COPIA DE SEGURIDAD ------------------------------------
 	
-	public static void guardarCopiaSeguridadXML(Marketplace marketplace){
+	public static void guardarCopiaSeguridadXML(){
 		
 		try {
 			ArchivoUtil.copiarArchivo(RUTA_ARCHIVO_MODELO_MARKETPLACE_XML, RUTA_ARCHIVO_SEGURIDAD_MODELO_MARKETPLACE_XML);
@@ -558,7 +558,7 @@ public class Persistencia {
 		
 	}
 	
-	public static void guardarCopiaSeguridadBinario(Marketplace marketplace) {
+	public static void guardarCopiaSeguridadBinario() {
 		
 		try {
 			ArchivoUtil.copiarArchivo(RUTA_ARCHIVO_MODELO_MARKETPLACE_BINARIO, RUTA_ARCHIVO_SEGURIDAD_MODELO_MARKETPLACE_BINARIO);
