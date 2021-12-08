@@ -465,6 +465,24 @@ public class ModelFactoryController implements IModelFactoryService{
 		return flagUsuarioExiste;
 	}
 	
+	@Override
+	public Vendedor agregarContacto(Vendedor vendedor, Vendedor nuevoContacto){
+		Vendedor nuevoVendedorContacto = null;	
+		
+		// 26:02 min
+		try {
+			nuevoVendedorContacto = marketplace.agregarContacto(vendedor, nuevoContacto);
+		} catch (VendedorException e) {
+//			e.printStackTrace();
+			Persistencia.guardaRegistroLog(e.getMessage(), 2, "Vendedor Exception");
+			e.getMessage();
+		}
+		
+		return nuevoVendedorContacto;
+	}
+	
+	
+	
 	
 	
 	

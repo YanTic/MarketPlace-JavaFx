@@ -420,6 +420,47 @@ public class Marketplace implements Serializable, IMarketplaceService{
 	}
 	
 	
+	// -------------- METODOS PARA MODEL FACTORY CONTROLLER DE CONTACTOS --------------
+	
+	@Override
+	public Vendedor agregarContacto(Vendedor vendedor, Vendedor nuevoContacto) throws VendedorException {
+		Vendedor contacto;
+		boolean flagContactoExiste = false;
+		
+		flagContactoExiste = verificarContactoExistente(vendedor, nuevoContacto.getCedula());
+		
+		// Esto es para no crear un vendedor que ya existe
+		if(flagContactoExiste != true){
+			contacto = new Vendedor();
+			contacto.setNombre(nuevoContacto.getNombre());
+			contacto.setCedula(nuevoContacto.getCedula());
+			vendedor.getListaContactos().add(contacto);
+		}
+		else{
+			throw new VendedorException("El contacto : "+nuevoContacto.getNombre()+ " NO se ha podido crear. Ya existe");			
+		}
+		
+		return contacto;
+	}
+	
+	@Override
+	public boolean verificarContactoExistente(Vendedor vendedor, String cedulaContacto){
+		Boolean flagContactoExistente = false;
+		
+		// Esto compara la cedula de cada vendedor para verificar si se encuentra en la lista
+		for(Vendedor contacto: vendedor.getListaContactos()){
+			if(contacto.getCedula().equalsIgnoreCase(cedulaContacto)){
+				flagContactoExistente = true;
+				break;
+			}
+		}
+		
+		return flagContactoExistente;
+		
+	}
+	
+	
+	
 	
 	
 

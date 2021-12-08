@@ -41,4 +41,7 @@ public interface IMarketplaceService {
 	public boolean verificarUsuarioExistente(String nombreUsuario);
 	public boolean verificarUsuario(String nombreUsuario, String contrasenia) throws UsuarioException;
 
+	// Contacto
+	public Vendedor agregarContacto(Vendedor vendedor, Vendedor nuevoContacto) throws VendedorException;
+	public boolean verificarContactoExistente(Vendedor vendedor, String cedulaContacto);
 }

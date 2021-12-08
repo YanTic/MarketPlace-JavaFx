@@ -97,6 +97,7 @@ public class TabVendedorController implements Initializable{
  	Usuario  usuarioLogeado;
  	Vendedor vendedorPrincipal; // El responsable del tab
  	Vendedor contactoSeleccionado;
+ 	Vendedor sugeridoSeleccionado;
  	Producto productoSeleccionado;
  	String   rutaImagenProductoSeleccionado;
  	String   rutaImagenNuevoProducto;
@@ -151,17 +152,27 @@ public class TabVendedorController implements Initializable{
     		tablaContactos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) ->{
     			contactoSeleccionado = newSelection;
     			
-    			// Usar doble click acá para mostrar el tab y talvez un mensjae de confirmacion
+    			// Usar doble click acá para mostrar el tab
     			
     			mostrarTabContacto();
     		});
+    		
+    		
+    		
+    		
     		
     		// Muestra un vendedor aleatorio para agregar como contacto
     		tablaSugeridos.getItems().clear();
     		tablaSugeridos.setItems(getVendedoresSugeridosData());
     		
-    		CON UN MOSTRAR MENSAJE DE CONFIRMACION Y UN METODO DE SELECCION HACER QUE EL
-    		VENDEDOR PUEDA AGREGAR AMIGOS CONTACTOS
+//    		CON UN MOSTRAR MENSAJE DE CONFIRMACION Y UN METODO DE SELECCION HACER QUE EL
+//    		VENDEDOR PUEDA AGREGAR AMIGOS CONTACTOS
+    		
+    		tablaSugeridos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) ->{
+    			sugeridoSeleccionado = newSelection;
+    			
+    			agregarContacto();
+    		});
     		
     	}
     	else{
@@ -233,6 +244,41 @@ public class TabVendedorController implements Initializable{
     	
     }
     
+    public void agregarContacto(){
+    	if(sugeridoSeleccionado != null){   
+    		
+    		
+    		CUANDO AGREGO UN CONTACTO ESTE MENSAJE DE CONFIRMACION SE REPITA | POR QUEEEEEEEEE!!
+    		if(mostrarMensajeConfirmacion("¿Desea agregar el vendedor como amigo?")){
+    			Vendedor nuevoContacto = crudVendedorViewController.agregarContacto(vendedorPrincipal, sugeridoSeleccionado);
+    			
+    			if(nuevoContacto != null){
+    				listaContactosData.add(nuevoContacto);
+    				listaSugeridosData.remove(sugeridoSeleccionado);
+    				
+    				sugeridoSeleccionado = null;
+    				
+    				mostrarMensaje("Notificacion", "Contacto Agregado", "El vendedor: "+nuevoContacto.getNombre()+ " ha sido agregado como amigo", AlertType.INFORMATION);
+    				
+    				// Registro la accion de agregar Producto y guardo los datos
+    				crudVendedorViewController.guardarDatos();    	
+    				crudVendedorViewController.registrarAccion("El contacto ha sido creado con exito!. Realizado por el Usuario : "+ 
+    						usuarioLogeado.getUsuario(), 1, "Agregar Contacto");
+    				crudVendedorViewController.guardarDatosTXT();
+    				
+    				tablaSugeridos.getSelectionModel().clearSelection();
+    				tablaContactos.refresh();
+    				tablaSugeridos.refresh();
+    				
+    			}
+    			else{
+    				mostrarMensaje("Notificacion", "Contacto No Agregado", "El vendedor: "+nuevoContacto.getNombre()+ " No ha sido agregado como amigo", AlertType.ERROR);
+    			}
+    		}
+    	}
+    }
+    
+    
     
     
     public void setCerrarTabHandler(Runnable handler){
@@ -242,6 +288,7 @@ public class TabVendedorController implements Initializable{
     
     public ObservableList<Vendedor> getVendedoresSugeridosData(){    	
     	listaSugeridosData.addAll(getListaVendedores());
+    	listaSugeridosData.remove(vendedorPrincipal);
     	
     	for(Vendedor v : listaSugeridosData){
     		for(Vendedor c : getListaContactos(vendedorPrincipal)){

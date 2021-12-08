@@ -102,6 +102,15 @@ public class CrudVendedorViewController {
 	
 	
 	
+	// CRUD comunica con ModelFactoryController  ( Contactos )
+	public Vendedor agregarContacto(Vendedor vendedor, Vendedor nuevoContacto){
+		return modelFactoryController.agregarContacto(vendedor, nuevoContacto);
+	}
+	
+	
+	
+	
+	
 	
 	// Persistencia Metodos
 	public void guardarDatos() {

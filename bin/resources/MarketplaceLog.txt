@@ -430,3 +430,33 @@ Dec 07, 2021 10:56:33 AM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil 
 INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-12-07
 Dec 07, 2021 10:56:41 AM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
 INFO: CerrarSesion,Cerrar sesion del usuario: admin,2021-12-07
+Dec 07, 2021 11:10:55 AM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-12-07
+Dec 07, 2021 11:31:51 AM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: Julian,2021-12-07
+Dec 07, 2021 11:33:01 AM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-12-07
+Dec 07, 2021 11:15:10 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: Julian,2021-12-07
+Dec 07, 2021 11:15:22 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Agregar Contacto,El contacto ha sido creado con exito!. Realizado por el Usuario : Julian,2021-12-07
+Dec 07, 2021 11:18:41 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-12-07
+Dec 07, 2021 11:19:05 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Agregar Contacto,El contacto ha sido creado con exito!. Realizado por el Usuario : admin,2021-12-07
+Dec 07, 2021 11:22:14 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: admin,2021-12-07
+Dec 07, 2021 11:23:27 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Agregar Contacto,El contacto ha sido creado con exito!. Realizado por el Usuario : admin,2021-12-07
+Dec 07, 2021 11:26:02 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Agregar Contacto,El contacto ha sido creado con exito!. Realizado por el Usuario : admin,2021-12-07
+Dec 07, 2021 11:39:59 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: Julian,2021-12-07
+Dec 07, 2021 11:40:11 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Agregar Contacto,El contacto ha sido creado con exito!. Realizado por el Usuario : Julian,2021-12-07
+Dec 07, 2021 11:41:58 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: inicioSesion,Inicio de sesion del usuario: Julian,2021-12-07
+Dec 07, 2021 11:42:07 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Agregar Contacto,El contacto ha sido creado con exito!. Realizado por el Usuario : Julian,2021-12-07
+Dec 07, 2021 11:42:10 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+INFO: Agregar Contacto,El contacto ha sido creado con exito!. Realizado por el Usuario : Julian,2021-12-07

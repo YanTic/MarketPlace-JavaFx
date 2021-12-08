@@ -375,6 +375,48 @@
      <void property="direccion">
       <string>Circasia</string>
      </void>
+     <void property="listaContactos">
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Vendedor">
+        <void property="cedula">
+         <string>1094</string>
+        </void>
+        <void property="nombre">
+         <string>Juan</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Vendedor">
+        <void property="cedula">
+         <string>1095</string>
+        </void>
+        <void property="nombre">
+         <string>Pedro</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Vendedor">
+        <void property="cedula">
+         <string>1096</string>
+        </void>
+        <void property="nombre">
+         <string>Jose</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="co.edu.uniquindio.Marketplace.model.Vendedor">
+        <void property="cedula">
+         <string>33003</string>
+        </void>
+        <void property="nombre">
+         <string>Roberto</string>
+        </void>
+       </object>
+      </void>
+     </void>
      <void property="listaProductos">
       <void method="add">
        <object class="co.edu.uniquindio.Marketplace.model.Producto">
@@ -520,6 +562,15 @@
    </void>
    <void method="add">
     <object class="co.edu.uniquindio.Marketplace.model.Vendedor">
+     <void property="apellido">
+      <string>null</string>
+     </void>
+     <void property="cedula">
+      <string>null</string>
+     </void>
+     <void property="direccion">
+      <string>null</string>
+     </void>
      <void property="nombre">
       <string>Juan Diego</string>
      </void>
