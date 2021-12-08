@@ -3,6 +3,6 @@ Juan@@Galleta@@600@@src/resources/imagenesProducto/imagen_Galleta.png@@Cancelado
 Juan@@Servilletas@@3500@@src/resources/imagenesProducto/imagen_Servilletas.png@@Cancelado@@30_11_2021_40_13@@0
 Pedro@@Tabla de Madera@@6500@@src/resources/imagenesProducto/imagen_Tabla de Madera.png@@Publicado@@03_12_2021_10_15_20@@0
 Jose@@Computador@@20000@@src/resources/imagenesProducto/imagen_Computador.png@@Publicado@@1_12_2021_40_30@@0
-Julian@@Celular Huawei@@450000@@src/resources/imagenesProducto/imagen_Celular.png@@Cancelado@@1_12_2021_23_21@@0
-Julian@@Celular Iphone@@1400000@@src/resources/imagenesProducto/imagen_Celular Iphone.png@@Publicado@@03_12_2021_10_42_10@@0
+Julian@@Celular Huawei@@554600@@src/resources/imagenesProducto/imagen_Celular.png@@Cancelado@@1_12_2021_23_21@@0
+Julian@@Celular Iphone@@1400400@@src/resources/imagenesProducto/imagen_Celular Iphone.png@@Publicado@@03_12_2021_10_42_10@@0
 Roberto@@Cuaderno@@3500@@src/resources/imagenesProducto/imagen_Cuaderno.png@@Publicado@@1_12_2021_36_10@@0

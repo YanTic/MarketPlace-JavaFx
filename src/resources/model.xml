@@ -379,20 +379,10 @@
       <void method="add">
        <object class="co.edu.uniquindio.Marketplace.model.Vendedor">
         <void property="cedula">
-         <string>1094</string>
+         <string>33003</string>
         </void>
         <void property="nombre">
-         <string>Juan</string>
-        </void>
-       </object>
-      </void>
-      <void method="add">
-       <object class="co.edu.uniquindio.Marketplace.model.Vendedor">
-        <void property="cedula">
-         <string>1095</string>
-        </void>
-        <void property="nombre">
-         <string>Pedro</string>
+         <string>Roberto</string>
         </void>
        </object>
       </void>
@@ -409,10 +399,10 @@
       <void method="add">
        <object class="co.edu.uniquindio.Marketplace.model.Vendedor">
         <void property="cedula">
-         <string>33003</string>
+         <string>1094</string>
         </void>
         <void property="nombre">
-         <string>Roberto</string>
+         <string>Juan</string>
         </void>
        </object>
       </void>
@@ -430,7 +420,7 @@
          <string>Celular Huawei</string>
         </void>
         <void property="precio">
-         <string>450000</string>
+         <string>554600</string>
         </void>
         <void property="rutaImagen">
          <string>src/resources/imagenesProducto/imagen_Celular.png</string>
@@ -449,7 +439,7 @@
          <string>Celular Iphone</string>
         </void>
         <void property="precio">
-         <string>1400000</string>
+         <string>1400400</string>
         </void>
         <void property="rutaImagen">
          <string>src/resources/imagenesProducto/imagen_Celular Iphone.png</string>
@@ -470,7 +460,7 @@
          <string>Celular Huawei</string>
         </void>
         <void property="precioProducto">
-         <string>450000</string>
+         <string>554600</string>
         </void>
         <void property="rutaImagenProducto">
          <string>src/resources/imagenesProducto/imagen_Celular.png</string>
@@ -489,7 +479,7 @@
          <string>Celular Iphone</string>
         </void>
         <void property="precioProducto">
-         <string>1400000</string>
+         <string>1400400</string>
         </void>
         <void property="rutaImagenProducto">
          <string>src/resources/imagenesProducto/imagen_Celular Iphone.png</string>
@@ -563,13 +553,13 @@
    <void method="add">
     <object class="co.edu.uniquindio.Marketplace.model.Vendedor">
      <void property="apellido">
-      <string>null</string>
+      <string>Alcatraz</string>
      </void>
      <void property="cedula">
-      <string>null</string>
+      <string>324234</string>
      </void>
      <void property="direccion">
-      <string>null</string>
+      <string>Armenia</string>
      </void>
      <void property="nombre">
       <string>Juan Diego</string>

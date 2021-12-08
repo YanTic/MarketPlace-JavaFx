@@ -13,6 +13,7 @@ import java.util.TreeSet;
 import co.edu.uniquindio.Marketplace.model.Vendedor;
 import co.edu.uniquindio.Marketplace.model.services.IModelFactoryService;
 import co.edu.uniquindio.Marketplace.persistencia.Persistencia;
+import co.edu.uniquindio.Marketplace.threads.BoundedSemaphore;
 import co.edu.uniquindio.Marketplace.exceptions.ProductoException;
 import co.edu.uniquindio.Marketplace.exceptions.PublicacionException;
 import co.edu.uniquindio.Marketplace.exceptions.UsuarioException;
@@ -34,8 +35,17 @@ import javafx.collections.ObservableList;
  * 		por la clase Marketplace (usando throws)
  * */
 
-public class ModelFactoryController implements IModelFactoryService{
+public class ModelFactoryController implements IModelFactoryService, Runnable {
 	Marketplace marketplace;
+	
+	// Hilos
+	BoundedSemaphore semaforo;
+	Thread hiloGuardarResourceXML;
+	Thread hiloGuardarDatosTXT;
+	Thread hiloCrearCopiaSeguridad;
+	Thread hiloRegistrarAccionesSistema;
+		String mensajeLog, accion; 
+		int nivel;
 
 
 	//------------------------------  Singleton ------------------------------------------------
@@ -63,7 +73,7 @@ public class ModelFactoryController implements IModelFactoryService{
 //		iniciarSalvarDatosPrueba();
 		
 		// 2. Cargar los datos de los archivos
-		cargarDatosDesdeArchivos();
+//		cargarDatosDesdeArchivos();
 		
 		// RECORDAR: Cuando quiera cambiar, modificar o agregar informacion, es mejor modificar los
 		//			 .txt, así que se cargan los datos desde archivos (es usa el metodo anterior),
@@ -75,7 +85,7 @@ public class ModelFactoryController implements IModelFactoryService{
 		
 		// 4. Guardar y cargar el recurso serializable XML
 //		guardarResourceXML();
-//		cargarResourceXML();
+		cargarResourceXML();
 		
 		// Siempre se verifica si la raiz del recurso es null
 		if(marketplace == null){
@@ -86,12 +96,160 @@ public class ModelFactoryController implements IModelFactoryService{
 		}
 		
 		
+		semaforo = new BoundedSemaphore(1);
+		
 		// Creo una copia de respaldo
 		crearCopiaSeguridad(); 
 		// Ahora este metodo no se llama desde el LoginViewController -> CRUD -> ModelFactory
 		// sino que lo ejecuto al instante de cargar los datos en el singleton (ModelFactory)
 		
 	}
+	
+	
+	/*GUARDANDO PRODUCTOS
+	GUARDANDO CONTACTOS
+	GUARDANDO PUBLICACIONES
+	GUARDANDO PRODUCTOS
+	GUARDANDO CONTACTOS
+	GUARDANDO PUBLICACIONES
+	GUARDANDO PRODUCTOS
+	GUARDANDO CONTACTOS
+	GUARDANDO PUBLICACIONES
+	Ejecutando hilo: hiloGuardarResourceXML
+
+		at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+		at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+		at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+		at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+		at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+		at javafx.event.Event.fireEvent(Event.java:198)
+		at javafx.scene.Node.fireEvent(Node.java:8413)
+		at javafx.scene.control.Button.fire(Button.java:185)
+		at com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:182)
+		at com.sun.javafx.scene.control.skin.BehaviorSkinBase$1.handle(BehaviorSkinBase.java:96)
+		at com.sun.javafx.scene.control.skin.BehaviorSkinBase$1.handle(BehaviorSkinBase.java:89)
+		at com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:218)
+		at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+		at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+		at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+		at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+		at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+		at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+		at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+		at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+		at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+		at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+		at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+		at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+		at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+		at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+		at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+		at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+		at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+		at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+		at javafx.event.Event.fireEvent(Event.java:198)
+		at javafx.scene.Scene$MouseHandler.process(Scene.java:3757)
+		at javafx.scene.Scene$MouseHandler.access$1500(Scene.java:3485)
+		at javafx.scene.Scene.impl_processMouseEvent(Scene.java:1762)
+		at javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2494)
+		at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:380)
+		at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:294)
+		at java.security.AccessController.doPrivileged(Native Method)
+		at com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$354(GlassViewEventHandler.java:416)
+		at com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:389)
+		at com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:415)
+		at com.sun.glass.ui.View.handleMouseEvent(View.java:555)
+		at com.sun.glass.ui.View.notifyMouse(View.java:937)
+		at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+		at com.sun.glass.ui.win.WinApplication.lambda$null$148(WinApplication.java:191)
+		at java.lang.Thread.run(Unknown Source)
+	Dec 08, 2021 12:12:15 PM co.edu.uniquindio.Marketplace.persistencia.ArchivoUtil guardarRegistroLog
+	INFO: Actualizar Publicacion,La publicacion ha sido actualizada con exito!. Realizado por el Usuario : Julian,2021-12-08
+	Dec 08, 2021 12:12:15 PM javafx.fxml.FXMLLoader$ValueElement processValue
+	WARNING: Loading FXML document with JavaFX API of version 16 by JavaFX runtime of version 8.0.111
+	Dec 08, 2021 12:12:16 PM javafx.fxml.FXMLLoader$ValueElement processValue
+	*/
+	@Override
+	public void run() {
+		// CUANDO LLAMO LOS METODOS RAPIDAMENTE, COMO ACTUALIZAR UN PRODUCTO APARECE UNA EXCEPCION
+		// POR LO QUE TENGO QUE USAR UN SEMAFORO PARA DETENER, ESPERAR A QUE GUARDE Y LUEGO
+		// SE EJECUTE LA ACCION DEL OTRO HILO QUE ESTÁ ESPERANDO
+		
+		Thread hiloActual = Thread.currentThread();
+		
+		try {
+			semaforo.ocupar();
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		if(hiloActual == hiloGuardarDatosTXT){
+			
+			System.out.println("Ejecutando hilo: hiloGuardarDatosTXT");
+			try {
+				Persistencia.guardarUsuarios(marketplace.getListaUsuarios());
+				Persistencia.guardarVendedores(marketplace.getListaVendedores());
+				
+				semaforo.liberar();
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (InterruptedException e1){
+				e1.printStackTrace();
+			}
+		}
+		
+		
+		if(hiloActual == hiloGuardarResourceXML){
+			System.out.println("Ejecutando hilo: hiloGuardarResourceXML");
+			Persistencia.guardarRecursoMarketplaceXML(marketplace);
+			
+			try {
+				semaforo.liberar();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
+		if(hiloActual == hiloRegistrarAccionesSistema){
+			System.out.println("Ejecutando hilo: hiloRegistrarAccionesSistema");
+			Persistencia.guardaRegistroLog(mensajeLog, nivel, accion);
+			
+			try {
+				semaforo.liberar();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		if(hiloActual == hiloCrearCopiaSeguridad){
+			System.out.println("Ejecutando hilo: hiloCrearCopiaSeguridad");
+			Persistencia.guardarCopiaSeguridadBinario(marketplace);
+			Persistencia.guardarCopiaSeguridadXML(marketplace);
+			Persistencia.guardarCopiaSeguridadLog();
+			Persistencia.guardarCopiaSeguridadRespaldo();
+			Persistencia.guardarCopiaSeguridadArchivos();
+			
+			try {
+				semaforo.liberar();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
+	}
+	
+	
+	
+	
+	
 
 	private void inicializarDatos() {
 
@@ -201,25 +359,48 @@ public class ModelFactoryController implements IModelFactoryService{
 	}
 	
 	public void guardarResourceXML(){
-		Persistencia.guardarRecursoMarketplaceXML(marketplace);
+		hiloGuardarResourceXML = new Thread(this);
+		hiloGuardarResourceXML.start();
+	}
+	
+//	public void guardarResourceXML(){
+//		Persistencia.guardarRecursoMarketplaceXML(marketplace);
+//	}
+	
+	
+	public void registrarAccionesSistema(String mensajeLog, int nivel, String accion){
+		this.mensajeLog = mensajeLog;
+		this.nivel = nivel;
+		this.accion = accion;
+		
+		hiloRegistrarAccionesSistema = new Thread(this);
+		hiloRegistrarAccionesSistema.start();
 	}
 	
 	
 	// Registrar las acciones que provengan de los CRUD en un archivo Log
-	public void registrarAccionesSistema(String mensajeLog, int nivel, String accion){
-		Persistencia.guardaRegistroLog(mensajeLog, nivel, accion);
+//	public void registrarAccionesSistema(String mensajeLog, int nivel, String accion){
+//		Persistencia.guardaRegistroLog(mensajeLog, nivel, accion);
+//	}
+	
+	public void guardarDatosTXT(){
+		hiloGuardarDatosTXT = new Thread(this);
+		hiloGuardarDatosTXT.start();
 	}
 	
+	
+	
+	
 	// Actualiza y guarda los datos en los txt "archivoUsuarios" "archivoVendedores" "archivoProductos"
-	public void guardarDatosTXT(){
-		try {	
-			Persistencia.guardarUsuarios(marketplace.getListaUsuarios());
-			Persistencia.guardarVendedores(marketplace.getListaVendedores());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+//	public void guardarDatosTXT(){
+//		try {	
+//			Persistencia.guardarUsuarios(marketplace.getListaUsuarios());
+//			Persistencia.guardarVendedores(marketplace.getListaVendedores());
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 	
 	public String copiarImagen(String nombreProducto, String rutaImagen){
 		return Persistencia.copiarImagen(nombreProducto, rutaImagen);
@@ -227,15 +408,18 @@ public class ModelFactoryController implements IModelFactoryService{
 	
 	
 	// Creo una copia de mi archivo xml en la carpeta c:/td/persistencia
+//	public void crearCopiaSeguridad() {	
+//		Persistencia.guardarCopiaSeguridadBinario(marketplace);
+//		Persistencia.guardarCopiaSeguridadXML(marketplace);
+//		Persistencia.guardarCopiaSeguridadLog();
+//		Persistencia.guardarCopiaSeguridadRespaldo();
+//		Persistencia.guardarCopiaSeguridadArchivos();
+//	}
+	
 	public void crearCopiaSeguridad() {	
-		Persistencia.guardarCopiaSeguridadBinario(marketplace);
-		Persistencia.guardarCopiaSeguridadXML(marketplace);
-		Persistencia.guardarCopiaSeguridadLog();
-		Persistencia.guardarCopiaSeguridadRespaldo();
-		Persistencia.guardarCopiaSeguridadArchivos();
+		hiloCrearCopiaSeguridad = new Thread(this);
+		hiloCrearCopiaSeguridad.start();
 	}
-	
-	
 	
 	
 	
@@ -469,7 +653,6 @@ public class ModelFactoryController implements IModelFactoryService{
 	public Vendedor agregarContacto(Vendedor vendedor, Vendedor nuevoContacto){
 		Vendedor nuevoVendedorContacto = null;	
 		
-		// 26:02 min
 		try {
 			nuevoVendedorContacto = marketplace.agregarContacto(vendedor, nuevoContacto);
 		} catch (VendedorException e) {
@@ -545,6 +728,8 @@ public class ModelFactoryController implements IModelFactoryService{
 		return marketplace.getListaVendedores().get(marketplace.getListaVendedores().
 						   indexOf(vendedor)).getListaContactos();
 	}
+
+	
 
 
 

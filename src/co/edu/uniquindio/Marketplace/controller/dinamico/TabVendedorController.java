@@ -247,9 +247,9 @@ public class TabVendedorController implements Initializable{
     public void agregarContacto(){
     	if(sugeridoSeleccionado != null){   
     		
-    		
-    		CUANDO AGREGO UN CONTACTO ESTE MENSAJE DE CONFIRMACION SE REPITA | POR QUEEEEEEEEE!!
-    		if(mostrarMensajeConfirmacion("¿Desea agregar el vendedor como amigo?")){
+    		boolean agregarContacto = mostrarMensajeConfirmacion("¿Desea agregar el vendedor como amigo?"); 
+//    		CUANDO AGREGO UN CONTACTO ESTE MENSAJE DE CONFIRMACION SE REPITA | POR QUEEEEEEEEE!!
+    		if(agregarContacto){
     			Vendedor nuevoContacto = crudVendedorViewController.agregarContacto(vendedorPrincipal, sugeridoSeleccionado);
     			
     			if(nuevoContacto != null){
@@ -257,6 +257,9 @@ public class TabVendedorController implements Initializable{
     				listaSugeridosData.remove(sugeridoSeleccionado);
     				
     				sugeridoSeleccionado = null;
+    				tablaSugeridos.getSelectionModel().clearSelection();
+    				tablaContactos.refresh();
+    				tablaSugeridos.refresh();
     				
     				mostrarMensaje("Notificacion", "Contacto Agregado", "El vendedor: "+nuevoContacto.getNombre()+ " ha sido agregado como amigo", AlertType.INFORMATION);
     				
@@ -266,15 +269,14 @@ public class TabVendedorController implements Initializable{
     						usuarioLogeado.getUsuario(), 1, "Agregar Contacto");
     				crudVendedorViewController.guardarDatosTXT();
     				
-    				tablaSugeridos.getSelectionModel().clearSelection();
-    				tablaContactos.refresh();
-    				tablaSugeridos.refresh();
-    				
     			}
     			else{
     				mostrarMensaje("Notificacion", "Contacto No Agregado", "El vendedor: "+nuevoContacto.getNombre()+ " No ha sido agregado como amigo", AlertType.ERROR);
     			}
     		}
+    	}
+    	else{
+    		mostrarMensaje("Notificacion", "Contacto sugerido NO seleccionado", "EL Contacto sugerido NO ha sido seleccionado de la tabla", AlertType.ERROR);
     	}
     }
     
@@ -286,18 +288,23 @@ public class TabVendedorController implements Initializable{
     }
     
     
-    public ObservableList<Vendedor> getVendedoresSugeridosData(){    	
-    	listaSugeridosData.addAll(getListaVendedores());
-    	listaSugeridosData.remove(vendedorPrincipal);
+    public ObservableList<Vendedor> getVendedoresSugeridosData(){
+    	ArrayList<Vendedor> listaSugeridos = new ArrayList<Vendedor>();
+    	listaSugeridos.addAll(getListaVendedores());
+    	listaSugeridos.remove(vendedorPrincipal);
     	
-    	for(Vendedor v : listaSugeridosData){
-    		for(Vendedor c : getListaContactos(vendedorPrincipal)){
-    			if(v.getNombre() == c.getNombre() || v.getNombre().equals(c.getNombre())){
-    				listaSugeridosData.remove(v);			
+    	
+    	
+    	for(Vendedor sugerido : listaSugeridos){
+    		for(Vendedor contacto : getListaContactos(vendedorPrincipal)){
+    			if(sugerido.getNombre() == contacto.getNombre() || sugerido.getNombre().equals(contacto.getNombre())){
+    				listaSugeridosData.remove(sugerido);			
     			}
     		}
     	}
     	
+    	
+    	listaSugeridosData.addAll(listaSugeridos);
     	return listaSugeridosData;
 
     }
@@ -371,8 +378,13 @@ public class TabVendedorController implements Initializable{
 		// Acción de la tabla para mostrar informacion de un empleado
 		tablaProductos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) ->{
 			productoSeleccionado = newSelection;
-			rutaImagenProductoSeleccionado = productoSeleccionado.getRutaImagen();
 			mostrarInformacionProducto(productoSeleccionado);
+			
+			try{
+				rutaImagenProductoSeleccionado = productoSeleccionado.getRutaImagen();				
+			} catch(NullPointerException e){
+				System.out.println("Imagen no encontrada al seleccionar el producto");
+			}
 			
 		});
 
